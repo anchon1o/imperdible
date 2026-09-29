@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Imperdible · Administración</title>
+<link rel="icon" href="/pin.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF1F0;--card:#FBFBF8;--ink:#1E2B33;--muted:#66757C;--line:rgba(30,43,51,.13);--glass:rgba(30,43,51,.06);--acc:#7B3FC4;--sea:#D3E0E3;--land:#FBFBF8;--border:#B9C5C3;
+  --font:"Bricolage Grotesque",ui-rounded,"Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0C1215;--card:#162127;--ink:#E6ECEE;--muted:#8C9AA0;--line:rgba(230,236,238,.13);--glass:rgba(230,236,238,.07);--sea:#101A1F;--land:#2A3A41;--border:#40525A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px}
+header{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:5}
+header img{width:30px;height:30px}
+header h1{font-size:19px;margin:0;flex:1}
+main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.card h2{margin:0 0 10px;font-size:17px}
+.small{font-size:13px;color:var(--muted)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+textarea{width:100%;min-height:90px;font-size:13px}
+button,.btn{font:inherit;font-weight:600;border:0;border-radius:11px;padding:9px 13px;background:var(--glass);color:var(--ink);cursor:pointer;text-decoration:none}
+button.primary{background:var(--ink);color:var(--card)}
+button.danger{color:#C53030}
+button:disabled{opacity:.45;cursor:default}
+#list{list-style:none;margin:10px 0 0;padding:0;max-height:62vh;overflow:auto;border:1px solid var(--line);border-radius:12px}
+#list li{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--line);font-size:14px}
+#list li.today{background:rgba(123,63,196,.12)}
+#list li.sel{outline:2px solid var(--acc);outline-offset:-2px}
+#list .n{width:34px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+#list .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#list .nm small{color:var(--muted);margin-left:6px}
+#list .dt{font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+#list li button{padding:4px 8px;font-size:13px;border-radius:8px}
+.grid{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:center}
+.grid input{width:100%}
+#map{width:100%;height:280px;border-radius:12px;background:var(--bg);display:block;margin-top:10px;cursor:crosshair;touch-action:none}
+#map .sphere{fill:var(--sea)} #map .land{fill:var(--land);stroke:var(--border);stroke-width:.5;vector-effect:non-scaling-stroke;fill-rule:evenodd}
+#msg{min-height:20px}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;background:rgba(123,63,196,.14);color:var(--acc);font-size:12px;font-weight:600}
+[hidden]{display:none!important}
+</style>
+<script>window.echarts = { registerMap: function (n, g) { window.__WORLD__ = g; } };</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+<header><img src="/pin.png" alt=""><h1>Imperdible · Administración</h1><a class="btn" href="/">Ir al juego</a><button id="logout" hidden>Salir</button></header>
+
+<section id="login" class="card" style="max-width:420px;margin:40px auto">
+  <h2>Entrar</h2>
+  <p class="small">Escribe la clave de administración (la variable ADMIN_KEY que pusiste en Vercel).</p>
+  <div class="row"><input id="key" type="password" autocomplete="current-password" style="flex:1"><button class="primary" id="enter">Entrar</button></div>
+  <p class="small" id="loginMsg"></p>
+</section>
+
+<main id="app" hidden>
+  <section class="card">
+    <h2>Lugares <span class="pill" id="src"></span></h2>
+    <p class="small" id="info"></p>
+    <div class="row">
+      <input id="q" placeholder="Buscar…" style="flex:1">
+      <button id="add">+ Añadir al final</button>
+    </div>
+    <ol id="list"></ol>
+    <div class="row" style="margin-top:12px">
+      <button class="primary" id="save" disabled>Guardar cambios</button>
+      <span class="small" id="msg"></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="card" id="editor" hidden>
+      <h2 id="edTitle">Editar</h2>
+      <div class="grid">
+        <span></span><span class="small">Lugar</span><span class="small">País</span>
+        <label>Castellano</label><input data-f="n_es"><input data-f="c_es">
+        <label>Galego</label><input data-f="n_gl"><input data-f="c_gl">
+        <label>Català</label><input data-f="n_ca"><input data-f="c_ca">
+        <label>Euskara</label><input data-f="n_eu"><input data-f="c_eu">
+      </div>
+      <p class="small">Si dejas un idioma vacío se usa el castellano.</p>
+      <div class="row"><label class="small">Lat</label><input data-f="lat" inputmode="decimal" style="width:110px"><label class="small">Lon</label><input data-f="lon" inputmode="decimal" style="width:110px">
+        <span class="small">o toca el mapa (rueda o pellizco para acercar)</span></div>
+      <svg id="map"></svg>
+      <div class="row" style="margin-top:10px">
+        <button class="primary" id="apply">Aplicar</button><button id="cancel">Cancelar</button>
+        <button id="test">Probar este reto</button><button class="danger" id="del">Borrar</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h2>Importar lugares</h2>
+      <p class="small">Pega una lista JSON (el mismo formato que exportas) o líneas CSV separadas por punto y coma:<br>
+      <code>nombre;país;lat;lon</code> y, si quieres, las traducciones detrás: <code>;nombre_gl;país_gl;nombre_ca;país_ca;nombre_eu;país_eu</code>. Se añaden al final.</p>
+      <textarea id="imp"></textarea>
+      <div class="row" style="margin-top:8px"><button id="doImp">Añadir a la lista</button><button id="exp">Exportar JSON</button><button id="restore">Cargar la lista incluida</button></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h2>Moderación del ranking</h2>
+      <p class="small">Quita del ranking a quien use un nombre inadecuado (se borran sus puntuaciones).</p>
+      <div class="row"><input id="alias" placeholder="Nombre en el ranking" style="flex:1"><button class="danger" id="ban">Quitar</button></div>
+      <p class="small" id="banMsg"></p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+"use strict";
+const $ = s => document.querySelector(s);
+const LANGS = ["es","gl","ca","eu"];
+const EPOCH = new Date(2026, 8, 29);
+let KEY = localStorage.getItem("imperdible:adminKey") ? JSON.parse(localStorage.getItem("imperdible:adminKey")) : "";
+let list = [], dirty = false, sel = -1, today = 1, bundledCount = 0;
+
+function todayNum(){ const n = new Date(); const a = new Date(n.getFullYear(), n.getMonth(), n.getDate()); return Math.round((a - EPOCH)/86400000) + 1; }
+function nextReto(i){ const len = list.length; return today + ((i - (today-1) % len) + len) % len; }
+function dateOf(n){ const d = new Date(EPOCH); d.setDate(d.getDate() + n - 1); return d.toLocaleDateString("es", { day:"numeric", month:"short", year:"2-digit" }); }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+function norm(p){ const o = { lat: +p.lat, lon: +p.lon }; LANGS.forEach(l => { const v = p[l] || p.es; o[l] = [String((v && v[0]) || ""), String((v && v[1]) || "")]; }); return o; }
+async function api(method, url, body){
+  const r = await fetch(url, { method, headers: { "x-admin-key": KEY, "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || ("Error " + r.status));
+  return j;
+}
+function setDirty(v){ dirty = v; $("#save").disabled = !v; $("#msg").textContent = v ? "Hay cambios sin guardar." : ""; }
+
+async function enter(){
+  KEY = $("#key").value.trim() || KEY;
+  try {
+    const j = await api("GET", "/api/admin");
+    localStorage.setItem("imperdible:adminKey", JSON.stringify(KEY));
+    list = j.list.map(norm); today = todayNum(); bundledCount = j.bundledCount;
+    $("#src").textContent = j.source === "db" ? "guardada en la base de datos" : "lista incluida en el proyecto";
+    if (!j.db) $("#msg").textContent = "Aviso: no hay base de datos conectada; no podrás guardar cambios.";
+    $("#login").hidden = true; $("#app").hidden = false; $("#logout").hidden = false;
+    render();
+  } catch(e){ $("#loginMsg").textContent = e.message; }
+}
+function render(){
+  const q = $("#q").value.trim().toLowerCase();
+  const len = list.length;
+  $("#info").textContent = `${len} lugares · hoy es el reto nº ${today} · la lista da para ${len} días antes de repetirse.`;
+  const todayIdx = (today-1) % len;
+  $("#list").innerHTML = list.map((p,i) => {
+    if (q && !LANGS.some(l => (p[l][0] + " " + p[l][1]).toLowerCase().includes(q))) return "";
+    const n = nextReto(i);
+    return `<li data-i="${i}" class="${i === todayIdx ? "today" : ""} ${i === sel ? "sel" : ""}"><span class="n">${i+1}</span>
+      <span class="nm">${esc(p.es[0])}<small>${esc(p.es[1])}</small></span><span class="dt">${i === todayIdx ? "hoy" : "nº " + n + " · " + dateOf(n)}</span>
+      <button data-a="up" title="Subir">↑</button><button data-a="down" title="Bajar">↓</button><button data-a="edit">Editar</button></li>`;
+  }).join("");
+  $("#list").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const i = +b.closest("li").dataset.i, a = b.dataset.a;
+    if (a === "up" && i > 0){ [list[i-1], list[i]] = [list[i], list[i-1]]; if (sel === i) sel--; setDirty(true); }
+    if (a === "down" && i < list.length-1){ [list[i+1], list[i]] = [list[i], list[i+1]]; if (sel === i) sel++; setDirty(true); }
+    if (a === "edit") openEditor(i);
+    render();
+  });
+}
+function field(f){ return document.querySelector(`[data-f="${f}"]`); }
+function openEditor(i){
+  sel = i; const p = i >= 0 ? list[i] : norm({ lat: "", lon: "" });
+  LANGS.forEach(l => { field("n_"+l).value = i >= 0 ? p[l][0] : ""; field("c_"+l).value = i >= 0 ? p[l][1] : ""; });
+  field("lat").value = i >= 0 ? p.lat : ""; field("lon").value = i >= 0 ? p.lon : "";
+  $("#edTitle").textContent = i >= 0 ? `Editar lugar ${i+1} (reto nº ${nextReto(i)})` : "Nuevo lugar";
+  $("#del").hidden = i < 0; $("#test").hidden = i < 0;
+  $("#editor").hidden = false; drawPin(); focusMap();
+}
+function formPlace(){
+  const o = { lat: parseFloat(field("lat").value), lon: parseFloat(field("lon").value) };
+  LANGS.forEach(l => o[l] = [field("n_"+l).value.trim(), field("c_"+l).value.trim()]);
+  LANGS.forEach(l => { if (!o[l][0]) o[l][0] = o.es[0]; if (!o[l][1]) o[l][1] = o.es[1]; });
+  return o;
+}
+$("#apply").onclick = () => {
+  const o = formPlace();
+  if (!o.es[0] || !isFinite(o.lat) || !isFinite(o.lon) || Math.abs(o.lat) > 90 || Math.abs(o.lon) > 180){ alert("Faltan el nombre en castellano o unas coordenadas válidas."); return; }
+  if (sel >= 0) list[sel] = o; else { list.push(o); sel = list.length - 1; }
+  setDirty(true); render();
+};
+$("#cancel").onclick = () => { $("#editor").hidden = true; sel = -1; render(); };
+$("#del").onclick = () => { if (sel < 0 || !confirm("¿Borrar este lugar?")) return; list.splice(sel, 1); sel = -1; $("#editor").hidden = true; setDirty(true); render(); };
+$("#test").onclick = () => { if (dirty && !confirm("Hay cambios sin guardar; el juego usará la lista guardada. ¿Seguir?")) return; localStorage.setItem("imperdible:v1:testReto", JSON.stringify(nextReto(sel))); localStorage.removeItem("imperdible:v1:reto:" + nextReto(sel)); location.href = "/"; };
+$("#add").onclick = () => openEditor(-1);
+$("#q").oninput = render;
+$("#save").onclick = async () => {
+  if (list.length < 1) return;
+  $("#save").disabled = true; $("#msg").textContent = "Guardando…";
+  try { const j = await api("PUT", "/api/admin", { list }); setDirty(false); $("#src").textContent = "guardada en la base de datos"; $("#msg").textContent = `Guardado: ${j.count} lugares.`; }
+  catch(e){ $("#msg").textContent = e.message; $("#save").disabled = false; }
+};
+$("#exp").onclick = () => {
+  const blob = new Blob([JSON.stringify(list, null, 0)], { type: "application/json" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "places.json"; a.click();
+};
+$("#restore").onclick = async () => {
+  if (!confirm(`Esto sustituye la lista actual por la incluida en el proyecto (${bundledCount} lugares). ¿Seguir?`)) return;
+  try { const j = await api("GET", "/api/admin?bundled=1"); list = j.list.map(norm); sel = -1; $("#editor").hidden = true; setDirty(true); render(); $("#msg").textContent = "Lista incluida cargada. Pulsa «Guardar cambios» para aplicarla."; }
+  catch(e){ $("#msg").textContent = e.message; }
+};
+$("#doImp").onclick = () => {
+  const t = $("#imp").value.trim(); if (!t) return;
+  let add = [];
+  try {
+    if (t[0] === "[") add = JSON.parse(t).map(norm);
+    else add = t.split(/\n+/).map(line => line.split(";").map(x => x.trim())).filter(c => c.length >= 4).map(c => {
+      const o = { lat: parseFloat(c[2]), lon: parseFloat(c[3]), es: [c[0], c[1]] };
+      o.gl = [c[4] || c[0], c[5] || c[1]]; o.ca = [c[6] || c[0], c[7] || c[1]]; o.eu = [c[8] || c[0], c[9] || c[1]];
+      return o;
+    });
+  } catch(e){ alert("No se pudo leer: " + e.message); return; }
+  const bad = add.filter(p => !p.es[0] || !isFinite(p.lat) || !isFinite(p.lon));
+  if (bad.length){ alert(`${bad.length} líneas no tienen nombre o coordenadas válidas.`); return; }
+  list = list.concat(add); $("#imp").value = ""; setDirty(true); render();
+  $("#msg").textContent = `Añadidos ${add.length} lugares. Pulsa «Guardar cambios».`;
+};
+$("#ban").onclick = async () => {
+  const a = $("#alias").value.trim(); if (!a || !confirm(`¿Quitar del ranking a «${a}»?`)) return;
+  try { const j = await api("DELETE", "/api/admin?alias=" + encodeURIComponent(a)); $("#banMsg").textContent = j.removed ? "Hecho." : "No había nadie con ese nombre."; }
+  catch(e){ $("#banMsg").textContent = e.message; }
+};
+$("#enter").onclick = enter;
+$("#key").onkeydown = e => { if (e.key === "Enter") enter(); };
+$("#logout").onclick = () => { localStorage.removeItem("imperdible:adminKey"); location.reload(); };
+if (KEY) enter();
+
+/* mapa para situar lugares */
+const svg = d3.select("#map"), proj = d3.geoEquirectangular(), geo = d3.geoPath(proj);
+const g = svg.append("g"), sph = g.append("path").attr("class","sphere"), gl = g.append("g"), pinG = svg.append("g");
+let zt = d3.zoomIdentity, W = 0, H = 280;
+const landPath = d3.geoPath(d3.geoTransform({ point(x, y){ const p = proj([x, y]); this.stream.point(p[0], p[1]); } }));
+const zoom = d3.zoom().scaleExtent([1, 60]).on("zoom", e => { zt = e.transform; g.attr("transform", zt); drawPin(); });
+svg.call(zoom).on("dblclick.zoom", null);
+function size(){ W = svg.node().clientWidth || 400; proj.fitSize([W, H], { type: "Sphere" }); sph.attr("d", geo({ type: "Sphere" })); gl.selectAll("path").attr("d", landPath); drawPin(); }
+function drawPin(){
+  pinG.selectAll("*").remove();
+  const lat = parseFloat(field("lat").value), lon = parseFloat(field("lon").value);
+  if (!isFinite(lat) || !isFinite(lon)) return;
+  const p = zt.apply(proj([lon, lat]));
+  pinG.append("image").attr("href", "/sticker.png").attr("x", p[0]-18).attr("y", p[1]-18).attr("width", 36).attr("height", 36);
+}
+function focusMap(){
+  const lat = parseFloat(field("lat").value), lon = parseFloat(field("lon").value);
+  if (!W) size();
+  if (!isFinite(lat) || !isFinite(lon)) return;
+  const p = proj([lon, lat]);
+  svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W/2, H/2).scale(6).translate(-p[0], -p[1]));
+}
+svg.on("click", e => {
+  const p = zt.invert(d3.pointer(e, svg.node())); const ll = proj.invert(p);
+  if (!ll) return; field("lat").value = ll[1].toFixed(4); field("lon").value = ll[0].toFixed(4); drawPin();
+});
+["lat","lon"].forEach(f => field(f).addEventListener("change", () => { drawPin(); focusMap(); }));
+function decode(json){
+  const sc = json.UTF8Scale || 1024;
+  const dec = (s, o) => { const out = []; let px = o[0], py = o[1]; for (let i=0;i<s.length;i+=2){ let x = s.charCodeAt(i)-64, y = s.charCodeAt(i+1)-64; x = (x>>1)^(-(x&1)); y = (y>>1)^(-(y&1)); x += px; y += py; px = x; py = y; out.push([x/sc, y/sc]); } return out; };
+  json.features.forEach(f => { f.type = "Feature"; const gm = f.geometry; if (!gm) return; const e = gm.encodeOffsets;
+    if (gm.type === "Polygon") gm.coordinates = gm.coordinates.map((r,i) => typeof r === "string" ? dec(r, e[i]) : r);
+    else if (gm.type === "MultiPolygon") gm.coordinates = gm.coordinates.map((pl,i) => pl.map((r,j) => typeof r === "string" ? dec(r, e[i][j]) : r)); });
+  return json.features.filter(f => f.geometry);
+}
+if (window.__WORLD__) gl.selectAll("path").data(decode(window.__WORLD__)).join("path").attr("class","land");
+new ResizeObserver(size).observe(svg.node());
+})();
+</script>
+</body>
+</html>

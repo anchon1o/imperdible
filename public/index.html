@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Imperdible</title>
+<meta name="description" content="Cada día se pierde un imperdible en algún lugar del mundo. ¿Lo encuentras?">
+<link rel="icon" href="/pin.png">
+<meta name="theme-color" content="#7B3FC4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F0; --sea:#D3E0E3; --land:#FBFBF8; --border:#B9C5C3; --grat:#C9D6D9;
+  --ink:#1E2B33; --muted:#66757C; --sheet:rgba(250,251,250,.84); --line:rgba(30,43,51,.12);
+  --glass:rgba(30,43,51,.07); --route:rgba(30,43,51,.5); --markstroke:#fff;
+  --ease:cubic-bezier(.3,1.35,.45,1);
+  --font:"Bricolage Grotesque", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1215; --sea:#101A1F; --land:#2A3A41; --border:#40525A; --grat:#16232A;
+    --ink:#E6ECEE; --muted:#8C9AA0; --sheet:rgba(18,26,30,.84); --line:rgba(230,236,238,.12);
+    --glass:rgba(230,236,238,.08); --route:rgba(230,236,238,.55); --markstroke:#121B1F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1215; --sea:#101A1F; --land:#2A3A41; --border:#40525A; --grat:#16232A;
+  --ink:#E6ECEE; --muted:#8C9AA0; --sheet:rgba(18,26,30,.84); --line:rgba(230,236,238,.12);
+  --glass:rgba(230,236,238,.08); --route:rgba(230,236,238,.55); --markstroke:#121B1F;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);
+  -webkit-font-smoothing:antialiased;overflow:hidden;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+#app{position:fixed;inset:0;overflow:hidden}
+#map{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:none}
+#map .sphere{fill:var(--sea)}
+#map .grat{fill:none;stroke:var(--grat);stroke-width:.7;vector-effect:non-scaling-stroke}
+#map .land{fill-rule:evenodd;fill:var(--land);stroke:var(--border);stroke-width:.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+#map .hit{fill:rgba(123,63,196,.18);fill-rule:evenodd;stroke:#7B3FC4;stroke-width:1.8;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+#map .sonar{fill:none;pointer-events:none;vector-effect:non-scaling-stroke;stroke-linecap:round}
+#map .route{fill:none;stroke:var(--route);stroke-width:1.4;stroke-dasharray:3 4;vector-effect:non-scaling-stroke;stroke-linecap:round}
+#map .route.final{stroke-dasharray:none;opacity:.8}
+.mk{cursor:pointer}
+.mk .in{transform-box:fill-box;transform-origin:center}
+.mk .in.pop{animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+.mk circle.dot{stroke:var(--markstroke);stroke-width:2}
+.mk text{font-family:var(--font);font-weight:700;font-size:11px;text-anchor:middle;dominant-baseline:central;pointer-events:none;font-variant-numeric:tabular-nums}
+.mk.pending circle.dot{fill:var(--muted);opacity:.55}
+.mk.pending .ring{fill:none;stroke:var(--muted);stroke-width:1.5;animation:pend .7s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pend{from{transform:scale(.7);opacity:.9}to{transform:scale(1.9);opacity:0}}
+@keyframes pop{0%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+#vignette{position:absolute;inset:0;pointer-events:none;transition:box-shadow 1.2s ease}
+
+/* Top bar */
+.top{position:absolute;left:0;right:0;top:calc(10px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;align-items:center;padding:0 12px;pointer-events:none;z-index:5}
+.top > *{pointer-events:auto}
+.round{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--sheet);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer}
+.round svg{width:20px;height:20px}
+.brand{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.brand img{width:30px;height:30px;margin:-4px 0}
+.brand b{font-weight:700;font-size:17px;letter-spacing:-.01em;font-variation-settings:"opsz" 40}
+.brand span{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+
+/* Bottom sheet */
+#sheet{position:absolute;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));margin:0 auto;max-width:520px;
+  background:var(--sheet);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border:1px solid var(--line);border-radius:24px;padding:10px 18px 16px;z-index:5;
+  box-shadow:0 10px 40px -18px rgba(0,0,0,.35);transition:transform .35s ease}
+.handle{display:block;width:44px;height:14px;margin:0 auto 4px;border:0;background:none;cursor:pointer;position:relative;padding:0}
+.handle::after{content:"";position:absolute;left:8px;right:8px;top:5px;height:4px;border-radius:4px;background:var(--line)}
+.readout{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;min-height:34px}
+.cat{display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:26px;font-weight:700;letter-spacing:-.02em;font-variation-settings:"opsz" 72;line-height:1.1}
+.cat .glyph{width:24px;height:24px;flex:none;align-self:center;transition:color .6s}
+#deg{font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:2px}
+#delta{font-size:15px;color:var(--muted);text-align:right;white-space:nowrap;transition:opacity .3s}
+#delta.up{color:var(--ink)}
+
+.tube{position:relative;height:26px;margin:12px 30px 10px;border-radius:99px;background:var(--glass);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.18), inset 0 -1px 0 rgba(255,255,255,.35);transition:box-shadow 1s ease}
+.tube::after{content:"";position:absolute;left:12px;right:12px;top:4px;height:4px;border-radius:4px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
+.track{position:absolute;inset:4px}
+.fill{position:absolute;inset:0;border-radius:99px;clip-path:inset(0 100% 0 0 round 99px);transition:clip-path 1.1s var(--ease)}
+.bead{position:absolute;top:50%;left:0;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:var(--land);
+  border:4px solid var(--muted);box-shadow:0 2px 8px rgba(0,0,0,.25);transition:left 1.1s var(--ease), border-color .8s ease;display:grid;place-items:center}
+.bead img{width:22px;height:22px;opacity:0;transform:scale(.4);transition:all .5s cubic-bezier(.34,1.56,.64,1);color:#7B3FC4}
+.tube .end{position:absolute;top:50%;width:18px;height:18px;margin-top:-9px;color:var(--muted)}
+.tube .end.l{left:-26px}.tube .end.r{right:-26px}
+.tube.hot .bead{animation:beat 1.4s ease-in-out infinite}
+.tube.burning .bead{animation:beat .9s ease-in-out infinite, shiver .18s linear infinite}
+@keyframes beat{0%,100%{box-shadow:0 2px 8px rgba(0,0,0,.25),0 0 0 0 var(--beat,rgba(217,84,69,.45))}50%{box-shadow:0 2px 8px rgba(0,0,0,.25),0 0 0 9px rgba(217,84,69,0)}}
+@keyframes shiver{0%,100%{translate:0 0}25%{translate:.6px -.4px}75%{translate:-.6px .4px}}
+.tube.surge{animation:surge .7s ease-out}
+.tube.sink{animation:sink .7s ease-out}
+@keyframes surge{30%{transform:translateX(5px)}100%{transform:none}}
+@keyframes sink{30%{transform:translateX(-5px)}100%{transform:none}}
+@keyframes burst{from{transform:scale(.8);opacity:1}to{transform:scale(2.2);opacity:0}}
+
+.meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px}
+.pips{display:flex;gap:6px}
+.pip{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line);transition:background .4s, border-color .4s}
+.pip.next{border-color:var(--muted)}
+#timer{font-variant-numeric:tabular-nums;color:var(--muted);font-size:15px}
+.left{font-size:14px;color:var(--muted)}
+
+/* End panel */
+#end{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+#end[hidden]{display:none}
+#end h2{margin:0;font-size:24px;letter-spacing:-.02em;font-variation-settings:"opsz" 72}
+#end p.where{margin:4px 0 12px;font-size:17px;line-height:1.35}
+#end p.where strong{font-weight:700}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.nums div{display:flex;flex-direction:column}
+.nums b{font-size:22px;font-variant-numeric:tabular-nums;font-weight:700}
+.nums span{font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.chip{flex:none;display:flex;align-items:center;gap:6px;padding:5px 10px 5px 5px;border-radius:99px;background:var(--glass);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700;color:#fff}
+.actions{display:flex;gap:8px}
+.btn{flex:1;border:0;border-radius:14px;padding:12px 14px;font-weight:600;font-size:16px;cursor:pointer;background:var(--glass)}
+.btn.primary{background:var(--ink);color:var(--land)}
+.next-in{margin:10px 0 0;font-size:13px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+#sheet.collapsed #end{display:none}
+
+/* toast */
+#toast{position:absolute;left:50%;top:calc(62px + env(safe-area-inset-top,0px));transform:translate(-50%,-8px);opacity:0;pointer-events:none;
+  background:var(--ink);color:var(--land);padding:8px 14px;border-radius:12px;font-size:14px;transition:all .25s;z-index:6;white-space:nowrap}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* dialogs */
+dialog{border:1px solid var(--line);border-radius:22px;background:var(--land);color:var(--ink);padding:22px;max-width:min(420px,calc(100vw - 24px));width:100%;max-height:85vh;overflow:auto}
+dialog::backdrop{background:rgba(10,16,20,.35);backdrop-filter:blur(3px)}
+dialog h3{margin:0 0 10px;font-size:22px;letter-spacing:-.02em}
+dialog p{margin:0 0 10px;line-height:1.45;font-size:15.5px}
+.legend{list-style:none;padding:0;margin:12px 0}
+.legend li{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:15px}
+.legend svg{width:20px;height:20px;flex:none}
+.legend span{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.close{position:sticky;float:right;top:0;border:0;background:var(--glass);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin:8px 0 16px}
+.statgrid b{display:block;font-size:26px;font-variant-numeric:tabular-nums}
+.statgrid span{font-size:12px;color:var(--muted)}
+.bars{display:flex;flex-direction:column;gap:5px}
+.bar{display:flex;align-items:center;gap:8px;font-size:14px;font-variant-numeric:tabular-nums}
+.bar i{display:block;height:20px;border-radius:6px;background:var(--glass);min-width:24px;font-style:normal;text-align:right;padding-right:6px;line-height:20px;font-size:12px}
+.bar i.cur{background:#DE843C;color:#fff}
+.small{font-size:13px;color:var(--muted)}
+.linkbtn{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0;font-size:13px}
+.testbox{margin-top:14px;padding:12px;border-radius:14px;background:var(--glass)}
+.testrow{display:flex;gap:6px;align-items:center;margin-top:6px}
+.testrow .btn{padding:9px 10px;font-size:14px}
+#testNum{width:64px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--land);color:var(--ink);font:inherit}
+label.toggle{display:flex;align-items:center;gap:8px;font-size:15px;margin:10px 0}
+:focus-visible{outline:2px solid #3979C3;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+}
+@media (min-width:700px){ .cat{font-size:30px} }
+
+/* === v2 === */
+.topleft{display:flex;gap:8px;align-items:center}
+.langwrap{position:relative}
+.flag{display:inline-block;width:24px;height:16px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.15);line-height:0}
+.flag svg{width:100%;height:100%;display:block}
+.langmenu{position:absolute;top:48px;left:0;min-width:170px;padding:6px;border-radius:14px;border:1px solid var(--line);background:var(--land);box-shadow:0 12px 30px -12px rgba(0,0,0,.35);z-index:8}
+.langmenu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:0;background:none;border-radius:10px;cursor:pointer;font-size:15px;text-align:left}
+.langmenu button:hover,.langmenu button.on{background:var(--glass)}
+.mk.target .in{animation:drop .7s cubic-bezier(.34,1.56,.64,1)}
+.mk.target .sticker{animation:bob 2.6s ease-in-out .8s infinite;transform-box:fill-box;transform-origin:50% 80%}
+.mk.target .tshadow{fill:rgba(20,10,40,.22)}
+@keyframes drop{0%{transform:translateY(-30px) scale(.6);opacity:0}100%{transform:none;opacity:1}}
+@keyframes bob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-2px)}}
+.tube.found .bead{border-color:transparent!important;background:none;box-shadow:none;width:58px;height:58px;margin:-29px 0 0 -29px;animation:none!important}
+.tube.found .bead img{width:58px;height:58px;opacity:1;transform:none}
+.legend img{width:20px;height:20px;flex:none}
+.tabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--glass);margin:4px 0 14px}
+.tab{flex:1;border:0;background:none;padding:8px;border-radius:9px;cursor:pointer;font-weight:600;font-size:14px;color:var(--muted)}
+.tab.on{background:var(--land);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.rank{list-style:none;padding:0;margin:0 0 8px;display:flex;flex-direction:column;gap:2px}
+.rank li{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:10px;font-size:15px;font-variant-numeric:tabular-nums}
+.rank li.mine{background:rgba(123,63,196,.12)}
+.rank .pos{width:22px;color:var(--muted);text-align:right}
+.rank .who{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank .who em{color:var(--muted);font-style:normal;font-size:13px}
+.rank .det{color:var(--muted);font-size:13px}
+.rank b{min-width:44px;text-align:right}
+.joinbox{margin-top:14px;padding:12px;border-radius:14px;background:var(--glass)}
+#aliasIn{flex:1;min-width:0;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--land);color:var(--ink);font:inherit}
+.rankbtn{width:100%;margin-top:8px;flex:none}
+.btn:disabled{opacity:.45;cursor:default}
+
+/* === v3 === */
+.top{gap:8px}
+.round{flex:none;width:44px;height:44px;aspect-ratio:1;padding:0}
+.topleft{gap:8px;flex:none}
+.brand{min-width:0;flex:0 1 auto;white-space:nowrap;overflow:hidden;padding:8px 14px 8px 10px}
+.brand b{overflow:hidden;text-overflow:ellipsis}
+.brand span{flex:none}
+.badge{font-size:11px!important;font-weight:600;padding:2px 7px;border-radius:99px;background:rgba(123,63,196,.14);color:#7B3FC4!important}
+dialog.wide{max-width:min(560px,calc(100vw - 24px))}
+.alist{list-style:none;padding:0;margin:8px 0;max-height:38vh;overflow:auto;border:1px solid var(--line);border-radius:12px}
+.alist li{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--line);font-size:14px}
+.alist li:last-child{border-bottom:0}
+.alist li.on{background:rgba(123,63,196,.1)}
+.alist .an{width:24px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.alist .aname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.alist .aname small{color:var(--muted);margin-left:6px}
+.alist .adate{color:var(--muted);font-size:12px;white-space:nowrap}
+.alist .abtns{display:flex;gap:2px}
+.alist .abtns button{border:0;background:var(--glass);border-radius:8px;padding:5px 8px;cursor:pointer;font-size:13px}
+.aform{margin-top:10px;padding:12px;border-radius:14px;background:var(--glass)}
+.aform h4{margin:0 0 8px;font-size:16px}
+.agrid{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;align-items:center;font-size:14px}
+.aform input{min-width:0;width:100%;padding:8px;border-radius:9px;border:1px solid var(--line);background:var(--land);color:var(--ink);font:inherit;font-size:14px}
+.aform .testrow input{width:90px;flex:1}
+.btn.danger{color:#C53030}
+/* === v4: imperdible cravado e modo adestramento === */
+.mk.target .in{animation:stab .55s cubic-bezier(.55,0,.8,.4) both}
+@keyframes stab{0%{transform:translate(18px,-70px);opacity:0}70%{opacity:1}100%{transform:none;opacity:1}}
+.mk.target .pinwob{transform-box:view-box;transform-origin:0 0;animation:wob 1.3s ease-out .55s 1}
+@keyframes wob{0%{transform:rotate(0)}18%{transform:rotate(8deg)}38%{transform:rotate(-5deg)}58%{transform:rotate(3deg)}78%{transform:rotate(-1.2deg)}100%{transform:rotate(0)}}
+.mk.target .pshadow *{fill:none;stroke:rgba(20,10,40,.2);stroke-width:3.4;stroke-linecap:round}
+.mk.target .pshadow rect{fill:rgba(20,10,40,.2);stroke:none}
+.mk.target .phole{fill:rgba(20,10,40,.5)}
+.mk.target .pout *{fill:none;stroke:#fff;stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round}
+.mk.target .pout rect{fill:#fff;stroke-width:4.5}
+.mk.target .pmetal *{fill:none;stroke:#7B3FC4;stroke-width:3.6;stroke-linecap:round}
+.mk.target .pmetal rect{fill:#8E52D6;stroke:#6A2FB8;stroke-width:1.2}
+.mk.target .pshine *{fill:none;stroke:#E2CFFB;stroke-width:1.1;stroke-linecap:round;opacity:.9}
+.mk.target .pcapshine{fill:#EEE2FD;opacity:.85}
+.modetabs{margin:2px 0 12px}
+#regionSel{flex:1;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--land);color:var(--ink);font:inherit}
+/* === v5 === */
+@media (max-width:460px){.top{gap:6px;padding:0 8px}.topleft,.topright{gap:6px}.round{width:38px;height:38px}.round svg{width:18px;height:18px}.brand{gap:6px;padding:6px 10px 6px 8px}.brand img{width:24px;height:24px}.brand b{font-size:15px}.brand span{font-size:12.5px}}
+
+.topright{display:flex;gap:8px;flex:none}
+.tabs .tab{padding:8px 4px;font-size:13.5px}
+.mk.target .phole{fill:rgba(20,10,40,.28)}
+</style>
+<script>
+/* Los datos del mapa llegan como un script que se registra en "echarts": lo interceptamos. */
+window.echarts = { registerMap: function (name, geo) { window.__WORLD__ = geo; } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+<script>try{var __p=JSON.parse(localStorage.getItem("imperdible:v1:prefs")||"{}");if(__p.theme)document.documentElement.dataset.theme=__p.theme;}catch(e){}</script>
+</head>
+<body>
+<div id="app">
+  <svg id="map" role="img"></svg>
+  <div id="vignette"></div>
+
+  <div class="top">
+    <div class="topleft">
+      <button class="round" id="helpBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.2 9a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.2-1.5 2.1v.4"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg>
+      </button>
+      <div class="langwrap">
+        <button class="round" id="langBtn" aria-haspopup="true" aria-expanded="false"><span id="langFlag" class="flag"></span></button>
+        <div class="langmenu" id="langMenu" hidden></div>
+      </div>
+    </div>
+    <div class="brand"><img id="brandPin" alt=""><b id="brandName">Imperdible</b><span id="retoNum"></span><span class="badge" id="testBadge" hidden></span></div>
+    <div class="topright">
+      <button class="round" id="themeBtn"></button>
+      <button class="round" id="statsBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 20V12M12 20V5M19 20v-5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="toast" role="status"></div>
+
+  <section id="sheet" aria-live="polite">
+    <button class="handle" id="handle"></button>
+    <div class="readout">
+      <div class="cat"><svg class="glyph" id="catGlyph" viewBox="0 0 24 24"></svg><span id="catName"></span><span id="deg"></span></div>
+      <div id="delta"></div>
+    </div>
+    <div class="tube" id="tube">
+      <svg class="end l" viewBox="0 0 24 24"><use href="#g-0"/></svg>
+      <div class="track"><div class="fill" id="fill"></div><div class="bead" id="bead"><img id="beadPin" alt=""></div></div>
+      <svg class="end r" viewBox="0 0 24 24"><use href="#g-6"/></svg>
+    </div>
+    <div class="meta">
+      <div class="pips" id="pips"></div>
+      <div class="left" id="left"></div>
+      <div id="timer">0:00</div>
+    </div>
+    <div id="end" hidden></div>
+  </section>
+</div>
+
+<dialog id="helpDlg">
+  <button class="close" data-close>×</button>
+  <h3 data-i18n="howTitle"></h3>
+  <div class="tabs modetabs"><button class="tab" id="modeDaily"></button><button class="tab" id="modeTrain"></button></div>
+  <div id="trainOpts" hidden>
+    <div class="testrow"><label class="small" id="regionLabel" for="regionSel"></label><select id="regionSel"></select></div>
+    <p class="small" id="trainNote" style="margin-top:6px"></p>
+  </div>
+  <p data-i18n="help1"></p>
+  <p data-i18n="help2"></p>
+  <p data-i18n="help3"></p>
+  <p data-i18n="help4"></p>
+  <p data-i18n="help5"></p>
+  <ul class="legend" id="legend"></ul>
+  <label class="toggle"><input type="checkbox" id="vibeToggle" checked> <span data-i18n="vibe"></span></label>
+  <label class="toggle"><input type="checkbox" id="camToggle" checked> <span data-i18n="cam"></span></label>
+  <div class="testbox">
+    <p class="small" style="margin:0 0 8px" data-i18n="testTitle"></p>
+    <div class="testrow">
+      <label for="testNum" class="small" data-i18n="retoLabel"></label>
+      <input id="testNum" type="number" min="1" inputmode="numeric">
+      <button class="btn" id="testGo" data-i18n="play"></button>
+      <button class="btn" id="testRand" data-i18n="random"></button>
+    </div>
+    <div class="testrow">
+      <button class="btn" id="resetBtn" data-i18n="reset"></button>
+      <button class="btn" id="testToday" data-i18n="today"></button>
+    </div>
+  </div>
+  <a class="btn" id="adminOpen" href="/admin.html" hidden style="display:block;text-align:center;text-decoration:none;margin-top:10px">⚙ Administración</a>
+</dialog>
+
+<dialog id="statsDlg">
+  <button class="close" data-close>×</button>
+  <h3 data-i18n="statsTitle"></h3>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="me" data-i18n="tabMe"></button>
+    <button class="tab" data-tab="day" data-i18n="tabDay"></button>
+    <button class="tab" data-tab="week" data-i18n="tabWeek"></button>
+    <button class="tab" data-tab="month" data-i18n="tabMonth"></button>
+    <button class="tab" data-tab="all" data-i18n="tabAll"></button>
+  </div>
+  <div class="pane" data-pane="me">
+    <div class="statgrid" id="statgrid"></div>
+    <p class="small" data-i18n="distLabel"></p>
+    <div class="bars" id="bars"></div>
+  </div>
+  <div class="pane" data-pane="day" hidden><div id="rankDay"></div></div>
+  <div class="pane" data-pane="week" hidden><p class="small" data-i18n="weekNote"></p><div id="rankWeek"></div></div>
+  <div class="pane" data-pane="month" hidden><p class="small" data-i18n="monthNote"></p><div id="rankMonth"></div></div>
+  <div class="pane" data-pane="all" hidden><p class="small" data-i18n="allNote"></p><div id="rankAll"></div></div>
+  <div class="joinbox" id="joinBox">
+    <label class="small" for="aliasIn" data-i18n="aliasLabel"></label>
+    <div class="testrow">
+      <input id="aliasIn" maxlength="20" autocomplete="off">
+      <button class="btn primary" id="publishBtn" data-i18n="publish"></button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="autoPub"> <span data-i18n="autoPub"></span></label>
+    <p class="small" id="rankMsg"></p>
+  </div>
+</dialog>
+
+<!-- Glifos propios de cada nivel -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="g-0" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M10 4.5l2 2 2-2M10 19.5l2-2 2 2"/></g></symbol>
+    <symbol id="g-1" viewBox="0 0 24 24"><path d="M3 12c3-4 6 4 9 0s6-4 9 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="g-2" viewBox="0 0 24 24"><path d="M3 9c3-3 6 3 9 0s6-3 9 0M3 15c3-3 6 3 9 0s6-3 9 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="g-3" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></symbol>
+    <symbol id="g-4" viewBox="0 0 24 24"><path d="M12 21c-3.3 0-5.5-2.2-5.5-5 0-3.3 3.2-5 3.2-9 2.8 1.6 3.4 3.9 3.4 5.6 1-1 1.6-2.2 1.6-3.3 2.2 1.6 2.8 4 2.8 6.7 0 2.8-2.2 5-5.5 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="g-5" viewBox="0 0 24 24"><path d="M12 21c-3.3 0-5.5-2.2-5.5-5 0-3.3 3.2-5 3.2-9 2.8 1.6 3.4 3.9 3.4 5.6 1-1 1.6-2.2 1.6-3.3 2.2 1.6 2.8 4 2.8 6.7 0 2.8-2.2 5-5.5 5z" fill="currentColor" fill-opacity=".35" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="g-6" viewBox="0 0 24 24"><path d="M12 22c-3.6 0-6-2.4-6-5.5 0-3.6 3.4-5.5 3.4-10 3 1.8 3.8 4.3 3.8 6.2 1.1-1.1 1.8-2.5 1.8-3.7 2.4 1.8 3 4.4 3 7.4 0 3.1-2.4 5.6-6 5.6z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 19.5c-1.4 0-2.3-.9-2.3-2.1 0-1.4 1.3-2.2 1.3-3.9 1.4.8 3.3 2.2 3.3 3.9 0 1.2-.9 2.1-2.3 2.1z" fill="#fff" fill-opacity=".7"/></symbol>
+  </defs>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ============ CONFIGURACIÓN ============ */
+const CONFIG = {
+  MAX_TRIES: 10,
+  WIN_KM: 150,
+  SUSPENSE_MS: 650,
+  EPOCH: new Date(2026, 8, 29) // reto nº 1 = 29/09/2026 (hora local)
+};
+const LEVELS = [
+  { color: "#A9D9F2", min: 6000, share: "⬜" },
+  { color: "#4B86D8", min: 3000, share: "🟦" },
+  { color: "#2AA3AC", min: 1500, share: "🟩" },
+  { color: "#56B65C", min: 800,  share: "🟩" },
+  { color: "#E3BD2F", min: 400,  share: "🟨" },
+  { color: "#EC7B2F", min: 250,  share: "🟧" },
+  { color: "#D73838", min: 0,    share: "🟥" }
+];
+const FOUND = { color: "#7B3FC4", share: "🧷" };
+const PIN_IMG = "/pin.png";
+const STICKER_IMG = "/sticker.png";
+
+/* ============ IDIOMAS ============ */
+const LANGS = ["gl", "es", "ca", "eu"];
+const LANG_NAMES = { gl: "Galego", es: "Castellano", ca: "Català", eu: "Euskara" };
+const FLAGS = {
+  gl: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><path d="M0 0h5.5L30 15.5V20h-5.5L0 4.5z" fill="#0A93D2"/></svg>',
+  es: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#C60B1E"/><rect y="5" width="30" height="10" fill="#FFC400"/></svg>',
+  ca: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#FCDD09"/><g fill="#DA121A"><rect y="2.22" width="30" height="2.22"/><rect y="6.67" width="30" height="2.22"/><rect y="11.11" width="30" height="2.22"/><rect y="15.56" width="30" height="2.22"/></g></svg>',
+  eu: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#D52B1E"/><path d="M0 0L30 20M30 0L0 20" stroke="#009B48" stroke-width="3"/><path d="M15 0v20M0 10h30" stroke="#fff" stroke-width="3"/></svg>'
+};
+const I18N = {
+  es: {
+    tabMonth: "Mes", tabAll: "Siempre", monthNote: "Suma de todos tus días de este mes.", allNote: "Suma de todos los días publicados.", themeLabel: "Cambiar entre tema claro y oscuro", daysN: n => `${n} ${n === 1 ? "día" : "días"}`, 
+    modeDaily: "Reto diario", modeTrain: "Entrenamiento", newGame: "Otro lugar", trainMore: "Seguir jugando en entrenamiento", region: "Zona", rAll: "Todo el mundo", rEu: "Europa", rAm: "América", rAf: "África", rAs: "Asia y Oceanía", trainNote: "Lugares al azar y sin límite de partidas. No cuenta para el ranking ni para tus estadísticas del reto diario.", trainDone: "Partida de entrenamiento", 
+    brand: "Imperdible",
+    levels: ["Helado","Frío","Fresco","Templado","Caliente","Muy caliente","Ardiendo"], found: "¡Encontrado!",
+    start: "Busca el imperdible", tapMap: "Toca el mapa", first: "Primer intento",
+    muchHotter: "Mucho más caliente ↑", hotter: "Más caliente ↑", same: "Casi igual", colder: "Más frío ↓", muchColder: "Mucho más frío ↓",
+    inCountry: "¡En el país!", toastCountry: "¡Estás en el país!", toastCountry2: "Sigues en el país",
+    left: n => `Quedan ${n}`, last: "Último intento", noTries: "Sin intentos", closest: k => `Lo más cerca: ${k} km`,
+    attempt: (n, l, d) => `Intento ${n}: ${l}, ${d}`,
+    won: "¡Lo encontraste!", lost: "Se quedó perdido", where: (n, c) => `El imperdible estaba en <strong>${n}</strong>, ${c}.`,
+    pts: "puntos", max: "máxima", tries: "intentos", time: "tiempo",
+    share: "Compartir resultado", seeMap: "Ver el mapa", publishRank: "Publicar en el ranking", published: "Publicado en el ranking",
+    nextIn: t => `Nuevo imperdible en ${t}`, copied: "Resultado copiado", copyFail: "No se pudo copiar", mapFail: "No se pudo cargar el mapa. Recarga la página.",
+    num: "nº", test: "prueba", howTitle: "Cómo se juega",
+    help1: m => `Cada día se pierde un imperdible en algún lugar del mundo. Es el mismo para todos y tienes <b>${m}</b> intentos para encontrarlo.`,
+    help2: "Toca el mapa. El termómetro te dice en grados lo cerca que estás y, desde el segundo intento, si te has acercado. Pellizca para afinar.",
+    help3: "Tras cada intento, una onda de radar sale de tu toque y se apaga cerca de la distancia del imperdible, nunca exactamente en ella.",
+    help4: w => `Lo encuentras a menos de <b>${w} km</b>. Si tocas dentro del país correcto, te avisamos y se marca en el mapa.`,
+    help5: "Puntos: si lo encuentras, 600 más 40 por cada intento que te sobre y hasta 40 por rapidez. Si no, 5 por cada grado alcanzado. Máximo, 1000.",
+    more: a => `más de ${a} km`, less: a => `menos de ${a} km`,
+    vibe: "Vibración al acercarte", cam: "Cámara que sigue la temperatura",
+    testTitle: "Modo pruebas (no cuenta en estadísticas ni en el ranking)", retoLabel: "Reto nº", play: "Jugar", random: "Al azar", reset: "Reiniciar este reto", today: "Volver al de hoy",
+    statsTitle: "Estadísticas", tabMe: "Yo", tabDay: "Hoy", tabWeek: "Semana",
+    played: "jugados", foundPct: "encontrados", streak: "racha", avgPts: "puntos de media", distLabel: "Intentos para encontrarlo",
+    weekNote: "Suma de tus 5 mejores días de los últimos 7.",
+    aliasLabel: "Tu nombre en el ranking", publish: "Publicar", autoPub: "Publicar mis resultados cada día",
+    rankEmpty: "Todavía no hay puntuaciones.", rankOff: "El ranking no está disponible ahora mismo.", placeFail: "No se pudo cargar el reto. Revisa la conexión y recarga.",
+    rankRead: "Con este acceso puedes ver el ranking, pero no publicar en él.", rankNeedAlias: "Escribe un nombre para aparecer.",
+    rankNotYet: "Termina el reto de hoy para publicar tu puntuación.", rankDone: "Tu puntuación de hoy está en el ranking.",
+    rankErr: "No se pudo publicar. Inténtalo de nuevo.", you: "tú", langLabel: "Idioma",
+    shareWon: (n, p, t, m) => `Imperdible nº ${n} · 🧷 ${p} puntos (${t}/${m})`,
+    shareLost: (n, d, p, m) => `Imperdible nº ${n} · 🌡️ ${d} · ${p} puntos (X/${m})`
+  },
+  gl: {
+    tabMonth: "Mes", tabAll: "Sempre", monthNote: "Suma de todos os teus días deste mes.", allNote: "Suma de todos os días publicados.", themeLabel: "Cambiar entre tema claro e escuro", daysN: n => `${n} ${n === 1 ? "día" : "días"}`, 
+    modeDaily: "Reto diario", modeTrain: "Adestramento", newGame: "Outro lugar", trainMore: "Seguir xogando en adestramento", region: "Zona", rAll: "Todo o mundo", rEu: "Europa", rAm: "América", rAf: "África", rAs: "Asia e Oceanía", trainNote: "Lugares ao chou e sen límite de partidas. Non conta para o ranking nin para as túas estatísticas do reto diario.", trainDone: "Partida de adestramento", 
+    brand: "Imperdible",
+    levels: ["Xeado","Frío","Fresco","Morno","Quente","Moi quente","Ardendo"], found: "Atopado!",
+    start: "Busca o imperdible", tapMap: "Toca o mapa", first: "Primeiro intento",
+    muchHotter: "Moito máis quente ↑", hotter: "Máis quente ↑", same: "Case igual", colder: "Máis frío ↓", muchColder: "Moito máis frío ↓",
+    inCountry: "No país!", toastCountry: "Estás no país!", toastCountry2: "Segues no país",
+    left: n => `Quedan ${n}`, last: "Último intento", noTries: "Sen intentos", closest: k => `O máis preto: ${k} km`,
+    attempt: (n, l, d) => `Intento ${n}: ${l}, ${d}`,
+    won: "Atopáchelo!", lost: "Quedou perdido", where: (n, c) => `O imperdible estaba en <strong>${n}</strong>, ${c}.`,
+    pts: "puntos", max: "máxima", tries: "intentos", time: "tempo",
+    share: "Compartir resultado", seeMap: "Ver o mapa", publishRank: "Publicar no ranking", published: "Publicado no ranking",
+    nextIn: t => `Novo imperdible en ${t}`, copied: "Resultado copiado", copyFail: "Non se puido copiar", mapFail: "Non se puido cargar o mapa. Recarga a páxina.",
+    num: "nº", test: "proba", howTitle: "Como se xoga",
+    help1: m => `Cada día pérdese un imperdible nalgún lugar do mundo. É o mesmo para todos e tes <b>${m}</b> intentos para atopalo.`,
+    help2: "Toca o mapa. O termómetro dinche en graos o preto que estás e, desde o segundo intento, se te achegaches. Belisca para afinar.",
+    help3: "Despois de cada intento, unha onda de radar sae do teu toque e apágase preto da distancia do imperdible, nunca exactamente nela.",
+    help4: w => `Atópalo a menos de <b>${w} km</b>. Se tocas dentro do país correcto, avisámoste e márcase no mapa.`,
+    help5: "Puntos: se o atopas, 600 máis 40 por cada intento que che sobre e ata 40 pola rapidez. Se non, 5 por cada grao alcanzado. Máximo, 1000.",
+    more: a => `máis de ${a} km`, less: a => `menos de ${a} km`,
+    vibe: "Vibración ao achegarte", cam: "Cámara que segue a temperatura",
+    testTitle: "Modo probas (non conta nas estatísticas nin no ranking)", retoLabel: "Reto nº", play: "Xogar", random: "Ao chou", reset: "Reiniciar este reto", today: "Volver ao de hoxe",
+    statsTitle: "Estatísticas", tabMe: "Eu", tabDay: "Hoxe", tabWeek: "Semana",
+    played: "xogados", foundPct: "atopados", streak: "racha", avgPts: "puntos de media", distLabel: "Intentos para atopalo",
+    weekNote: "Suma dos teus 5 mellores días dos últimos 7.",
+    aliasLabel: "O teu nome no ranking", publish: "Publicar", autoPub: "Publicar os meus resultados cada día",
+    rankEmpty: "Aínda non hai puntuacións.", rankOff: "O ranking non está dispoñible agora mesmo.", placeFail: "Non se puido cargar o reto. Revisa a conexión e recarga.",
+    rankRead: "Con este acceso podes ver o ranking, pero non publicar nel.", rankNeedAlias: "Escribe un nome para aparecer.",
+    rankNotYet: "Remata o reto de hoxe para publicar a túa puntuación.", rankDone: "A túa puntuación de hoxe está no ranking.",
+    rankErr: "Non se puido publicar. Téntao de novo.", you: "ti", langLabel: "Lingua",
+    shareWon: (n, p, t, m) => `Imperdible nº ${n} · 🧷 ${p} puntos (${t}/${m})`,
+    shareLost: (n, d, p, m) => `Imperdible nº ${n} · 🌡️ ${d} · ${p} puntos (X/${m})`
+  },
+  ca: {
+    tabMonth: "Mes", tabAll: "Sempre", monthNote: "Suma de tots els teus dies d'aquest mes.", allNote: "Suma de tots els dies publicats.", themeLabel: "Canvia entre tema clar i fosc", daysN: n => `${n} ${n === 1 ? "dia" : "dies"}`, 
+    modeDaily: "Repte diari", modeTrain: "Entrenament", newGame: "Un altre lloc", trainMore: "Continua jugant en entrenament", region: "Zona", rAll: "Tot el món", rEu: "Europa", rAm: "Amèrica", rAf: "Àfrica", rAs: "Àsia i Oceania", trainNote: "Llocs a l'atzar i sense límit de partides. No compta per al rànquing ni per a les teves estadístiques del repte diari.", trainDone: "Partida d'entrenament", 
+    brand: "Imperdible",
+    levels: ["Gelat","Fred","Fresc","Tebi","Calent","Molt calent","Cremant"], found: "Trobat!",
+    start: "Busca l'imperdible", tapMap: "Toca el mapa", first: "Primer intent",
+    muchHotter: "Molt més calent ↑", hotter: "Més calent ↑", same: "Gairebé igual", colder: "Més fred ↓", muchColder: "Molt més fred ↓",
+    inCountry: "Al país!", toastCountry: "Ets al país!", toastCountry2: "Continues al país",
+    left: n => `Queden ${n}`, last: "Últim intent", noTries: "Sense intents", closest: k => `El més a prop: ${k} km`,
+    attempt: (n, l, d) => `Intent ${n}: ${l}, ${d}`,
+    won: "L'has trobat!", lost: "S'ha quedat perdut", where: (n, c) => `L'imperdible era a <strong>${n}</strong>, ${c}.`,
+    pts: "punts", max: "màxima", tries: "intents", time: "temps",
+    share: "Comparteix el resultat", seeMap: "Mostra el mapa", publishRank: "Publica al rànquing", published: "Publicat al rànquing",
+    nextIn: t => `Nou imperdible d'aquí a ${t}`, copied: "Resultat copiat", copyFail: "No s'ha pogut copiar", mapFail: "No s'ha pogut carregar el mapa. Torna a carregar la pàgina.",
+    num: "núm.", test: "prova", howTitle: "Com es juga",
+    help1: m => `Cada dia es perd un imperdible en algun lloc del món. És el mateix per a tothom i tens <b>${m}</b> intents per trobar-lo.`,
+    help2: "Toca el mapa. El termòmetre et diu en graus com n'estàs de prop i, des del segon intent, si t'hi has acostat. Pessiga per afinar.",
+    help3: "Després de cada intent, una ona de radar surt del teu toc i s'apaga a prop de la distància de l'imperdible, mai exactament en ella.",
+    help4: w => `El trobes a menys de <b>${w} km</b>. Si toques dins del país correcte, t'avisem i es marca al mapa.`,
+    help5: "Punts: si el trobes, 600 més 40 per cada intent que et sobri i fins a 40 per rapidesa. Si no, 5 per cada grau assolit. Màxim, 1000.",
+    more: a => `més de ${a} km`, less: a => `menys de ${a} km`,
+    vibe: "Vibració en acostar-te", cam: "Càmera que segueix la temperatura",
+    testTitle: "Mode de proves (no compta a les estadístiques ni al rànquing)", retoLabel: "Repte núm.", play: "Juga", random: "A l'atzar", reset: "Reinicia aquest repte", today: "Torna al d'avui",
+    statsTitle: "Estadístiques", tabMe: "Jo", tabDay: "Avui", tabWeek: "Setmana",
+    played: "jugats", foundPct: "trobats", streak: "ratxa", avgPts: "punts de mitjana", distLabel: "Intents per trobar-lo",
+    weekNote: "Suma dels teus 5 millors dies dels darrers 7.",
+    aliasLabel: "El teu nom al rànquing", publish: "Publica", autoPub: "Publica els meus resultats cada dia",
+    rankEmpty: "Encara no hi ha puntuacions.", rankOff: "El rànquing no està disponible ara mateix.", placeFail: "No s'ha pogut carregar el repte. Revisa la connexió i torna a carregar.",
+    rankRead: "Amb aquest accés pots veure el rànquing, però no publicar-hi.", rankNeedAlias: "Escriu un nom per aparèixer-hi.",
+    rankNotYet: "Acaba el repte d'avui per publicar la teva puntuació.", rankDone: "La teva puntuació d'avui és al rànquing.",
+    rankErr: "No s'ha pogut publicar. Torna-ho a provar.", you: "tu", langLabel: "Llengua",
+    shareWon: (n, p, t, m) => `Imperdible núm. ${n} · 🧷 ${p} punts (${t}/${m})`,
+    shareLost: (n, d, p, m) => `Imperdible núm. ${n} · 🌡️ ${d} · ${p} punts (X/${m})`
+  },
+  eu: {
+    tabMonth: "Hilabetea", tabAll: "Beti", monthNote: "Hilabete honetako zure egun guztien batura.", allNote: "Argitaratutako egun guztien batura.", themeLabel: "Aldatu gai argia eta ilunaren artean", daysN: n => `${n} egun`, 
+    modeDaily: "Eguneko erronka", modeTrain: "Entrenamendua", newGame: "Beste leku bat", trainMore: "Jarraitu entrenamenduan jokatzen", region: "Eremua", rAll: "Mundu osoa", rEu: "Europa", rAm: "Amerika", rAf: "Afrika", rAs: "Asia eta Ozeania", trainNote: "Ausazko lekuak, partida mugarik gabe. Ez da sailkapenean ez eguneko erronkaren estatistiketan zenbatzen.", trainDone: "Entrenamendu-partida", 
+    brand: "Orratza",
+    levels: ["Izoztuta","Hotza","Freskoa","Epela","Beroa","Oso beroa","Sutan"], found: "Aurkitua!",
+    start: "Bilatu orratza", tapMap: "Ukitu mapa", first: "Lehen saiakera",
+    muchHotter: "Askoz beroago ↑", hotter: "Beroago ↑", same: "Ia berdin", colder: "Hotzago ↓", muchColder: "Askoz hotzago ↓",
+    inCountry: "Herrialdean!", toastCountry: "Herrialdean zaude!", toastCountry2: "Herrialdean jarraitzen duzu",
+    left: n => `${n} geratzen dira`, last: "Azken saiakera", noTries: "Saiakerarik gabe", closest: k => `Gertuena: ${k} km`,
+    attempt: (n, l, d) => `${n}. saiakera: ${l}, ${d}`,
+    won: "Aurkitu duzu!", lost: "Galduta geratu da", where: (n, c) => `Orratza hemen zegoen: <strong>${n}</strong>, ${c}.`,
+    pts: "puntu", max: "gehiena", tries: "saiakera", time: "denbora",
+    share: "Partekatu emaitza", seeMap: "Ikusi mapa", publishRank: "Argitaratu sailkapenean", published: "Sailkapenean argitaratuta",
+    nextIn: t => `Orratz berria: ${t}`, copied: "Emaitza kopiatuta", copyFail: "Ezin izan da kopiatu", mapFail: "Ezin izan da mapa kargatu. Kargatu berriro orria.",
+    num: "zk.", test: "proba", howTitle: "Nola jokatu",
+    help1: m => `Egunero segurtasun-orratz bat galtzen da munduko lekuren batean. Guztiontzat berdina da, eta <b>${m}</b> saiakera dituzu aurkitzeko.`,
+    help2: "Ukitu mapa. Termometroak graduetan esaten dizu zein gertu zauden eta, bigarren saiakeratik aurrera, hurbildu zaren ala ez. Atximurkatu zehazteko.",
+    help3: "Saiakera bakoitzaren ondoren, radar-uhin bat ateratzen da ukitu duzun lekutik eta orratzaren distantziatik gertu itzaltzen da, inoiz ez zehazki bertan.",
+    help4: w => `<b>${w} km</b> baino gutxiagora aurkitzen duzu. Herrialde zuzenaren barruan ukitzen baduzu, abisatuko dizugu eta mapan markatuko da.`,
+    help5: "Puntuak: aurkitzen baduzu, 600 gehi soberan duzun saiakera bakoitzeko 40, eta azkartasunagatik 40 arte. Bestela, lortutako gradu bakoitzeko 5. Gehienez, 1000.",
+    more: a => `${a} km baino gehiago`, less: a => `${a} km baino gutxiago`,
+    vibe: "Bibrazioa hurbiltzean", cam: "Tenperaturari jarraitzen dion kamera",
+    testTitle: "Proba modua (ez da estatistiketan ez sailkapenean zenbatzen)", retoLabel: "Erronka zk.", play: "Jokatu", random: "Ausaz", reset: "Berrabiarazi erronka hau", today: "Itzuli gaurkora",
+    statsTitle: "Estatistikak", tabMe: "Ni", tabDay: "Gaur", tabWeek: "Astea",
+    played: "jokatuak", foundPct: "aurkituak", streak: "segida", avgPts: "batez besteko puntuak", distLabel: "Aurkitzeko saiakerak",
+    weekNote: "Azken 7 egunetako zure 5 egun onenen batura.",
+    aliasLabel: "Zure izena sailkapenean", publish: "Argitaratu", autoPub: "Argitaratu nire emaitzak egunero",
+    rankEmpty: "Oraindik ez dago puntuaziorik.", rankOff: "Sailkapena ez dago erabilgarri une honetan.", placeFail: "Ezin izan da erronka kargatu. Egiaztatu konexioa eta kargatu berriro.",
+    rankRead: "Sarbide honekin sailkapena ikus dezakezu, baina ez bertan argitaratu.", rankNeedAlias: "Idatzi izen bat agertzeko.",
+    rankNotYet: "Amaitu gaurko erronka zure puntuazioa argitaratzeko.", rankDone: "Zure gaurko puntuazioa sailkapenean dago.",
+    rankErr: "Ezin izan da argitaratu. Saiatu berriro.", you: "zu", langLabel: "Hizkuntza",
+    shareWon: (n, p, t, m) => `Orratza zk. ${n} · 🧷 ${p} puntu (${t}/${m})`,
+    shareLost: (n, d, p, m) => `Orratza zk. ${n} · 🌡️ ${d} · ${p} puntu (X/${m})`
+  }
+};
+
+/* ============ UTILIDADES ============ */
+const $ = s => document.querySelector(s);
+const R = 6371, MAXD = 20015;
+const store = {
+  get(k, def){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch(e){ return def; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+let prefs = store.get("imperdible:v1:prefs", { vibe: true });
+function detectLang(){
+  if (prefs.lang && LANGS.includes(prefs.lang)) return prefs.lang;
+  const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "es"];
+  for (const l of list){ const p = String(l).toLowerCase().split("-")[0]; if (LANGS.includes(p)) return p; if (p === "va") return "ca"; }
+  return "es";
+}
+let LANG = detectLang();
+const T = () => I18N[LANG];
+
+function haversine(a, b){
+  const toR = Math.PI/180, dLat=(b[1]-a[1])*toR, dLon=(b[0]-a[0])*toR;
+  const h = Math.sin(dLat/2)**2 + Math.cos(a[1]*toR)*Math.cos(b[1]*toR)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));
+}
+function temp(d){
+  if (d <= CONFIG.WIN_KM) return 1;
+  return Math.max(0, Math.min(1, 1 - Math.log(d/CONFIG.WIN_KM)/Math.log(MAXD/CONFIG.WIN_KM)));
+}
+let _cs = null;
+function tempColor(d){
+  if (d <= CONFIG.WIN_KM) return FOUND.color;
+  if (!_cs){
+    const dom = [0], rng = [LEVELS[0].color];
+    LEVELS.forEach((L,i) => { const hi = i === 0 ? 0 : temp(LEVELS[i-1].min); const lo = temp(Math.max(L.min, CONFIG.WIN_KM)); dom.push((hi+lo)/2); rng.push(L.color); });
+    dom.push(1); rng.push(LEVELS[LEVELS.length-1].color);
+    _cs = d3.scaleLinear().domain(dom).range(rng).interpolate(d3.interpolateLab);
+  }
+  return _cs(temp(d));
+}
+function textOn(c){ const r = d3.rgb(c); return (0.299*r.r + 0.587*r.g + 0.114*r.b) > 165 ? "#1E2B33" : "#fff"; }
+function fmtDeg(n){ return `${n} °C`; }
+function deg(d){ return Math.round(100*temp(d)); }
+function levelIdx(d){ for (let i=0;i<LEVELS.length;i++) if (d >= LEVELS[i].min) return i; return LEVELS.length-1; }
+function km(d){ return String(Math.round(d)).replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+function fmtTime(ms){ const s=Math.floor(ms/1000); const m=Math.floor(s/60); const h=Math.floor(m/60);
+  return h ? `${h}:${String(m%60).padStart(2,"0")}:${String(s%60).padStart(2,"0")}` : `${m}:${String(s%60).padStart(2,"0")}`; }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function hexA(c, a){ const r = d3.rgb(c); return `rgba(${r.r},${r.g},${r.b},${a})`; }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+
+/* ============ RETO DEL DÍA ============ */
+function retoDate(n){ const d = new Date(CONFIG.EPOCH); d.setDate(d.getDate() + n - 1); return d; }
+function monthStartReto(n){ return n - (retoDate(n).getDate() - 1); }
+function todayNum(){ const n = new Date(); const a = new Date(n.getFullYear(), n.getMonth(), n.getDate()); return Math.round((a - CONFIG.EPOCH)/86400000) + 1; }
+const qs = new URLSearchParams(location.search);
+const TEST_KEY = "imperdible:v1:testReto";
+const ADMIN_KEY = store.get("imperdible:adminKey", "");
+const TEST_RETO = ADMIN_KEY ? (parseInt(qs.get("reto"),10) || store.get(TEST_KEY, null)) : null;
+const TODAY = todayNum();
+const TRAIN = qs.get("modo") === "adestramento" || store.get("imperdible:v1:mode", "daily") === "train";
+const TESTING = !TRAIN && !!TEST_RETO && TEST_RETO !== TODAY;
+const REGIONS = ["all", "eu", "am", "af", "as"];
+function regionOf(lat, lon){ if (lat > 35 && lat < 72 && lon > -25 && lon < 45) return "eu"; if (lon < -30) return "am"; if (lat > -35 && lat < 37 && lon > -20 && lon < 52) return "af"; return "as"; }
+function setMode(train){ store.set("imperdible:v1:mode", train ? "train" : "daily"); location.href = location.pathname; }
+function newTrainGame(){ store.del("imperdible:v1:train"); location.href = location.pathname; }
+const RETO = Math.max(1, TEST_RETO || TODAY);
+function normPlace(p){ const o = { lat: +p.lat, lon: +p.lon }; LANGS.forEach(l => { const v = p[l] || p.es || ["?","?"]; o[l] = [String(v[0] || ""), String(v[1] || "")]; }); return o; }
+const KEY = TRAIN ? "imperdible:v1:train" : `imperdible:v1:reto:${RETO}`;
+const STATS_KEY = "imperdible:v1:stats";
+let state = store.get(KEY, null) || { guesses: [], start: null, end: null, status: "playing", counted: false };
+let PLACE = null, PLACE_COUNT = 0; const TARGET = { ll: null };
+function applyPlace(p){ PLACE = normPlace(p); TARGET.ll = [PLACE.lon, PLACE.lat]; }
+if (state.target) applyPlace(state.target);
+const placeName = () => PLACE ? PLACE[LANG][0] : "", placeCountry = () => PLACE ? PLACE[LANG][1] : "";
+async function fetchPlace(){
+  try {
+    if (TRAIN){
+      if (PLACE) return true;
+      const r = await fetch(`/api/train?region=${encodeURIComponent(prefs.region || "all")}`);
+      if (!r.ok) throw new Error(r.status);
+      const j = await r.json(); applyPlace(j.place); state.target = j.place; store.set(KEY, state);
+      return true;
+    }
+    const r = await fetch(`/api/place?reto=${RETO}`, { headers: ADMIN_KEY ? { "x-admin-key": ADMIN_KEY } : {} });
+    if (!r.ok) throw new Error(r.status);
+    const j = await r.json(); PLACE_COUNT = j.count || 0;
+    if (!PLACE) applyPlace(j.place);
+    return true;
+  } catch(e){ return !!PLACE; }
+}
+
+/* ============ PUNTOS ============ */
+function bestDeg(){ return state.guesses.length ? Math.max(...state.guesses.map(g => deg(g.d))) : 0; }
+function bestD(){ return Math.min(...state.guesses.map(g => g.d)); }
+function points(){
+  if (!state.guesses.length) return 0;
+  if (state.status === "won"){
+    const spare = CONFIG.MAX_TRIES - state.guesses.length;
+    const s = elapsed()/1000;
+    const tb = Math.round(40 * Math.max(0, Math.min(1, (300 - s)/240)));
+    return 600 + 40*spare + tb;
+  }
+  return 5 * Math.min(99, bestDeg());
+}
+
+/* ============ MAPA ============ */
+const svg = d3.select("#map");
+const proj = d3.geoNaturalEarth1();
+const geo = d3.geoPath(proj);
+const landPath = d3.geoPath(d3.geoTransform({ point(x, y){ const p = proj([x, y]); if (p) this.stream.point(p[0], p[1]); } }));
+const gZoom = svg.append("g");
+const sphereP = gZoom.append("path").attr("class","sphere");
+const gratP = gZoom.append("path").attr("class","grat");
+const gLand = gZoom.append("g");
+const gRoute = gZoom.append("g");
+const gMarks = svg.append("g");
+const gFx = svg.append("g");
+let world = null, W = 0, H = 0, zt = d3.zoomIdentity;
+const zoom = d3.zoom().scaleExtent([1, 80]).on("zoom", ev => { zt = ev.transform; gZoom.attr("transform", zt); placeMarks(); });
+svg.call(zoom).on("dblclick.zoom", null);
+
+function sheetH(){ return $("#sheet").getBoundingClientRect().height + 20; }
+function layout(){
+  W = innerWidth; H = innerHeight;
+  const top = 64, bottom = Math.min(170, H*0.35);
+  proj.fitExtent([[12, top], [W-12, H - bottom]], { type: "Sphere" });
+  const b = geo.bounds({ type: "Sphere" });
+  zoom.translateExtent([[b[0][0]-W*0.25, b[0][1]-H*0.3], [b[1][0]+W*0.25, b[1][1]+H*0.4]]).extent([[0,0],[W,H]]);
+  sphereP.attr("d", geo({ type: "Sphere" }));
+  gratP.attr("d", geo(d3.geoGraticule10()));
+  gLand.selectAll("path").attr("d", landPath);
+  drawRoutes(); placeMarks();
+}
+
+/* datos del mundo (formato ECharts comprimido) */
+const WORLD_SRC = ["https://cdn.jsdelivr.net/npm/echarts/map/js/world.js","https://cdn.jsdelivr.net/npm/echarts@4.8.0/map/js/world.js"];
+function loadWorld(i){
+  i = i || 0;
+  if (window.__WORLD__) return Promise.resolve(window.__WORLD__);
+  return new Promise((res, rej) => {
+    if (i >= WORLD_SRC.length) return rej(new Error("sin mapa"));
+    const s = document.createElement("script"); s.src = WORLD_SRC[i];
+    s.onload = () => window.__WORLD__ ? res(window.__WORLD__) : loadWorld(i+1).then(res, rej);
+    s.onerror = () => loadWorld(i+1).then(res, rej);
+    document.head.appendChild(s);
+  });
+}
+function decodeRing(str, off, scale){
+  const out = []; let px = off[0], py = off[1];
+  for (let i=0; i<str.length; i+=2){
+    let x = str.charCodeAt(i) - 64, y = str.charCodeAt(i+1) - 64;
+    x = (x >> 1) ^ (-(x & 1)); y = (y >> 1) ^ (-(y & 1));
+    x += px; y += py; px = x; py = y;
+    out.push([x/scale, y/scale]);
+  }
+  return out;
+}
+function prepareWorld(json){
+  const scale = json.UTF8Scale || 1024;
+  json.features.forEach(f => {
+    f.type = "Feature";
+    const g = f.geometry; if (!g) return;
+    const enc = g.encodeOffsets;
+    if (json.UTF8Encoding){
+      if (g.type === "Polygon") g.coordinates = g.coordinates.map((r,i) => typeof r === "string" ? decodeRing(r, enc[i], scale) : r);
+      else if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map((poly,i) => poly.map((r,j) => typeof r === "string" ? decodeRing(r, enc[i][j], scale) : r));
+    }
+  });
+  json.features = json.features.filter(f => f.geometry);
+  return json;
+}
+
+/* país del objetivo */
+let targetCountry = null;
+function inRing(pt, ring){
+  let c = false;
+  for (let i=0, j=ring.length-1; i<ring.length; j=i++){
+    const xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+    if (((yi > pt[1]) !== (yj > pt[1])) && (pt[0] < (xj-xi)*(pt[1]-yi)/(yj-yi) + xi)) c = !c;
+  }
+  return c;
+}
+function polysOf(f){ const g = f.geometry; return g.type === "Polygon" ? [g.coordinates] : g.coordinates; }
+function inFeature(f, pt){ let c = false; polysOf(f).forEach(poly => poly.forEach(r => { if (r.length && inRing(pt, r)) c = !c; })); return c; }
+function nearestFeature(ll, maxKm){
+  let best = null, bd = maxKm;
+  world.features.forEach(f => polysOf(f).forEach(poly => poly.forEach(r => { for (let i=0; i<r.length; i++){ const dd = haversine(ll, r[i]); if (dd < bd){ bd = dd; best = f; } } })));
+  return best;
+}
+function countryOf(ll, tolKm){ return world.features.find(f => inFeature(f, ll)) || nearestFeature(ll, tolKm); }
+function inTargetCountry(ll){ return !!(targetCountry && world && countryOf(ll, 40) === targetCountry); }
+function drawCountryHit(){
+  gLand.selectAll("path.hit").remove();
+  if (!targetCountry || !state.guesses.some(g => inTargetCountry(g.ll))) return;
+  gLand.append("path").attr("class","hit").datum(targetCountry).attr("d", landPath);
+}
+function refreshTargetCountry(){ if (!world || !TARGET.ll) return; targetCountry = countryOf(TARGET.ll, 150) || null; drawCountryHit(); }
+function drawLand(){ gLand.selectAll("path.land").data(world.features).join("path").attr("class","land").attr("d", landPath); }
+
+/* marcadores */
+let marks = [];
+function screen(ll){ return zt.apply(proj(ll)); }
+function placeMarks(){ marks.forEach(m => { const p = screen(m.ll); m.el.attr("transform", `translate(${p[0]},${p[1]})`); }); }
+function addMark(ll, opts){
+  const g = gMarks.append("g").attr("class", "mk" + (opts.cls ? " "+opts.cls : ""));
+  const inner = g.append("g").attr("class","in");
+  const m = Object.assign({ ll, el: g, inner }, opts);
+  marks.push(m); renderMark(m); placeMarks();
+  g.on("click", ev => { ev.stopPropagation(); const info = typeof m.info === "function" ? m.info() : m.info; if (info) toast(info); });
+  return m;
+}
+function renderMark(m){
+  const inner = m.inner; inner.selectAll("*").remove();
+  if (m.cls === "pending"){ inner.append("circle").attr("class","ring").attr("r", 11); inner.append("circle").attr("class","dot").attr("r", 8); return; }
+  if (m.cls === "target"){ drawStuckPin(inner); return; }
+  inner.append("circle").attr("class","dot").attr("r", 11).attr("fill", m.color);
+  inner.append("text").attr("fill", textOn(m.color)).text(m.n);
+}
+// imperdible abierto (ilustración), con la punta del pincho clavada en el lugar (0,0)
+const STUCK_IMG = "/stuck.png";
+const STUCK = { w: 111, h: 180, ax: 38.4, ay: 177.9 }, STUCK_H = 58;
+function drawStuckPin(inner){
+  const k = STUCK_H / STUCK.h;
+  inner.append("ellipse").attr("class","phole").attr("rx", 6).attr("ry", 2).attr("cy", 0.5);
+  inner.append("g").attr("class","pinwob").append("image").attr("href", STUCK_IMG)
+    .attr("x", -STUCK.ax*k).attr("y", -STUCK.ay*k).attr("width", STUCK.w*k).attr("height", STUCK.h*k);
+}
+function drawRoutes(){
+  const pts = state.guesses.map(g => g.ll); const segs = [];
+  for (let i=1;i<pts.length;i++) segs.push({ type:"LineString", coordinates:[pts[i-1], pts[i]] });
+  gRoute.selectAll("path.seg").data(segs).join("path").attr("class","route seg").attr("d", geo);
+  gRoute.selectAll("path.final").attr("d", geo);
+}
+function ripple(p, color){
+  const c = gFx.append("circle").attr("cx", p[0]).attr("cy", p[1]).attr("r", 4)
+    .attr("fill","none").attr("stroke", color || "var(--ink)").attr("stroke-width", 2).attr("opacity", .8);
+  c.transition().duration(650).ease(d3.easeCubicOut).attr("r", 42).attr("opacity", 0).remove();
+}
+function sonar(ll, d, color){
+  // radar: la onda se apaga entre el 85 % y el 115 % de la distancia real
+  const stop = d * (0.85 + Math.random() * 0.30);
+  const pulse = (delay, width, alpha) => {
+    const path = gRoute.append("path").attr("class","sonar").attr("stroke", color).attr("stroke-width", width).attr("opacity", 0);
+    path.transition().delay(delay).duration(1500).ease(d3.easeLinear)
+      .tween("radar", () => t => {
+        const e = d3.easeCubicOut(t);
+        path.attr("d", geo(d3.geoCircle().center(ll).radius(Math.max(1, stop * e) / R * 180 / Math.PI).precision(2)()));
+        const a = t < 0.08 ? t / 0.08 : (e < 0.7 ? 1 : Math.max(0, 1 - (e - 0.7) / 0.3));
+        path.attr("opacity", (alpha * a).toFixed(3));
+      }).remove();
+  };
+  pulse(0, 2.2, 0.95); pulse(220, 1.2, 0.5);
+}
+function followCamera(ll, d){
+  if (prefs.cam === false) return;
+  const top = 70, bottom = Math.min(sheetH(), H*0.45);
+  const ah = Math.max(120, H - top - bottom), aw = W - 40;
+  const k = Math.max(1, Math.min(60, Math.min(aw, ah) / 2 / (1.5 * (d / R) * proj.scale())));
+  const p = proj(ll);
+  const t = d3.zoomIdentity.translate(W/2, top + ah/2).scale(k).translate(-p[0], -p[1]);
+  setTimeout(() => svg.transition().duration(1100).ease(d3.easeCubicInOut).call(zoom.transform, t), 500);
+}
+
+/* ============ TERMÓMETRO ============ */
+const tube = $("#tube"), fill = $("#fill"), bead = $("#bead");
+(function buildGradient(){
+  const stops = [];
+  for (let i=0; i<=20; i++){ const t = i/20; const d = CONFIG.WIN_KM * Math.exp((1-t) * Math.log(MAXD/CONFIG.WIN_KM)); stops.push(`${tempColor(Math.max(d, CONFIG.WIN_KM+0.01))} ${(t*100).toFixed(0)}%`); }
+  fill.style.background = `linear-gradient(90deg, ${stops.join(", ")})`;
+})();
+let lastThermoD = null;
+function setThermo(d, opts){
+  opts = opts || {}; lastThermoD = d;
+  const found = d != null && d <= CONFIG.WIN_KM;
+  const t = d == null ? 0 : temp(d);
+  const li = d == null ? -1 : levelIdx(d);
+  const color = d == null ? null : tempColor(d);
+  if (opts.instant){ fill.style.transition = "none"; bead.style.transition = "none"; }
+  fill.style.clipPath = `inset(0 ${((1-t)*100).toFixed(2)}% 0 0 round 99px)`;
+  bead.style.left = `${(t*100).toFixed(2)}%`;
+  bead.style.borderColor = color || "";
+  if (opts.instant){ fill.offsetWidth; fill.style.transition = ""; bead.style.transition = ""; }
+  tube.style.boxShadow = color ? `inset 0 1px 3px rgba(0,0,0,.18), 0 0 ${10 + t*26}px ${hexA(color, .15 + t*.35)}` : "";
+  tube.classList.toggle("hot", li === 5 && !found);
+  tube.classList.toggle("burning", li === 6 && !found);
+  tube.classList.toggle("found", found);
+  if (color) bead.style.setProperty("--beat", hexA(color, .5));
+  $("#vignette").style.boxShadow = color ? `inset 0 0 ${60 + t*120}px ${hexA(color, .06 + t*.22)}` : "none";
+  renderReadoutName();
+}
+function renderReadoutName(){
+  const d = lastThermoD;
+  const found = d != null && d <= CONFIG.WIN_KM;
+  const li = d == null ? -1 : levelIdx(d);
+  let name = found ? T().found : (li >= 0 ? T().levels[li] : T().start);
+  if (state.status === "lost") name = T().noTries;
+  $("#catName").textContent = name;
+  $("#deg").textContent = d == null ? "" : fmtDeg(deg(d));
+  const glyph = $("#catGlyph");
+  glyph.innerHTML = li < 0 ? "" : (found ? `<image href="${PIN_IMG}" width="24" height="24"/>` : `<use href="#g-${li}"/>`);
+  glyph.style.color = d == null ? "" : tempColor(d);
+}
+let deltaKey = null;
+function setDelta(prev, d){
+  tube.classList.remove("surge","sink");
+  if (prev == null){ deltaKey = state.guesses.length ? "first" : "tapMap"; return renderDelta(); }
+  const r = d / prev;
+  if (d <= CONFIG.WIN_KM) deltaKey = "";
+  else if (r < 0.5){ deltaKey = "muchHotter"; tube.offsetWidth; tube.classList.add("surge"); }
+  else if (r < 0.9) deltaKey = "hotter";
+  else if (r <= 1.1) deltaKey = "same";
+  else if (r <= 2) deltaKey = "colder";
+  else { deltaKey = "muchColder"; tube.offsetWidth; tube.classList.add("sink"); }
+  renderDelta();
+}
+function renderDelta(){
+  const el = $("#delta");
+  if (state.status === "lost"){ el.textContent = T().closest(km(bestD())); el.classList.remove("up"); return; }
+  el.textContent = deltaKey ? T()[deltaKey] : "";
+  el.classList.toggle("up", ["muchHotter","hotter","inCountry"].includes(deltaKey));
+}
+function renderPips(){
+  const box = $("#pips"); box.innerHTML = "";
+  for (let i=0;i<CONFIG.MAX_TRIES;i++){
+    const p = document.createElement("span"); p.className = "pip";
+    const g = state.guesses[i];
+    if (g){ const c = tempColor(g.d); p.style.background = c; p.style.borderColor = c; }
+    else if (i === state.guesses.length && state.status === "playing") p.classList.add("next");
+    box.appendChild(p);
+  }
+  const left = CONFIG.MAX_TRIES - state.guesses.length;
+  $("#left").textContent = state.status === "playing" ? (left === 1 ? T().last : T().left(left)) : "";
+}
+
+/* ============ TIEMPO ============ */
+let timerId = null;
+function elapsed(){ if (!state.start) return 0; return (state.end || Date.now()) - state.start; }
+function tick(){ $("#timer").textContent = fmtTime(elapsed()); }
+function startTimer(){ if (!timerId){ timerId = setInterval(tick, 500); tick(); } }
+function stopTimer(){ clearInterval(timerId); timerId = null; tick(); }
+
+/* ============ JUGAR ============ */
+let locked = false;
+function save(){ store.set(KEY, state); }
+function attemptInfo(i){ const g = state.guesses[i]; const f = g.d <= CONFIG.WIN_KM; return T().attempt(i+1, f ? T().found : T().levels[levelIdx(g.d)], fmtDeg(deg(g.d))); }
+svg.on("click", ev => {
+  const p = d3.pointer(ev, svg.node());
+  const inv = zt.invert(p);
+  const ll = proj.invert(inv);
+  if (!ll || !isFinite(ll[0])) return;
+  const back = proj(ll);
+  if (!back || Math.hypot(back[0]-inv[0], back[1]-inv[1]) > 1) return;
+  if (locked || state.status !== "playing") return;
+  guess(ll, p);
+});
+async function guess(ll, p){
+  locked = true;
+  if (!state.start){ state.start = Date.now(); startTimer(); }
+  if (!state.target) state.target = PLACE; // el lugar queda fijado para esta partida
+  ripple(p);
+  const pend = addMark(ll, { cls: "pending" });
+  await sleep(CONFIG.SUSPENSE_MS);
+  const d = haversine(ll, TARGET.ll);
+  const prev = state.guesses.length ? state.guesses[state.guesses.length-1].d : null;
+  state.guesses.push({ ll: [+ll[0].toFixed(4), +ll[1].toFixed(4)], d: Math.round(d*10)/10 });
+  const n = state.guesses.length, idx = n - 1;
+  const found = d <= CONFIG.WIN_KM;
+  const color = tempColor(d);
+  pend.cls = null; pend.el.attr("class","mk"); pend.color = color; pend.n = n; pend.info = () => attemptInfo(idx);
+  renderMark(pend); pend.inner.classed("pop", true);
+  ripple(screen(ll), color);
+  drawRoutes();
+  setThermo(d); setDelta(prev, d);
+  if (!found && inTargetCountry(ll)){
+    const first = !state.guesses.slice(0,-1).some(g => inTargetCountry(g.ll));
+    drawCountryHit();
+    toast(first ? T().toastCountry : T().toastCountry2, 2600);
+    if (first){ deltaKey = "inCountry"; renderDelta(); }
+  }
+  vibrate(levelIdx(d), found);
+  if (found){ state.status = "won"; state.end = Date.now(); }
+  else if (n >= CONFIG.MAX_TRIES){ state.status = "lost"; state.end = Date.now(); }
+  save(); renderPips();
+  if (!found){ sonar(ll, d, color); if (state.status === "playing") followCamera(ll, d); }
+  if (state.status !== "playing"){
+    stopTimer(); countStats();
+    await sleep(found ? 900 : 1300);
+    reveal(true);
+    autoPublish();
+  }
+  locked = false;
+}
+function vibrate(li, found){
+  if (!prefs.vibe || !navigator.vibrate) return;
+  try { if (found) navigator.vibrate([30,60,30,60,120]); else if (li >= 5) navigator.vibrate([25,40,25]); else navigator.vibrate(12); } catch(e){}
+}
+
+/* ============ FINAL ============ */
+function reveal(animate){
+  if (state.status === "won"){ const lastMk = marks.filter(m => !m.cls).pop(); if (lastMk) lastMk.el.attr("opacity", 0); }
+  addMark(TARGET.ll, { cls: "target", info: () => `${placeName()}, ${placeCountry()}` });
+  if (state.status !== "won"){
+    const last = state.guesses[state.guesses.length-1];
+    gRoute.append("path").attr("class","route final").datum({ type:"LineString", coordinates:[last.ll, TARGET.ll] }).attr("d", geo);
+    setThermo(bestD(), { instant: true });
+  }
+  renderEnd();
+  fitTo([...state.guesses.map(g => g.ll), TARGET.ll], animate);
+}
+function fitTo(lls, animate){
+  const pts = lls.map(ll => proj(ll));
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const top = 80, bottom = Math.min(sheetH(), H*0.62);
+  const aw = W - 80, ah = Math.max(80, H - top - bottom - 30);
+  const k = Math.max(1, Math.min(8, Math.min(aw/Math.max(1,x1-x0), ah/Math.max(1,y1-y0))));
+  const t = d3.zoomIdentity.translate(W/2, top + 15 + ah/2).scale(k).translate(-(x0+x1)/2, -(y0+y1)/2);
+  (animate ? svg.transition().duration(1200).ease(d3.easeCubicInOut) : svg).call(zoom.transform, t);
+}
+function getStats(){ const s = store.get(STATS_KEY, { played:0, won:0, streak:0, best:0, lastWin:null, dist:{} }); s.ptsSum = s.ptsSum || 0; s.hist = s.hist || {}; return s; }
+function countStats(){
+  if (state.counted || TESTING || TRAIN) return;
+  const s = getStats(); s.played++;
+  const p = points(); s.ptsSum += p;
+  s.hist[RETO] = { p, f: state.status === "won" ? 1 : 0, t: state.guesses.length, deg: state.status === "won" ? 100 : bestDeg(), ms: elapsed() };
+  if (state.status === "won"){
+    s.won++; s.streak = (s.lastWin === RETO-1) ? s.streak+1 : 1; s.lastWin = RETO;
+    s.best = Math.max(s.best, s.streak);
+    const n = state.guesses.length; s.dist[n] = (s.dist[n]||0) + 1;
+  } else { s.streak = 0; }
+  const keys = Object.keys(s.hist).map(Number).sort((a,b) => a-b);
+  while (keys.length > 60) delete s.hist[keys.shift()];
+  store.set(STATS_KEY, s); state.counted = true; save();
+}
+function renderEnd(){
+  if (state.status === "playing") return;
+  const won = state.status === "won";
+  const chips = state.guesses.map((g,i) => { const c = tempColor(g.d); return `<span class="chip"><i style="background:${c};color:${textOn(c)}">${i+1}</i>${fmtDeg(deg(g.d))} · ${km(g.d)} km</span>`; }).join("");
+  const end = $("#end");
+  end.innerHTML = `
+    <h2>${won ? T().won : T().lost}</h2>${TRAIN ? `<p class="small" style="margin:2px 0 0">${T().trainDone}</p>` : ""}
+    <p class="where">${T().where(esc(placeName()), esc(placeCountry()))}</p>
+    <div class="nums">
+      <div><b>${points()}</b><span>${T().pts}</span></div>
+      <div><b>${fmtDeg(won ? 100 : bestDeg())}</b><span>${T().max}</span></div>
+      <div><b>${won ? state.guesses.length : "–"}/${CONFIG.MAX_TRIES}</b><span>${T().tries}</span></div>
+      <div><b>${fmtTime(elapsed())}</b><span>${T().time}</span></div>
+    </div>
+    <div class="chips">${chips}</div>
+    <div class="actions">
+      ${TRAIN ? `<button class="btn primary" id="newBtn">${T().newGame}</button>` : `<button class="btn primary" id="shareBtn">${T().share}</button>`}
+      <button class="btn" id="mapBtn">${T().seeMap}</button>
+    </div>
+    <button class="btn rankbtn" id="rankBtn" hidden></button>
+    ${TRAIN ? `<button class="btn rankbtn" id="dailyBtn">${T().modeDaily}</button>` : `<button class="btn rankbtn" id="trainBtn">${T().trainMore}</button><p class="next-in" id="nextIn"></p>`}`;
+  end.hidden = false;
+  if ($("#shareBtn")) $("#shareBtn").onclick = share;
+  if ($("#newBtn")) $("#newBtn").onclick = newTrainGame;
+  if ($("#trainBtn")) $("#trainBtn").onclick = () => setMode(true);
+  if ($("#dailyBtn")) $("#dailyBtn").onclick = () => setMode(false);
+  $("#mapBtn").onclick = () => $("#sheet").classList.add("collapsed");
+  $("#rankBtn").onclick = () => { openStats("day"); };
+  renderDelta(); renderReadoutName(); updateRankBtn(); nextCountdown();
+}
+function nextCountdown(){
+  const el = $("#nextIn"); if (!el) return;
+  const n = new Date(); const mid = new Date(n.getFullYear(), n.getMonth(), n.getDate()+1);
+  el.textContent = T().nextIn(fmtTime(mid - n));
+}
+setInterval(nextCountdown, 1000);
+function shareText(){
+  const won = state.status === "won";
+  const squares = state.guesses.map(g => g.d <= CONFIG.WIN_KM ? FOUND.share : LEVELS[levelIdx(g.d)].share).join("");
+  const head = won ? T().shareWon(RETO, points(), state.guesses.length, CONFIG.MAX_TRIES) : T().shareLost(RETO, fmtDeg(bestDeg()), points(), CONFIG.MAX_TRIES);
+  return `${head}\n${squares}\n⏱ ${fmtTime(elapsed())}`;
+}
+async function share(){
+  const text = shareText();
+  if (navigator.share){ try { await navigator.share({ text }); return; } catch(e){ if (e && e.name === "AbortError") return; } }
+  try { await navigator.clipboard.writeText(text); toast(T().copied); } catch(e){ toast(T().copyFail); }
+}
+
+/* ============ RANKING (API propia, sin registro) ============ */
+const rnd = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Math.random().toString(36).slice(2) + Date.now().toString(36) + Math.random().toString(36).slice(2));
+const DEVICE = store.get("imperdible:v1:device", null) || (() => { const d = { id: rnd(), secret: rnd() + rnd() }; store.set("imperdible:v1:device", d); return d; })();
+const RANK = store.get("imperdible:v1:rank", { alias: "", auto: false });
+let RANK_OK = null, rankData = { day: [], week: [] };
+function saveRank(){ store.set("imperdible:v1:rank", RANK); }
+async function loadRanking(){
+  try { const r = await fetch(`/api/scores?reto=${RETO}&from=${monthStartReto(RETO)}&device=${encodeURIComponent(DEVICE.id)}`); if (!r.ok) throw 0; rankData = await r.json(); RANK_OK = true; }
+  catch(e){ RANK_OK = false; }
+  renderRankUI();
+}
+function canPublish(){ return !TRAIN && RANK_OK === true; }
+async function publish(){
+  if (!canPublish() || TESTING || state.status === "playing") return false;
+  const alias = RANK.alias.trim().slice(0, 20);
+  if (!alias){ setRankMsg("rankNeedAlias"); return false; }
+  try {
+    const r = await fetch("/api/scores", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+      device: DEVICE.id, secret: DEVICE.secret, alias, reto: RETO, points: points(), found: state.status === "won",
+      tries: state.guesses.length, deg: state.status === "won" ? 100 : bestDeg(), ms: Math.min(86400000, elapsed()) }) });
+    if (!r.ok) throw 0;
+    RANK.pub = RETO; saveRank(); setRankMsg("rankDone"); updateRankBtn(); loadRanking(); return true;
+  } catch(e){ setRankMsg("rankErr"); return false; }
+}
+function autoPublish(){ if (RANK.auto && RANK.alias && RANK.pub !== RETO && canPublish()) publish(); }
+let rankMsgKey = null;
+function setRankMsg(k){ rankMsgKey = k; $("#rankMsg").textContent = k ? T()[k] : ""; }
+function renderRankUI(){
+  const box = $("#joinBox");
+  $("#aliasIn").value = RANK.alias; $("#autoPub").checked = !!RANK.auto;
+  if (!canPublish()){ box.querySelectorAll("input,button").forEach(x => x.disabled = true); setRankMsg(RANK_OK === false ? "rankOff" : null); }
+  else {
+    box.querySelectorAll("input,button").forEach(x => x.disabled = false);
+    $("#publishBtn").disabled = TESTING || state.status === "playing";
+    setRankMsg(state.status === "playing" ? "rankNotYet" : (RANK.pub === RETO ? "rankDone" : null));
+  }
+  updateRankBtn(); renderRanking();
+}
+function updateRankBtn(){
+  const b = $("#rankBtn"); if (!b) return;
+  b.hidden = !(canPublish() && !TESTING && state.status !== "playing");
+  b.textContent = RANK.pub === RETO ? T().published : T().publishRank;
+}
+function rankRow(pos, alias, pts, detail, mine){
+  return `<li class="${mine ? "mine" : ""}"><span class="pos">${pos}</span><span class="who">${esc(alias)}${mine ? ` <em>(${T().you})</em>` : ""}</span><span class="det">${detail}</span><b>${pts}</b></li>`;
+}
+function renderRanking(){
+  const empty = `<p class="small">${RANK_OK === false ? T().rankOff : T().rankEmpty}</p>`;
+  const day = rankData.day || [], week = rankData.week || [];
+  $("#rankDay").innerHTML = day.length ? `<ol class="rank">${day.map((r,i) => rankRow(i+1, r.alias, r.points, r.found ? `🧷 ${r.tries}/${CONFIG.MAX_TRIES}` : fmtDeg(r.deg), r.mine)).join("")}</ol>` : empty;
+  $("#rankWeek").innerHTML = week.length ? `<ol class="rank">${week.map((r,i) => rankRow(i+1, r.alias, r.points, `${r.days}/7`, r.mine)).join("")}</ol>` : empty;
+  const list = arr => arr.length ? `<ol class="rank">${arr.map((r,i) => rankRow(i+1, r.alias, r.points, T().daysN(r.days), r.mine)).join("")}</ol>` : empty;
+  $("#rankMonth").innerHTML = list(rankData.month || []); $("#rankAll").innerHTML = list(rankData.all || []);
+}
+$("#aliasIn").addEventListener("input", e => { RANK.alias = e.target.value; saveRank(); });
+$("#autoPub").addEventListener("change", e => { RANK.auto = e.target.checked; saveRank(); if (RANK.auto) autoPublish(); });
+$("#publishBtn").addEventListener("click", () => publish());
+
+/* ============ UI ============ */
+let toastId;
+function toast(msg, ms){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastId); toastId = setTimeout(() => t.classList.remove("show"), ms || 1800); }
+$("#handle").onclick = () => $("#sheet").classList.toggle("collapsed");
+$("#helpBtn").onclick = () => $("#helpDlg").showModal();
+function openStats(tab){ renderStats(); renderRankUI(); loadRanking(); selectTab(tab || "me"); $("#statsDlg").showModal(); }
+$("#statsBtn").onclick = () => openStats("me");
+function selectTab(tab){
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  document.querySelectorAll(".pane").forEach(p => p.hidden = p.dataset.pane !== tab);
+}
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => selectTab(b.dataset.tab));
+document.querySelectorAll("[data-close]").forEach(b => b.onclick = () => b.closest("dialog").close());
+document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
+$("#vibeToggle").checked = prefs.vibe !== false;
+$("#vibeToggle").onchange = e => { prefs.vibe = e.target.checked; store.set("imperdible:v1:prefs", prefs); };
+$("#camToggle").checked = prefs.cam !== false;
+$("#camToggle").onchange = e => { prefs.cam = e.target.checked; store.set("imperdible:v1:prefs", prefs); };
+$("#resetBtn").onclick = () => { store.del(KEY); location.reload(); };
+$("#testNum").value = RETO;
+$("#testGo").onclick = () => { const n = parseInt($("#testNum").value, 10); if (n > 0){ store.set(TEST_KEY, n); store.del(`imperdible:v1:reto:${n}`); location.reload(); } };
+$("#testRand").onclick = () => { const n = 1 + Math.floor(Math.random()*(PLACE_COUNT || 800)); store.set(TEST_KEY, n); store.del(`imperdible:v1:reto:${n}`); location.reload(); };
+$("#testToday").onclick = () => { store.del(TEST_KEY); location.reload(); };
+$("#brandPin").src = PIN_IMG; $("#beadPin").src = STICKER_IMG;
+
+function renderLegend(){
+  const ul = $("#legend"); ul.innerHTML = "";
+  LEVELS.forEach((L,i) => {
+    const hi = i === 0 ? null : LEVELS[i-1].min;
+    const range = hi == null ? T().more(km(L.min)) : (L.min === 0 ? `${km(CONFIG.WIN_KM)}–${km(hi)} km` : `${km(L.min)}–${km(hi)} km`);
+    ul.insertAdjacentHTML("beforeend", `<li><svg viewBox="0 0 24 24" style="color:${L.color}"><use href="#g-${i}"/></svg>${T().levels[i]}<span>${range}</span></li>`);
+  });
+  ul.insertAdjacentHTML("beforeend", `<li><img src="${PIN_IMG}" alt="">${T().found}<span>${T().less(km(CONFIG.WIN_KM))}</span></li>`);
+}
+function renderStats(){
+  const s = getStats();
+  const pct = s.played ? Math.round(s.won/s.played*100) : 0;
+  $("#statgrid").innerHTML = `
+    <div><b>${s.played}</b><span>${T().played}</span></div>
+    <div><b>${pct}%</b><span>${T().foundPct}</span></div>
+    <div><b>${s.streak}</b><span>${T().streak}</span></div>
+    <div><b>${s.played ? Math.round(s.ptsSum/s.played) : 0}</b><span>${T().avgPts}</span></div>`;
+  const max = Math.max(1, ...Object.values(s.dist));
+  let html = "";
+  for (let i=1;i<=CONFIG.MAX_TRIES;i++){
+    const v = s.dist[i] || 0; const cur = state.status === "won" && state.guesses.length === i;
+    html += `<div class="bar"><span>${i}</span><i class="${cur?"cur":""}" style="width:${Math.max(8, v/max*100)}%">${v}</i></div>`;
+  }
+  $("#bars").innerHTML = html;
+}
+
+/* tema claro / oscuro */
+const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>';
+const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>';
+function effTheme(){ return prefs.theme || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+function applyTheme(){ document.documentElement.dataset.theme = effTheme(); $("#themeBtn").innerHTML = effTheme() === "dark" ? SUN : MOON; }
+$("#themeBtn").onclick = () => { prefs.theme = effTheme() === "dark" ? "light" : "dark"; store.set("imperdible:v1:prefs", prefs); applyTheme(); };
+applyTheme();
+
+/* idioma */
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.dataset.i18n; let v = T()[k];
+    if (k === "help1") v = T().help1(CONFIG.MAX_TRIES);
+    if (k === "help4") v = T().help4(CONFIG.WIN_KM);
+    el.innerHTML = v;
+  });
+  $("#brandName").textContent = T().brand; document.title = T().brand;
+  $("#retoNum").textContent = TRAIN ? T().modeTrain : `${T().num} ${RETO}`;
+  $("#testBadge").hidden = !TESTING; $("#testBadge").textContent = T().test;
+  $("#langFlag").innerHTML = FLAGS[LANG];
+  $("#langBtn").setAttribute("aria-label", T().langLabel);
+  $("#helpBtn").setAttribute("aria-label", T().howTitle);
+  $("#statsBtn").setAttribute("aria-label", T().statsTitle);
+  $("#themeBtn").setAttribute("aria-label", T().themeLabel);
+  $("#map").setAttribute("aria-label", T().start);
+  $("#langMenu").innerHTML = LANGS.map(l => `<button data-lang="${l}" class="${l === LANG ? "on" : ""}"><span class="flag">${FLAGS[l]}</span>${LANG_NAMES[l]}</button>`).join("");
+  $("#langMenu").querySelectorAll("button").forEach(b => b.onclick = () => { LANG = b.dataset.lang; prefs.lang = LANG; store.set("imperdible:v1:prefs", prefs); closeLang(); applyLang(); });
+  renderModeBox(); renderLegend(); renderReadoutName(); renderDelta(); renderPips(); renderEnd(); renderStats(); renderRankUI();
+  if (rankMsgKey) setRankMsg(rankMsgKey);
+}
+function closeLang(){ $("#langMenu").hidden = true; $("#langBtn").setAttribute("aria-expanded","false"); }
+$("#langBtn").onclick = e => { e.stopPropagation(); const m = $("#langMenu"); m.hidden = !m.hidden; $("#langBtn").setAttribute("aria-expanded", String(!m.hidden)); };
+document.addEventListener("click", e => { if (!e.target.closest(".langwrap")) closeLang(); });
+function renderModeBox(){
+  $("#modeDaily").textContent = T().modeDaily; $("#modeTrain").textContent = T().modeTrain;
+  $("#modeDaily").classList.toggle("on", !TRAIN); $("#modeTrain").classList.toggle("on", TRAIN);
+  $("#trainOpts").hidden = !TRAIN;
+  $("#regionLabel").textContent = T().region; $("#trainNote").textContent = T().trainNote;
+  const sel = $("#regionSel"), names = { all: T().rAll, eu: T().rEu, am: T().rAm, af: T().rAf, as: T().rAs };
+  sel.innerHTML = REGIONS.map(r => `<option value="${r}" ${((prefs.region || "all") === r) ? "selected" : ""}>${names[r]}</option>`).join("");
+}
+$("#modeDaily").onclick = () => { if (TRAIN) setMode(false); };
+$("#modeTrain").onclick = () => { if (!TRAIN) setMode(true); };
+$("#regionSel").onchange = e => { prefs.region = e.target.value; store.set("imperdible:v1:prefs", prefs); if (TRAIN && !state.guesses.length) newTrainGame(); };
+
+/* ============ ADMIN ============ */
+$(".testbox").hidden = !ADMIN_KEY;
+$("#adminOpen").hidden = !ADMIN_KEY;
+
+/* ============ ARRANQUE ============ */
+function restore(){
+  marks.forEach(m => m.el.remove()); marks = [];
+  state.guesses.forEach((g,i) => addMark(g.ll, { color: tempColor(g.d), n: i+1, info: () => attemptInfo(i) }));
+  drawRoutes();
+  const last = state.guesses[state.guesses.length-1], prev = state.guesses[state.guesses.length-2];
+  setThermo(last ? last.d : null, { instant: true });
+  setDelta(prev ? prev.d : null, last ? last.d : null);
+  if (state.status === "playing" && state.start) startTimer(); else tick();
+  if (state.status !== "playing") reveal(false);
+}
+window.addEventListener("resize", () => layout());
+layout();
+if (PLACE) restore();
+applyLang();
+if (!TRAIN && !state.guesses.length && !store.get("imperdible:v1:seenHelp", false)){ store.set("imperdible:v1:seenHelp", true); setTimeout(() => $("#helpDlg").showModal(), 400); }
+if (!PLACE){
+  locked = true;
+  fetchPlace().then(ok => {
+    if (!ok){ toast(T().placeFail, 10000); return; }
+    locked = false; restore(); applyLang(); refreshTargetCountry();
+  });
+} else fetchPlace();
+loadWorld().then(json => {
+  world = prepareWorld(json); drawLand();
+  refreshTargetCountry(); layout(); delete window.echarts;
+}).catch(() => toast(T().mapFail, 6000));
+loadRanking().then(() => autoPublish());
+})();
+
+</script>
+</body>
+</html>

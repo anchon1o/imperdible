@@ -1,0 +1,8 @@
+{
+  "name": "imperdible",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Imperdible: reto diario para encontrar un imperdible perdido en el mapa del mundo",
+  "engines": { "node": ">=18" },
+  "dependencies": { "pg": "^8.12.0" }
+}
