@@ -12,7 +12,9 @@ let pool = null, ready = null;
 function hasDb(){ return !!(process.env.DATABASE_URL || process.env.POSTGRES_URL); }
 function db(){
   if (!pool){
-    const cs = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    // Supabase/Vercel engaden ?sslmode=require: quítase para que valga a configuración SSL de abaixo
+    // (se non, node-postgres intenta verificar o certificado do pooler e falla con "self-signed certificate")
+    const cs = String(process.env.DATABASE_URL || process.env.POSTGRES_URL).replace(/([?&])sslmode=[^&]*(&|$)/, "$1").replace(/[?&]$/, "");
     const local = /localhost|127\.0\.0\.1/.test(cs);
     pool = new Pool({ connectionString: cs, ssl: local ? false : { rejectUnauthorized: false }, max: 3 });
   }
