@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
   try { await init(); } catch (e) { return res.status(503).json({ error: "Base de datos no disponible" }); }
 
   if (req.method === "GET"){
-    const reto = int(req.query.reto, 1, 100000);
-    if (!reto) return res.status(400).json({ error: "reto no válido" });
+    const reto = int(req.query.reto, 0, 100000);
+    if (reto == null) return res.status(400).json({ error: "reto no válido" });
     const device = String(req.query.device || "");
     const day = await db().query(
       `SELECT p.alias, s.points, s.found, s.tries, s.deg, s.ms, (s.device = $2) AS mine
@@ -24,13 +24,13 @@ module.exports = async (req, res) => {
                  FROM imp_scores WHERE reto BETWEEN $1 - 6 AND $1) t
          JOIN imp_players p USING (device)
         WHERE t.rn <= 5 GROUP BY p.alias, t.device ORDER BY points DESC LIMIT 50`, [reto, device]);
-    const from = Math.max(1, Math.min(reto, int(req.query.from, 1, 100000) || reto));
+    const from = Math.max(0, Math.min(reto, int(req.query.from, 0, 100000) ?? reto));
     const range = (a, b) => db().query(
       `SELECT p.alias, SUM(s.points)::int AS points, COUNT(*)::int AS days, (s.device = $3) AS mine
          FROM imp_scores s JOIN imp_players p USING (device)
         WHERE s.reto BETWEEN $1 AND $2 GROUP BY p.alias, s.device ORDER BY points DESC LIMIT 50`, [a, b, device]);
     const month = await range(from, reto);
-    const all = await range(1, reto);
+    const all = await range(0, reto);
     res.setHeader("Cache-Control", "no-store");
     return res.status(200).json({ day: day.rows, week: week.rows, month: month.rows, all: all.rows });
   }
@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     const b = await body(req);
     const device = String(b.device || ""), secret = String(b.secret || "");
     const alias = String(b.alias || "").replace(/\s+/g, " ").trim().slice(0, 20);
-    const reto = int(b.reto, 1, serverToday() + 1);
+    const reto = int(b.reto, 0, serverToday() + 1);
     const points = int(b.points, 0, 1000), tries = int(b.tries, 1, MAX_TRIES), deg = int(b.deg, 0, 100), ms = int(b.ms, 0, 86400000);
     const found = b.found === true || b.found === 1;
     if (device.length < 8 || device.length > 100 || secret.length < 16 || secret.length > 200) return res.status(400).json({ error: "identificador no válido" });

@@ -1,7 +1,7 @@
 # Imperdible
 
 Reto diario: cada día se pierde un imperdible en algún lugar del mundo y hay 10 intentos para encontrarlo por frío/caliente.
-Idiomas: galego, castellano, català y euskara. Ranking opcional sin registro. 833 lugares incluidos.
+Idiomas: galego, castellano, català y euskara. Ranking opcional sin registro. 1000 lugares incluidos (y 296 más en reserva).
 
 ## Qué hay en el proyecto
 
@@ -15,7 +15,8 @@ api/admin.js        guardar la lista de lugares, moderar nombres
 api/train.js        lugar al azar para el modo adestramento
 api/_lib.js         conexión a la base de datos y utilidades
 schema.sql          tablas imp_* (opcional, se crean solas)
-data/places.json    lista inicial de lugares
+data/places.json    lista inicial: 1000 lugares
+data/reserva.json   296 lugares más, listos para «Importar» desde el panel cuando quieras ampliar
 ```
 
 Las tablas de la base de datos se crean solas la primera vez. No hay que ejecutar SQL.
@@ -58,7 +59,7 @@ Cuando entras en el panel desde un navegador, ese navegador queda como administr
 
 ### Cómo se elige el lugar de cada día
 
-El reto nº 1 es el 29/09/2026. El reto nº N usa el lugar número N de la lista y, al llegar al final, vuelve a empezar.
+El reto nº 1 es el 01/10/2026 (el 30/09/2026 es el reto nº 0, de prueba). El reto nº N usa el lugar número N de la lista y, al llegar al final, vuelve a empezar.
 Por eso conviene **añadir siempre al final** y no reordenar lugares anteriores al de hoy.
 
 ## Modo adestramento

@@ -3,9 +3,10 @@ const crypto = require("crypto");
 const { Pool } = require("pg");
 const BUNDLED = require("../data/places.json");
 
-const EPOCH_UTC = Date.UTC(2026, 8, 29); // reto nº 1 = 29/09/2026
+const EPOCH_UTC = Date.UTC(2026, 9, 1); // reto nº 1 = 01/10/2026 (o 30/09/2026 é o nº 0)
 const MAX_TRIES = 10;
 
+function placeIdx(n, len){ return (((n - 1) % len) + len) % len; }
 function serverToday(){ return Math.floor((Date.now() - EPOCH_UTC) / 86400000) + 1; }
 
 let pool = null, ready = null;
@@ -62,4 +63,4 @@ async function body(req){
   if (typeof req.body === "string") { try { return JSON.parse(req.body); } catch (e) { return {}; } }
   return await new Promise(res => { let d = ""; req.on("data", c => d += c); req.on("end", () => { try { res(JSON.parse(d || "{}")); } catch (e) { res({}); } }); });
 }
-module.exports = { BUNDLED, MAX_TRIES, serverToday, hasDb, db, init, getPlaces, isAdmin, sha, body };
+module.exports = { placeIdx, BUNDLED, MAX_TRIES, serverToday, hasDb, db, init, getPlaces, isAdmin, sha, body };

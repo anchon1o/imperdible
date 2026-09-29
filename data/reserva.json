@@ -1,0 +1,5922 @@
+[
+{
+"es": [
+"Bremen",
+"Alemania"
+],
+"gl": [
+"Bremen",
+"Alemaña"
+],
+"ca": [
+"Bremen",
+"Alemanya"
+],
+"eu": [
+"Bremen",
+"Alemania"
+],
+"lat": 53.0793,
+"lon": 8.8017
+},
+{
+"es": [
+"Düsseldorf",
+"Alemania"
+],
+"gl": [
+"Düsseldorf",
+"Alemaña"
+],
+"ca": [
+"Düsseldorf",
+"Alemanya"
+],
+"eu": [
+"Düsseldorf",
+"Alemania"
+],
+"lat": 51.2277,
+"lon": 6.7735
+},
+{
+"es": [
+"Lübeck",
+"Alemania"
+],
+"gl": [
+"Lübeck",
+"Alemaña"
+],
+"ca": [
+"Lübeck",
+"Alemanya"
+],
+"eu": [
+"Lübeck",
+"Alemania"
+],
+"lat": 53.8655,
+"lon": 10.6866
+},
+{
+"es": [
+"Brno",
+"Chequia"
+],
+"gl": [
+"Brno",
+"Chequia"
+],
+"ca": [
+"Brno",
+"Txèquia"
+],
+"eu": [
+"Brno",
+"Txekia"
+],
+"lat": 49.1951,
+"lon": 16.6068
+},
+{
+"es": [
+"Poznan",
+"Polonia"
+],
+"gl": [
+"Poznan",
+"Polonia"
+],
+"ca": [
+"Poznan",
+"Polònia"
+],
+"eu": [
+"Poznan",
+"Polonia"
+],
+"lat": 52.4064,
+"lon": 16.9252
+},
+{
+"es": [
+"Lublin",
+"Polonia"
+],
+"gl": [
+"Lublin",
+"Polonia"
+],
+"ca": [
+"Lublin",
+"Polònia"
+],
+"eu": [
+"Lublin",
+"Polonia"
+],
+"lat": 51.2465,
+"lon": 22.5684
+},
+{
+"es": [
+"Zakopane",
+"Polonia"
+],
+"gl": [
+"Zakopane",
+"Polonia"
+],
+"ca": [
+"Zakopane",
+"Polònia"
+],
+"eu": [
+"Zakopane",
+"Polonia"
+],
+"lat": 49.2992,
+"lon": 19.9496
+},
+{
+"es": [
+"Debrecen",
+"Hungría"
+],
+"gl": [
+"Debrecen",
+"Hungría"
+],
+"ca": [
+"Debrecen",
+"Hongria"
+],
+"eu": [
+"Debrecen",
+"Hungaria"
+],
+"lat": 47.5316,
+"lon": 21.6273
+},
+{
+"es": [
+"Timișoara",
+"Rumanía"
+],
+"gl": [
+"Timișoara",
+"Romanía"
+],
+"ca": [
+"Timișoara",
+"Romania"
+],
+"eu": [
+"Timișoara",
+"Errumania"
+],
+"lat": 45.7489,
+"lon": 21.2087
+},
+{
+"es": [
+"Cluj-Napoca",
+"Rumanía"
+],
+"gl": [
+"Cluj-Napoca",
+"Romanía"
+],
+"ca": [
+"Cluj-Napoca",
+"Romania"
+],
+"eu": [
+"Cluj-Napoca",
+"Errumania"
+],
+"lat": 46.7712,
+"lon": 23.6236
+},
+{
+"es": [
+"Constanza",
+"Rumanía"
+],
+"gl": [
+"Constanza",
+"Romanía"
+],
+"ca": [
+"Constança",
+"Romania"
+],
+"eu": [
+"Konstanta",
+"Errumania"
+],
+"lat": 44.1598,
+"lon": 28.6348
+},
+{
+"es": [
+"Varna",
+"Bulgaria"
+],
+"gl": [
+"Varna",
+"Bulgaria"
+],
+"ca": [
+"Varna",
+"Bulgària"
+],
+"eu": [
+"Varna",
+"Bulgaria"
+],
+"lat": 43.2141,
+"lon": 27.9147
+},
+{
+"es": [
+"Veliko Tarnovo",
+"Bulgaria"
+],
+"gl": [
+"Veliko Tarnovo",
+"Bulgaria"
+],
+"ca": [
+"Veliko Tarnovo",
+"Bulgària"
+],
+"eu": [
+"Veliko Tarnovo",
+"Bulgaria"
+],
+"lat": 43.0757,
+"lon": 25.6172
+},
+{
+"es": [
+"Novi Sad",
+"Serbia"
+],
+"gl": [
+"Novi Sad",
+"Serbia"
+],
+"ca": [
+"Novi Sad",
+"Sèrbia"
+],
+"eu": [
+"Novi Sad",
+"Serbia"
+],
+"lat": 45.2671,
+"lon": 19.8335
+},
+{
+"es": [
+"Niš",
+"Serbia"
+],
+"gl": [
+"Niš",
+"Serbia"
+],
+"ca": [
+"Niš",
+"Sèrbia"
+],
+"eu": [
+"Niš",
+"Serbia"
+],
+"lat": 43.3209,
+"lon": 21.8958
+},
+{
+"es": [
+"Podgorica",
+"Montenegro"
+],
+"gl": [
+"Podgorica",
+"Montenegro"
+],
+"ca": [
+"Podgorica",
+"Montenegro"
+],
+"eu": [
+"Podgorica",
+"Montenegro"
+],
+"lat": 42.4304,
+"lon": 19.2594
+},
+{
+"es": [
+"Zadar",
+"Croacia"
+],
+"gl": [
+"Zadar",
+"Croacia"
+],
+"ca": [
+"Zadar",
+"Croàcia"
+],
+"eu": [
+"Zadar",
+"Kroazia"
+],
+"lat": 44.1194,
+"lon": 15.2314
+},
+{
+"es": [
+"Rijeka",
+"Croacia"
+],
+"gl": [
+"Rijeka",
+"Croacia"
+],
+"ca": [
+"Rijeka",
+"Croàcia"
+],
+"eu": [
+"Rijeka",
+"Kroazia"
+],
+"lat": 45.3271,
+"lon": 14.4422
+},
+{
+"es": [
+"Piran",
+"Eslovenia"
+],
+"gl": [
+"Piran",
+"Eslovenia"
+],
+"ca": [
+"Piran",
+"Eslovènia"
+],
+"eu": [
+"Piran",
+"Eslovenia"
+],
+"lat": 45.5283,
+"lon": 13.5683
+},
+{
+"es": [
+"Trento",
+"Italia"
+],
+"gl": [
+"Trento",
+"Italia"
+],
+"ca": [
+"Trento",
+"Itàlia"
+],
+"eu": [
+"Trento",
+"Italia"
+],
+"lat": 46.0748,
+"lon": 11.1217
+},
+{
+"es": [
+"Bérgamo",
+"Italia"
+],
+"gl": [
+"Bérgamo",
+"Italia"
+],
+"ca": [
+"Bèrgam",
+"Itàlia"
+],
+"eu": [
+"Bergamo",
+"Italia"
+],
+"lat": 45.6983,
+"lon": 9.6773
+},
+{
+"es": [
+"Rávena",
+"Italia"
+],
+"gl": [
+"Rávena",
+"Italia"
+],
+"ca": [
+"Ravenna",
+"Itàlia"
+],
+"eu": [
+"Ravenna",
+"Italia"
+],
+"lat": 44.4184,
+"lon": 12.2035
+},
+{
+"es": [
+"Lecce",
+"Italia"
+],
+"gl": [
+"Lecce",
+"Italia"
+],
+"ca": [
+"Lecce",
+"Itàlia"
+],
+"eu": [
+"Lecce",
+"Italia"
+],
+"lat": 40.3515,
+"lon": 18.175
+},
+{
+"es": [
+"Reggio Calabria",
+"Italia"
+],
+"gl": [
+"Reggio Calabria",
+"Italia"
+],
+"ca": [
+"Reggio Calabria",
+"Itàlia"
+],
+"eu": [
+"Reggio Calabria",
+"Italia"
+],
+"lat": 38.1113,
+"lon": 15.6473
+},
+{
+"es": [
+"Catania",
+"Italia"
+],
+"gl": [
+"Catania",
+"Italia"
+],
+"ca": [
+"Catania",
+"Itàlia"
+],
+"eu": [
+"Catania",
+"Italia"
+],
+"lat": 37.5079,
+"lon": 15.083
+},
+{
+"es": [
+"Trapani",
+"Italia"
+],
+"gl": [
+"Trapani",
+"Italia"
+],
+"ca": [
+"Trapani",
+"Itàlia"
+],
+"eu": [
+"Trapani",
+"Italia"
+],
+"lat": 38.0176,
+"lon": 12.5365
+},
+{
+"es": [
+"Bolzano",
+"Italia"
+],
+"gl": [
+"Bolzano",
+"Italia"
+],
+"ca": [
+"Bolzano",
+"Itàlia"
+],
+"eu": [
+"Bolzano",
+"Italia"
+],
+"lat": 46.4983,
+"lon": 11.3548
+},
+{
+"es": [
+"Grenoble",
+"Francia"
+],
+"gl": [
+"Grenoble",
+"Francia"
+],
+"ca": [
+"Grenoble",
+"França"
+],
+"eu": [
+"Grenoble",
+"Frantzia"
+],
+"lat": 45.1885,
+"lon": 5.7245
+},
+{
+"es": [
+"Dijon",
+"Francia"
+],
+"gl": [
+"Dijon",
+"Francia"
+],
+"ca": [
+"Dijon",
+"França"
+],
+"eu": [
+"Dijon",
+"Frantzia"
+],
+"lat": 47.322,
+"lon": 5.0415
+},
+{
+"es": [
+"Clermont-Ferrand",
+"Francia"
+],
+"gl": [
+"Clermont-Ferrand",
+"Francia"
+],
+"ca": [
+"Clermont-Ferrand",
+"França"
+],
+"eu": [
+"Clermont-Ferrand",
+"Frantzia"
+],
+"lat": 45.7772,
+"lon": 3.087
+},
+{
+"es": [
+"La Rochelle",
+"Francia"
+],
+"gl": [
+"A Rochelle",
+"Francia"
+],
+"ca": [
+"La Rochelle",
+"França"
+],
+"eu": [
+"La Rochelle",
+"Frantzia"
+],
+"lat": 46.1603,
+"lon": -1.1511
+},
+{
+"es": [
+"Cherburgo",
+"Francia"
+],
+"gl": [
+"Cherburgo",
+"Francia"
+],
+"ca": [
+"Cherbourg",
+"França"
+],
+"eu": [
+"Cherbourg",
+"Frantzia"
+],
+"lat": 49.6337,
+"lon": -1.6222
+},
+{
+"es": [
+"Annecy",
+"Francia"
+],
+"gl": [
+"Annecy",
+"Francia"
+],
+"ca": [
+"Annecy",
+"França"
+],
+"eu": [
+"Annecy",
+"Frantzia"
+],
+"lat": 45.8992,
+"lon": 6.1294
+},
+{
+"es": [
+"Valladolid",
+"España"
+],
+"gl": [
+"Valladolid",
+"España"
+],
+"ca": [
+"Valladolid",
+"Espanya"
+],
+"eu": [
+"Valladolid",
+"Espainia"
+],
+"lat": 41.6523,
+"lon": -4.7245
+},
+{
+"es": [
+"Murcia",
+"España"
+],
+"gl": [
+"Murcia",
+"España"
+],
+"ca": [
+"Múrcia",
+"Espanya"
+],
+"eu": [
+"Murcia",
+"Espainia"
+],
+"lat": 37.9922,
+"lon": -1.1307
+},
+{
+"es": [
+"Alicante",
+"España"
+],
+"gl": [
+"Alicante",
+"España"
+],
+"ca": [
+"Alacant",
+"Espanya"
+],
+"eu": [
+"Alicante",
+"Espainia"
+],
+"lat": 38.3452,
+"lon": -0.481
+},
+{
+"es": [
+"Castellón",
+"España"
+],
+"gl": [
+"Castellón",
+"España"
+],
+"ca": [
+"Castelló",
+"Espanya"
+],
+"eu": [
+"Castellón",
+"Espainia"
+],
+"lat": 39.9864,
+"lon": -0.0513
+},
+{
+"es": [
+"Badajoz",
+"España"
+],
+"gl": [
+"Badajoz",
+"España"
+],
+"ca": [
+"Badajoz",
+"Espanya"
+],
+"eu": [
+"Badajoz",
+"Espainia"
+],
+"lat": 38.8794,
+"lon": -6.9707
+},
+{
+"es": [
+"Jaén",
+"España"
+],
+"gl": [
+"Jaén",
+"España"
+],
+"ca": [
+"Jaén",
+"Espanya"
+],
+"eu": [
+"Jaén",
+"Espainia"
+],
+"lat": 37.7796,
+"lon": -3.7849
+},
+{
+"es": [
+"Logroño",
+"España"
+],
+"gl": [
+"Logroño",
+"España"
+],
+"ca": [
+"Logroño",
+"Espanya"
+],
+"eu": [
+"Logroño",
+"Espainia"
+],
+"lat": 42.4627,
+"lon": -2.445
+},
+{
+"es": [
+"Teruel",
+"España"
+],
+"gl": [
+"Teruel",
+"España"
+],
+"ca": [
+"Terol",
+"Espanya"
+],
+"eu": [
+"Teruel",
+"Espainia"
+],
+"lat": 40.3456,
+"lon": -1.1065
+},
+{
+"es": [
+"Soria",
+"España"
+],
+"gl": [
+"Soria",
+"España"
+],
+"ca": [
+"Soria",
+"Espanya"
+],
+"eu": [
+"Soria",
+"Espainia"
+],
+"lat": 41.764,
+"lon": -2.4688
+},
+{
+"es": [
+"Ávila",
+"España"
+],
+"gl": [
+"Ávila",
+"España"
+],
+"ca": [
+"Ávila",
+"Espanya"
+],
+"eu": [
+"Ávila",
+"Espainia"
+],
+"lat": 40.6566,
+"lon": -4.6818
+},
+{
+"es": [
+"La Palma",
+"España"
+],
+"gl": [
+"La Palma",
+"España"
+],
+"ca": [
+"La Palma",
+"Espanya"
+],
+"eu": [
+"La Palma",
+"Espainia"
+],
+"lat": 28.6835,
+"lon": -17.7642
+},
+{
+"es": [
+"Formentera",
+"España"
+],
+"gl": [
+"Formentera",
+"España"
+],
+"ca": [
+"Formentera",
+"Espanya"
+],
+"eu": [
+"Formentera",
+"Espainia"
+],
+"lat": 38.705,
+"lon": 1.4521
+},
+{
+"es": [
+"Picos de Europa",
+"España"
+],
+"gl": [
+"Picos de Europa",
+"España"
+],
+"ca": [
+"Pics d'Europa",
+"Espanya"
+],
+"eu": [
+"Europako Gailurrak",
+"Espainia"
+],
+"lat": 43.197,
+"lon": -4.852
+},
+{
+"es": [
+"Doñana",
+"España"
+],
+"gl": [
+"Doñana",
+"España"
+],
+"ca": [
+"Doñana",
+"Espanya"
+],
+"eu": [
+"Doñana",
+"Espainia"
+],
+"lat": 36.99,
+"lon": -6.44
+},
+{
+"es": [
+"Ordesa",
+"España"
+],
+"gl": [
+"Ordesa",
+"España"
+],
+"ca": [
+"Ordesa",
+"Espanya"
+],
+"eu": [
+"Ordesa",
+"Espainia"
+],
+"lat": 42.6503,
+"lon": -0.0558
+},
+{
+"es": [
+"Viana do Castelo",
+"Portugal"
+],
+"gl": [
+"Viana do Castelo",
+"Portugal"
+],
+"ca": [
+"Viana do Castelo",
+"Portugal"
+],
+"eu": [
+"Viana do Castelo",
+"Portugal"
+],
+"lat": 41.6932,
+"lon": -8.8329
+},
+{
+"es": [
+"Bragança",
+"Portugal"
+],
+"gl": [
+"Bragança",
+"Portugal"
+],
+"ca": [
+"Bragança",
+"Portugal"
+],
+"eu": [
+"Bragança",
+"Portugal"
+],
+"lat": 41.8061,
+"lon": -6.7567
+},
+{
+"es": [
+"Óbidos",
+"Portugal"
+],
+"gl": [
+"Óbidos",
+"Portugal"
+],
+"ca": [
+"Óbidos",
+"Portugal"
+],
+"eu": [
+"Óbidos",
+"Portugal"
+],
+"lat": 39.3606,
+"lon": -9.1571
+},
+{
+"es": [
+"Tavira",
+"Portugal"
+],
+"gl": [
+"Tavira",
+"Portugal"
+],
+"ca": [
+"Tavira",
+"Portugal"
+],
+"eu": [
+"Tavira",
+"Portugal"
+],
+"lat": 37.1283,
+"lon": -7.6506
+},
+{
+"es": [
+"York",
+"Reino Unido"
+],
+"gl": [
+"York",
+"Reino Unido"
+],
+"ca": [
+"York",
+"Regne Unit"
+],
+"eu": [
+"York",
+"Erresuma Batua"
+],
+"lat": 53.959,
+"lon": -1.0815
+},
+{
+"es": [
+"Cambridge",
+"Reino Unido"
+],
+"gl": [
+"Cambridge",
+"Reino Unido"
+],
+"ca": [
+"Cambridge",
+"Regne Unit"
+],
+"eu": [
+"Cambridge",
+"Erresuma Batua"
+],
+"lat": 52.2053,
+"lon": 0.1218
+},
+{
+"es": [
+"Plymouth",
+"Reino Unido"
+],
+"gl": [
+"Plymouth",
+"Reino Unido"
+],
+"ca": [
+"Plymouth",
+"Regne Unit"
+],
+"eu": [
+"Plymouth",
+"Erresuma Batua"
+],
+"lat": 50.3755,
+"lon": -4.1427
+},
+{
+"es": [
+"Newcastle",
+"Reino Unido"
+],
+"gl": [
+"Newcastle",
+"Reino Unido"
+],
+"ca": [
+"Newcastle",
+"Regne Unit"
+],
+"eu": [
+"Newcastle",
+"Erresuma Batua"
+],
+"lat": 54.9783,
+"lon": -1.6178
+},
+{
+"es": [
+"Kilkenny",
+"Irlanda"
+],
+"gl": [
+"Kilkenny",
+"Irlanda"
+],
+"ca": [
+"Kilkenny",
+"Irlanda"
+],
+"eu": [
+"Kilkenny",
+"Irlanda"
+],
+"lat": 52.6541,
+"lon": -7.2448
+},
+{
+"es": [
+"Derry",
+"Reino Unido"
+],
+"gl": [
+"Derry",
+"Reino Unido"
+],
+"ca": [
+"Derry",
+"Regne Unit"
+],
+"eu": [
+"Derry",
+"Erresuma Batua"
+],
+"lat": 54.9966,
+"lon": -7.3086
+},
+{
+"es": [
+"Sligo",
+"Irlanda"
+],
+"gl": [
+"Sligo",
+"Irlanda"
+],
+"ca": [
+"Sligo",
+"Irlanda"
+],
+"eu": [
+"Sligo",
+"Irlanda"
+],
+"lat": 54.2766,
+"lon": -8.4761
+},
+{
+"es": [
+"Acantilados de Moher",
+"Irlanda"
+],
+"gl": [
+"Cantís de Moher",
+"Irlanda"
+],
+"ca": [
+"Penya-segats de Moher",
+"Irlanda"
+],
+"eu": [
+"Moherreko labarrak",
+"Irlanda"
+],
+"lat": 52.9715,
+"lon": -9.4309
+},
+{
+"es": [
+"Visby",
+"Suecia"
+],
+"gl": [
+"Visby",
+"Suecia"
+],
+"ca": [
+"Visby",
+"Suècia"
+],
+"eu": [
+"Visby",
+"Suedia"
+],
+"lat": 57.6348,
+"lon": 18.2948
+},
+{
+"es": [
+"Odense",
+"Dinamarca"
+],
+"gl": [
+"Odense",
+"Dinamarca"
+],
+"ca": [
+"Odense",
+"Dinamarca"
+],
+"eu": [
+"Odense",
+"Danimarka"
+],
+"lat": 55.4038,
+"lon": 10.4024
+},
+{
+"es": [
+"Skagen",
+"Dinamarca"
+],
+"gl": [
+"Skagen",
+"Dinamarca"
+],
+"ca": [
+"Skagen",
+"Dinamarca"
+],
+"eu": [
+"Skagen",
+"Danimarka"
+],
+"lat": 57.7209,
+"lon": 10.5839
+},
+{
+"es": [
+"Oulu",
+"Finlandia"
+],
+"gl": [
+"Oulu",
+"Finlandia"
+],
+"ca": [
+"Oulu",
+"Finlàndia"
+],
+"eu": [
+"Oulu",
+"Finlandia"
+],
+"lat": 65.0121,
+"lon": 25.4651
+},
+{
+"es": [
+"Kaunas",
+"Lituania"
+],
+"gl": [
+"Kaunas",
+"Lituania"
+],
+"ca": [
+"Kaunas",
+"Lituània"
+],
+"eu": [
+"Kaunas",
+"Lituania"
+],
+"lat": 54.8985,
+"lon": 23.9036
+},
+{
+"es": [
+"Pärnu",
+"Estonia"
+],
+"gl": [
+"Pärnu",
+"Estonia"
+],
+"ca": [
+"Pärnu",
+"Estònia"
+],
+"eu": [
+"Pärnu",
+"Estonia"
+],
+"lat": 58.3859,
+"lon": 24.4971
+},
+{
+"es": [
+"Hammerfest",
+"Noruega"
+],
+"gl": [
+"Hammerfest",
+"Noruega"
+],
+"ca": [
+"Hammerfest",
+"Noruega"
+],
+"eu": [
+"Hammerfest",
+"Norvegia"
+],
+"lat": 70.6634,
+"lon": 23.6821
+},
+{
+"es": [
+"Ålesund",
+"Noruega"
+],
+"gl": [
+"Ålesund",
+"Noruega"
+],
+"ca": [
+"Ålesund",
+"Noruega"
+],
+"eu": [
+"Ålesund",
+"Norvegia"
+],
+"lat": 62.4722,
+"lon": 6.1495
+},
+{
+"es": [
+"Húsavík",
+"Islandia"
+],
+"gl": [
+"Húsavík",
+"Islandia"
+],
+"ca": [
+"Húsavík",
+"Islàndia"
+],
+"eu": [
+"Húsavík",
+"Islandia"
+],
+"lat": 66.0449,
+"lon": -17.3389
+},
+{
+"es": [
+"Ísafjörður",
+"Islandia"
+],
+"gl": [
+"Ísafjörður",
+"Islandia"
+],
+"ca": [
+"Ísafjörður",
+"Islàndia"
+],
+"eu": [
+"Ísafjörður",
+"Islandia"
+],
+"lat": 66.075,
+"lon": -23.1236
+},
+{
+"es": [
+"Höfn",
+"Islandia"
+],
+"gl": [
+"Höfn",
+"Islandia"
+],
+"ca": [
+"Höfn",
+"Islàndia"
+],
+"eu": [
+"Höfn",
+"Islandia"
+],
+"lat": 64.2539,
+"lon": -15.2082
+},
+{
+"es": [
+"Perm",
+"Rusia"
+],
+"gl": [
+"Perm",
+"Rusia"
+],
+"ca": [
+"Perm",
+"Rússia"
+],
+"eu": [
+"Perm",
+"Errusia"
+],
+"lat": 58.0105,
+"lon": 56.2502
+},
+{
+"es": [
+"Ufá",
+"Rusia"
+],
+"gl": [
+"Ufá",
+"Rusia"
+],
+"ca": [
+"Ufà",
+"Rússia"
+],
+"eu": [
+"Ufa",
+"Errusia"
+],
+"lat": 54.7388,
+"lon": 55.9721
+},
+{
+"es": [
+"Tomsk",
+"Rusia"
+],
+"gl": [
+"Tomsk",
+"Rusia"
+],
+"ca": [
+"Tomsk",
+"Rússia"
+],
+"eu": [
+"Tomsk",
+"Errusia"
+],
+"lat": 56.4847,
+"lon": 84.9482
+},
+{
+"es": [
+"Ulán-Udé",
+"Rusia"
+],
+"gl": [
+"Ulán-Udé",
+"Rusia"
+],
+"ca": [
+"Ulan-Udè",
+"Rússia"
+],
+"eu": [
+"Ulan-Ude",
+"Errusia"
+],
+"lat": 51.8335,
+"lon": 107.5841
+},
+{
+"es": [
+"Pskov",
+"Rusia"
+],
+"gl": [
+"Pskov",
+"Rusia"
+],
+"ca": [
+"Pskov",
+"Rússia"
+],
+"eu": [
+"Pskov",
+"Errusia"
+],
+"lat": 57.8136,
+"lon": 28.3496
+},
+{
+"es": [
+"Vorkutá",
+"Rusia"
+],
+"gl": [
+"Vorkutá",
+"Rusia"
+],
+"ca": [
+"Vorkuta",
+"Rússia"
+],
+"eu": [
+"Vorkuta",
+"Errusia"
+],
+"lat": 67.4974,
+"lon": 64.0611
+},
+{
+"es": [
+"Járkov",
+"Ucrania"
+],
+"gl": [
+"Kharkiv",
+"Ucraína"
+],
+"ca": [
+"Khàrkiv",
+"Ucraïna"
+],
+"eu": [
+"Kharkiv",
+"Ukraina"
+],
+"lat": 49.9935,
+"lon": 36.2304
+},
+{
+"es": [
+"Grodno",
+"Bielorrusia"
+],
+"gl": [
+"Grodno",
+"Bielorrusia"
+],
+"ca": [
+"Grodno",
+"Bielorússia"
+],
+"eu": [
+"Grodno",
+"Bielorrusia"
+],
+"lat": 53.6694,
+"lon": 23.8131
+},
+{
+"es": [
+"Kutaisi",
+"Georgia"
+],
+"gl": [
+"Kutaisi",
+"Xeorxia"
+],
+"ca": [
+"Kutaisi",
+"Geòrgia"
+],
+"eu": [
+"Kutaisi",
+"Georgia"
+],
+"lat": 42.2679,
+"lon": 42.6946
+},
+{
+"es": [
+"Turkestán",
+"Kazajistán"
+],
+"gl": [
+"Turquestán",
+"Casaquistán"
+],
+"ca": [
+"Turkestan",
+"Kazakhstan"
+],
+"eu": [
+"Turkestan",
+"Kazakhstan"
+],
+"lat": 43.2973,
+"lon": 68.2517
+},
+{
+"es": [
+"Aktau",
+"Kazajistán"
+],
+"gl": [
+"Aktau",
+"Casaquistán"
+],
+"ca": [
+"Aktau",
+"Kazakhstan"
+],
+"eu": [
+"Aktau",
+"Kazakhstan"
+],
+"lat": 43.651,
+"lon": 51.16
+},
+{
+"es": [
+"Baikonur",
+"Kazajistán"
+],
+"gl": [
+"Baikonur",
+"Casaquistán"
+],
+"ca": [
+"Baikonur",
+"Kazakhstan"
+],
+"eu": [
+"Baikonur",
+"Kazakhstan"
+],
+"lat": 45.6167,
+"lon": 63.3167
+},
+{
+"es": [
+"Jorog",
+"Tayikistán"
+],
+"gl": [
+"Khorog",
+"Taxiquistán"
+],
+"ca": [
+"Khorog",
+"Tadjikistan"
+],
+"eu": [
+"Khorog",
+"Tajikistan"
+],
+"lat": 37.4897,
+"lon": 71.553
+},
+{
+"es": [
+"Merv",
+"Turkmenistán"
+],
+"gl": [
+"Merv",
+"Turkmenistán"
+],
+"ca": [
+"Merv",
+"Turkmenistan"
+],
+"eu": [
+"Merv",
+"Turkmenistan"
+],
+"lat": 37.663,
+"lon": 62.192
+},
+{
+"es": [
+"Bamiyán",
+"Afganistán"
+],
+"gl": [
+"Bamiyán",
+"Afganistán"
+],
+"ca": [
+"Bamian",
+"Afganistan"
+],
+"eu": [
+"Bamiyan",
+"Afganistan"
+],
+"lat": 34.821,
+"lon": 67.827
+},
+{
+"es": [
+"Kandahar",
+"Afganistán"
+],
+"gl": [
+"Kandahar",
+"Afganistán"
+],
+"ca": [
+"Kandahar",
+"Afganistan"
+],
+"eu": [
+"Kandahar",
+"Afganistan"
+],
+"lat": 31.6289,
+"lon": 65.7372
+},
+{
+"es": [
+"Biblos",
+"Líbano"
+],
+"gl": [
+"Biblos",
+"Líbano"
+],
+"ca": [
+"Biblos",
+"Líban"
+],
+"eu": [
+"Biblos",
+"Libano"
+],
+"lat": 34.1211,
+"lon": 35.648
+},
+{
+"es": [
+"Yazd",
+"Irán"
+],
+"gl": [
+"Yazd",
+"Irán"
+],
+"ca": [
+"Yazd",
+"Iran"
+],
+"eu": [
+"Yazd",
+"Iran"
+],
+"lat": 31.8974,
+"lon": 54.3569
+},
+{
+"es": [
+"Kermán",
+"Irán"
+],
+"gl": [
+"Kermán",
+"Irán"
+],
+"ca": [
+"Kerman",
+"Iran"
+],
+"eu": [
+"Kerman",
+"Iran"
+],
+"lat": 30.2839,
+"lon": 57.0834
+},
+{
+"es": [
+"Bandar Abbás",
+"Irán"
+],
+"gl": [
+"Bandar Abbas",
+"Irán"
+],
+"ca": [
+"Bandar Abbas",
+"Iran"
+],
+"eu": [
+"Bandar Abbas",
+"Iran"
+],
+"lat": 27.1832,
+"lon": 56.2666
+},
+{
+"es": [
+"Nizwa",
+"Omán"
+],
+"gl": [
+"Nizwa",
+"Omán"
+],
+"ca": [
+"Nizwa",
+"Oman"
+],
+"eu": [
+"Nizwa",
+"Oman"
+],
+"lat": 22.9333,
+"lon": 57.5333
+},
+{
+"es": [
+"Adén",
+"Yemen"
+],
+"gl": [
+"Adén",
+"Iemen"
+],
+"ca": [
+"Aden",
+"Iemen"
+],
+"eu": [
+"Aden",
+"Yemen"
+],
+"lat": 12.7855,
+"lon": 45.0187
+},
+{
+"es": [
+"Tozeur",
+"Túnez"
+],
+"gl": [
+"Tozeur",
+"Tunisia"
+],
+"ca": [
+"Tozeur",
+"Tunísia"
+],
+"eu": [
+"Tozeur",
+"Tunisia"
+],
+"lat": 33.9197,
+"lon": 8.1335
+},
+{
+"es": [
+"Kairuán",
+"Túnez"
+],
+"gl": [
+"Kairuán",
+"Tunisia"
+],
+"ca": [
+"Kairuan",
+"Tunísia"
+],
+"eu": [
+"Kairuan",
+"Tunisia"
+],
+"lat": 35.6781,
+"lon": 10.0963
+},
+{
+"es": [
+"Constantina",
+"Argelia"
+],
+"gl": [
+"Constantina",
+"Alxeria"
+],
+"ca": [
+"Constantina",
+"Algèria"
+],
+"eu": [
+"Konstantina",
+"Aljeria"
+],
+"lat": 36.365,
+"lon": 6.6147
+},
+{
+"es": [
+"Ghardaia",
+"Argelia"
+],
+"gl": [
+"Ghardaia",
+"Alxeria"
+],
+"ca": [
+"Ghardaia",
+"Algèria"
+],
+"eu": [
+"Ghardaia",
+"Aljeria"
+],
+"lat": 32.4909,
+"lon": 3.6735
+},
+{
+"es": [
+"Bengasi",
+"Libia"
+],
+"gl": [
+"Benghazi",
+"Libia"
+],
+"ca": [
+"Bengasi",
+"Líbia"
+],
+"eu": [
+"Bengasi",
+"Libia"
+],
+"lat": 32.1167,
+"lon": 20.0667
+},
+{
+"es": [
+"Sabha",
+"Libia"
+],
+"gl": [
+"Sabha",
+"Libia"
+],
+"ca": [
+"Sabha",
+"Líbia"
+],
+"eu": [
+"Sabha",
+"Libia"
+],
+"lat": 27.0377,
+"lon": 14.4283
+},
+{
+"es": [
+"Asiut",
+"Egipto"
+],
+"gl": [
+"Asiut",
+"Exipto"
+],
+"ca": [
+"Assiut",
+"Egipte"
+],
+"eu": [
+"Asyut",
+"Egipto"
+],
+"lat": 27.1809,
+"lon": 31.1837
+},
+{
+"es": [
+"Hurgada",
+"Egipto"
+],
+"gl": [
+"Hurghada",
+"Exipto"
+],
+"ca": [
+"Hurghada",
+"Egipte"
+],
+"eu": [
+"Hurghada",
+"Egipto"
+],
+"lat": 27.2579,
+"lon": 33.8116
+},
+{
+"es": [
+"El Obeid",
+"Sudán"
+],
+"gl": [
+"El Obeid",
+"Sudán"
+],
+"ca": [
+"El Obeid",
+"Sudan"
+],
+"eu": [
+"El Obeid",
+"Sudan"
+],
+"lat": 13.1843,
+"lon": 30.2167
+},
+{
+"es": [
+"Yuba",
+"Sudán del Sur"
+],
+"gl": [
+"Juba",
+"Sudán do Sur"
+],
+"ca": [
+"Juba",
+"Sudan del Sud"
+],
+"eu": [
+"Juba",
+"Hego Sudan"
+],
+"lat": 4.8594,
+"lon": 31.5713
+},
+{
+"es": [
+"Bangui",
+"República Centroafricana"
+],
+"gl": [
+"Bangui",
+"República Centroafricana"
+],
+"ca": [
+"Bangui",
+"República Centreafricana"
+],
+"eu": [
+"Bangui",
+"Afrika Erdiko Errepublika"
+],
+"lat": 4.3947,
+"lon": 18.5582
+},
+{
+"es": [
+"Freetown",
+"Sierra Leona"
+],
+"gl": [
+"Freetown",
+"Serra Leoa"
+],
+"ca": [
+"Freetown",
+"Sierra Leone"
+],
+"eu": [
+"Freetown",
+"Sierra Leona"
+],
+"lat": 8.4657,
+"lon": -13.2317
+},
+{
+"es": [
+"Monrovia",
+"Liberia"
+],
+"gl": [
+"Monrovia",
+"Liberia"
+],
+"ca": [
+"Monrovia",
+"Libèria"
+],
+"eu": [
+"Monrovia",
+"Liberia"
+],
+"lat": 6.3156,
+"lon": -10.8074
+},
+{
+"es": [
+"Yamusukro",
+"Costa de Marfil"
+],
+"gl": [
+"Yamoussoukro",
+"Costa do Marfil"
+],
+"ca": [
+"Yamoussoukro",
+"Costa d'Ivori"
+],
+"eu": [
+"Yamoussoukro",
+"Boli Kosta"
+],
+"lat": 6.8276,
+"lon": -5.2893
+},
+{
+"es": [
+"Cotonú",
+"Benín"
+],
+"gl": [
+"Cotonou",
+"Benín"
+],
+"ca": [
+"Cotonou",
+"Benín"
+],
+"eu": [
+"Cotonou",
+"Benin"
+],
+"lat": 6.3703,
+"lon": 2.3912
+},
+{
+"es": [
+"Franceville",
+"Gabón"
+],
+"gl": [
+"Franceville",
+"Gabón"
+],
+"ca": [
+"Franceville",
+"Gabon"
+],
+"eu": [
+"Franceville",
+"Gabon"
+],
+"lat": -1.6333,
+"lon": 13.5833
+},
+{
+"es": [
+"Mbandaka",
+"R. D. del Congo"
+],
+"gl": [
+"Mbandaka",
+"R. D. do Congo"
+],
+"ca": [
+"Mbandaka",
+"R. D. del Congo"
+],
+"eu": [
+"Mbandaka",
+"Kongoko EE"
+],
+"lat": 0.0487,
+"lon": 18.2603
+},
+{
+"es": [
+"Kananga",
+"R. D. del Congo"
+],
+"gl": [
+"Kananga",
+"R. D. do Congo"
+],
+"ca": [
+"Kananga",
+"R. D. del Congo"
+],
+"eu": [
+"Kananga",
+"Kongoko EE"
+],
+"lat": -5.8962,
+"lon": 22.4166
+},
+{
+"es": [
+"Lubango",
+"Angola"
+],
+"gl": [
+"Lubango",
+"Angola"
+],
+"ca": [
+"Lubango",
+"Angola"
+],
+"eu": [
+"Lubango",
+"Angola"
+],
+"lat": -14.9177,
+"lon": 13.4925
+},
+{
+"es": [
+"Buyumbura",
+"Burundi"
+],
+"gl": [
+"Bujumbura",
+"Burundi"
+],
+"ca": [
+"Bujumbura",
+"Burundi"
+],
+"eu": [
+"Bujumbura",
+"Burundi"
+],
+"lat": -3.3614,
+"lon": 29.3599
+},
+{
+"es": [
+"Kisumu",
+"Kenia"
+],
+"gl": [
+"Kisumu",
+"Kenya"
+],
+"ca": [
+"Kisumu",
+"Kenya"
+],
+"eu": [
+"Kisumu",
+"Kenya"
+],
+"lat": -0.0917,
+"lon": 34.768
+},
+{
+"es": [
+"Malindi",
+"Kenia"
+],
+"gl": [
+"Malindi",
+"Kenya"
+],
+"ca": [
+"Malindi",
+"Kenya"
+],
+"eu": [
+"Malindi",
+"Kenya"
+],
+"lat": -3.2192,
+"lon": 40.1169
+},
+{
+"es": [
+"Dodoma",
+"Tanzania"
+],
+"gl": [
+"Dodoma",
+"Tanzania"
+],
+"ca": [
+"Dodoma",
+"Tanzània"
+],
+"eu": [
+"Dodoma",
+"Tanzania"
+],
+"lat": -6.163,
+"lon": 35.7516
+},
+{
+"es": [
+"Mbeya",
+"Tanzania"
+],
+"gl": [
+"Mbeya",
+"Tanzania"
+],
+"ca": [
+"Mbeya",
+"Tanzània"
+],
+"eu": [
+"Mbeya",
+"Tanzania"
+],
+"lat": -8.9094,
+"lon": 33.4608
+},
+{
+"es": [
+"Lilongüe",
+"Malaui"
+],
+"gl": [
+"Lilongwe",
+"Malawi"
+],
+"ca": [
+"Lilongwe",
+"Malawi"
+],
+"eu": [
+"Lilongwe",
+"Malawi"
+],
+"lat": -13.9626,
+"lon": 33.7741
+},
+{
+"es": [
+"Pemba",
+"Mozambique"
+],
+"gl": [
+"Pemba",
+"Mozambique"
+],
+"ca": [
+"Pemba",
+"Moçambic"
+],
+"eu": [
+"Pemba",
+"Mozambike"
+],
+"lat": -12.974,
+"lon": 40.5178
+},
+{
+"es": [
+"Etosha",
+"Namibia"
+],
+"gl": [
+"Etosha",
+"Namibia"
+],
+"ca": [
+"Etosha",
+"Namíbia"
+],
+"eu": [
+"Etosha",
+"Namibia"
+],
+"lat": -18.8556,
+"lon": 16.3293
+},
+{
+"es": [
+"Mbabane",
+"Esuatini"
+],
+"gl": [
+"Mbabane",
+"Eswatini"
+],
+"ca": [
+"Mbabane",
+"Eswatini"
+],
+"eu": [
+"Mbabane",
+"Eswatini"
+],
+"lat": -26.3054,
+"lon": 31.1367
+},
+{
+"es": [
+"Maseru",
+"Lesoto"
+],
+"gl": [
+"Maseru",
+"Lesotho"
+],
+"ca": [
+"Maseru",
+"Lesotho"
+],
+"eu": [
+"Maseru",
+"Lesotho"
+],
+"lat": -29.3167,
+"lon": 27.4833
+},
+{
+"es": [
+"Pretoria",
+"Sudáfrica"
+],
+"gl": [
+"Pretoria",
+"Suráfrica"
+],
+"ca": [
+"Pretoria",
+"Sud-àfrica"
+],
+"eu": [
+"Pretoria",
+"Hegoafrika"
+],
+"lat": -25.7479,
+"lon": 28.2293
+},
+{
+"es": [
+"Cabo de Buena Esperanza",
+"Sudáfrica"
+],
+"gl": [
+"Cabo de Boa Esperanza",
+"Suráfrica"
+],
+"ca": [
+"Cap de Bona Esperança",
+"Sud-àfrica"
+],
+"eu": [
+"Esperantza Oneko lurmuturra",
+"Hegoafrika"
+],
+"lat": -34.3568,
+"lon": 18.474
+},
+{
+"es": [
+"Toamasina",
+"Madagascar"
+],
+"gl": [
+"Toamasina",
+"Madagascar"
+],
+"ca": [
+"Toamasina",
+"Madagascar"
+],
+"eu": [
+"Toamasina",
+"Madagaskar"
+],
+"lat": -18.1492,
+"lon": 49.4023
+},
+{
+"es": [
+"Fianarantsoa",
+"Madagascar"
+],
+"gl": [
+"Fianarantsoa",
+"Madagascar"
+],
+"ca": [
+"Fianarantsoa",
+"Madagascar"
+],
+"eu": [
+"Fianarantsoa",
+"Madagaskar"
+],
+"lat": -21.4545,
+"lon": 47.0877
+},
+{
+"es": [
+"Harar",
+"Etiopía"
+],
+"gl": [
+"Harar",
+"Etiopía"
+],
+"ca": [
+"Harar",
+"Etiòpia"
+],
+"eu": [
+"Harar",
+"Etiopia"
+],
+"lat": 9.31,
+"lon": 42.12
+},
+{
+"es": [
+"Bahir Dar",
+"Etiopía"
+],
+"gl": [
+"Bahir Dar",
+"Etiopía"
+],
+"ca": [
+"Bahir Dar",
+"Etiòpia"
+],
+"eu": [
+"Bahir Dar",
+"Etiopia"
+],
+"lat": 11.5936,
+"lon": 37.3908
+},
+{
+"es": [
+"Mekele",
+"Etiopía"
+],
+"gl": [
+"Mekele",
+"Etiopía"
+],
+"ca": [
+"Mekele",
+"Etiòpia"
+],
+"eu": [
+"Mekele",
+"Etiopia"
+],
+"lat": 13.4967,
+"lon": 39.4753
+},
+{
+"es": [
+"Berbera",
+"Somalia"
+],
+"gl": [
+"Berbera",
+"Somalia"
+],
+"ca": [
+"Berbera",
+"Somàlia"
+],
+"eu": [
+"Berbera",
+"Somalia"
+],
+"lat": 10.4396,
+"lon": 45.0143
+},
+{
+"es": [
+"Bhopal",
+"India"
+],
+"gl": [
+"Bhopal",
+"India"
+],
+"ca": [
+"Bhopal",
+"Índia"
+],
+"eu": [
+"Bhopal",
+"India"
+],
+"lat": 23.2599,
+"lon": 77.4126
+},
+{
+"es": [
+"Mysore",
+"India"
+],
+"gl": [
+"Mysore",
+"India"
+],
+"ca": [
+"Mysore",
+"Índia"
+],
+"eu": [
+"Mysore",
+"India"
+],
+"lat": 12.2958,
+"lon": 76.6394
+},
+{
+"es": [
+"Thiruvananthapuram",
+"India"
+],
+"gl": [
+"Thiruvananthapuram",
+"India"
+],
+"ca": [
+"Thiruvananthapuram",
+"Índia"
+],
+"eu": [
+"Thiruvananthapuram",
+"India"
+],
+"lat": 8.5241,
+"lon": 76.9366
+},
+{
+"es": [
+"Bodh Gaya",
+"India"
+],
+"gl": [
+"Bodh Gaya",
+"India"
+],
+"ca": [
+"Bodh Gaya",
+"Índia"
+],
+"eu": [
+"Bodh Gaya",
+"India"
+],
+"lat": 24.6961,
+"lon": 84.9869
+},
+{
+"es": [
+"Patna",
+"India"
+],
+"gl": [
+"Patna",
+"India"
+],
+"ca": [
+"Patna",
+"Índia"
+],
+"eu": [
+"Patna",
+"India"
+],
+"lat": 25.5941,
+"lon": 85.1376
+},
+{
+"es": [
+"Rishikesh",
+"India"
+],
+"gl": [
+"Rishikesh",
+"India"
+],
+"ca": [
+"Rishikesh",
+"Índia"
+],
+"eu": [
+"Rishikesh",
+"India"
+],
+"lat": 30.0869,
+"lon": 78.2676
+},
+{
+"es": [
+"Khajuraho",
+"India"
+],
+"gl": [
+"Khajuraho",
+"India"
+],
+"ca": [
+"Khajuraho",
+"Índia"
+],
+"eu": [
+"Khajuraho",
+"India"
+],
+"lat": 24.8318,
+"lon": 79.9199
+},
+{
+"es": [
+"Lumbini",
+"Nepal"
+],
+"gl": [
+"Lumbini",
+"Nepal"
+],
+"ca": [
+"Lumbini",
+"Nepal"
+],
+"eu": [
+"Lumbini",
+"Nepal"
+],
+"lat": 27.4833,
+"lon": 83.2767
+},
+{
+"es": [
+"Paro",
+"Bután"
+],
+"gl": [
+"Paro",
+"Bután"
+],
+"ca": [
+"Paro",
+"Bhutan"
+],
+"eu": [
+"Paro",
+"Bhutan"
+],
+"lat": 27.4287,
+"lon": 89.4164
+},
+{
+"es": [
+"Trincomalee",
+"Sri Lanka"
+],
+"gl": [
+"Trincomalee",
+"Sri Lanka"
+],
+"ca": [
+"Trincomalee",
+"Sri Lanka"
+],
+"eu": [
+"Trincomalee",
+"Sri Lanka"
+],
+"lat": 8.5874,
+"lon": 81.2152
+},
+{
+"es": [
+"Myitkyina",
+"Myanmar"
+],
+"gl": [
+"Myitkyina",
+"Myanmar"
+],
+"ca": [
+"Myitkyina",
+"Myanmar"
+],
+"eu": [
+"Myitkyina",
+"Myanmar"
+],
+"lat": 25.3833,
+"lon": 97.4
+},
+{
+"es": [
+"Vang Vieng",
+"Laos"
+],
+"gl": [
+"Vang Vieng",
+"Laos"
+],
+"ca": [
+"Vang Vieng",
+"Laos"
+],
+"eu": [
+"Vang Vieng",
+"Laos"
+],
+"lat": 18.9235,
+"lon": 102.4478
+},
+{
+"es": [
+"Pakse",
+"Laos"
+],
+"gl": [
+"Pakse",
+"Laos"
+],
+"ca": [
+"Pakse",
+"Laos"
+],
+"eu": [
+"Pakse",
+"Laos"
+],
+"lat": 15.1202,
+"lon": 105.799
+},
+{
+"es": [
+"Battambang",
+"Camboya"
+],
+"gl": [
+"Battambang",
+"Camboxa"
+],
+"ca": [
+"Battambang",
+"Cambodja"
+],
+"eu": [
+"Battambang",
+"Kanbodia"
+],
+"lat": 13.0957,
+"lon": 103.2022
+},
+{
+"es": [
+"Sihanoukville",
+"Camboya"
+],
+"gl": [
+"Sihanoukville",
+"Camboxa"
+],
+"ca": [
+"Sihanoukville",
+"Cambodja"
+],
+"eu": [
+"Sihanoukville",
+"Kanbodia"
+],
+"lat": 10.6093,
+"lon": 103.5296
+},
+{
+"es": [
+"Hat Yai",
+"Tailandia"
+],
+"gl": [
+"Hat Yai",
+"Tailandia"
+],
+"ca": [
+"Hat Yai",
+"Tailàndia"
+],
+"eu": [
+"Hat Yai",
+"Thailandia"
+],
+"lat": 7.0086,
+"lon": 100.4747
+},
+{
+"es": [
+"Sukhothai",
+"Tailandia"
+],
+"gl": [
+"Sukhothai",
+"Tailandia"
+],
+"ca": [
+"Sukhothai",
+"Tailàndia"
+],
+"eu": [
+"Sukhothai",
+"Thailandia"
+],
+"lat": 17.0078,
+"lon": 99.823
+},
+{
+"es": [
+"Dalat",
+"Vietnam"
+],
+"gl": [
+"Dalat",
+"Vietnam"
+],
+"ca": [
+"Dalat",
+"Vietnam"
+],
+"eu": [
+"Dalat",
+"Vietnam"
+],
+"lat": 11.9404,
+"lon": 108.4583
+},
+{
+"es": [
+"Can Tho",
+"Vietnam"
+],
+"gl": [
+"Can Tho",
+"Vietnam"
+],
+"ca": [
+"Can Tho",
+"Vietnam"
+],
+"eu": [
+"Can Tho",
+"Vietnam"
+],
+"lat": 10.0452,
+"lon": 105.7469
+},
+{
+"es": [
+"Isla de Phu Quoc",
+"Vietnam"
+],
+"gl": [
+"Illa de Phu Quoc",
+"Vietnam"
+],
+"ca": [
+"Illa de Phu Quoc",
+"Vietnam"
+],
+"eu": [
+"Phu Quoc uhartea",
+"Vietnam"
+],
+"lat": 10.2899,
+"lon": 103.984
+},
+{
+"es": [
+"Dien Bien Phu",
+"Vietnam"
+],
+"gl": [
+"Dien Bien Phu",
+"Vietnam"
+],
+"ca": [
+"Dien Bien Phu",
+"Vietnam"
+],
+"eu": [
+"Dien Bien Phu",
+"Vietnam"
+],
+"lat": 21.386,
+"lon": 103.023
+},
+{
+"es": [
+"Langkawi",
+"Malasia"
+],
+"gl": [
+"Langkawi",
+"Malaisia"
+],
+"ca": [
+"Langkawi",
+"Malàisia"
+],
+"eu": [
+"Langkawi",
+"Malaysia"
+],
+"lat": 6.35,
+"lon": 99.8
+},
+{
+"es": [
+"Sandakan",
+"Malasia"
+],
+"gl": [
+"Sandakan",
+"Malaisia"
+],
+"ca": [
+"Sandakan",
+"Malàisia"
+],
+"eu": [
+"Sandakan",
+"Malaysia"
+],
+"lat": 5.8394,
+"lon": 118.1172
+},
+{
+"es": [
+"Banda Aceh",
+"Indonesia"
+],
+"gl": [
+"Banda Aceh",
+"Indonesia"
+],
+"ca": [
+"Banda Aceh",
+"Indonèsia"
+],
+"eu": [
+"Banda Aceh",
+"Indonesia"
+],
+"lat": 5.5483,
+"lon": 95.3238
+},
+{
+"es": [
+"Padang",
+"Indonesia"
+],
+"gl": [
+"Padang",
+"Indonesia"
+],
+"ca": [
+"Padang",
+"Indonèsia"
+],
+"eu": [
+"Padang",
+"Indonesia"
+],
+"lat": -0.9471,
+"lon": 100.4172
+},
+{
+"es": [
+"Palembang",
+"Indonesia"
+],
+"gl": [
+"Palembang",
+"Indonesia"
+],
+"ca": [
+"Palembang",
+"Indonèsia"
+],
+"eu": [
+"Palembang",
+"Indonesia"
+],
+"lat": -2.9761,
+"lon": 104.7754
+},
+{
+"es": [
+"Labuan Bajo",
+"Indonesia"
+],
+"gl": [
+"Labuan Bajo",
+"Indonesia"
+],
+"ca": [
+"Labuan Bajo",
+"Indonèsia"
+],
+"eu": [
+"Labuan Bajo",
+"Indonesia"
+],
+"lat": -8.4964,
+"lon": 119.8877
+},
+{
+"es": [
+"Ternate",
+"Indonesia"
+],
+"gl": [
+"Ternate",
+"Indonesia"
+],
+"ca": [
+"Ternate",
+"Indonèsia"
+],
+"eu": [
+"Ternate",
+"Indonesia"
+],
+"lat": 0.7893,
+"lon": 127.3808
+},
+{
+"es": [
+"Manado",
+"Indonesia"
+],
+"gl": [
+"Manado",
+"Indonesia"
+],
+"ca": [
+"Manado",
+"Indonèsia"
+],
+"eu": [
+"Manado",
+"Indonesia"
+],
+"lat": 1.4748,
+"lon": 124.8421
+},
+{
+"es": [
+"Merauke",
+"Indonesia"
+],
+"gl": [
+"Merauke",
+"Indonesia"
+],
+"ca": [
+"Merauke",
+"Indonèsia"
+],
+"eu": [
+"Merauke",
+"Indonesia"
+],
+"lat": -8.4932,
+"lon": 140.4018
+},
+{
+"es": [
+"Baguio",
+"Filipinas"
+],
+"gl": [
+"Baguio",
+"Filipinas"
+],
+"ca": [
+"Baguio",
+"Filipines"
+],
+"eu": [
+"Baguio",
+"Filipinak"
+],
+"lat": 16.4023,
+"lon": 120.596
+},
+{
+"es": [
+"Iloilo",
+"Filipinas"
+],
+"gl": [
+"Iloilo",
+"Filipinas"
+],
+"ca": [
+"Iloilo",
+"Filipines"
+],
+"eu": [
+"Iloilo",
+"Filipinak"
+],
+"lat": 10.7202,
+"lon": 122.5621
+},
+{
+"es": [
+"Puerto Princesa",
+"Filipinas"
+],
+"gl": [
+"Porto Princesa",
+"Filipinas"
+],
+"ca": [
+"Puerto Princesa",
+"Filipines"
+],
+"eu": [
+"Puerto Princesa",
+"Filipinak"
+],
+"lat": 9.7392,
+"lon": 118.7353
+},
+{
+"es": [
+"Vigan",
+"Filipinas"
+],
+"gl": [
+"Vigan",
+"Filipinas"
+],
+"ca": [
+"Vigan",
+"Filipines"
+],
+"eu": [
+"Vigan",
+"Filipinak"
+],
+"lat": 17.5747,
+"lon": 120.3869
+},
+{
+"es": [
+"Legazpi",
+"Filipinas"
+],
+"gl": [
+"Legazpi",
+"Filipinas"
+],
+"ca": [
+"Legazpi",
+"Filipines"
+],
+"eu": [
+"Legazpi",
+"Filipinak"
+],
+"lat": 13.1391,
+"lon": 123.7438
+},
+{
+"es": [
+"Hualien",
+"Taiwán"
+],
+"gl": [
+"Hualien",
+"Taiwán"
+],
+"ca": [
+"Hualien",
+"Taiwan"
+],
+"eu": [
+"Hualien",
+"Taiwan"
+],
+"lat": 23.991,
+"lon": 121.6114
+},
+{
+"es": [
+"Incheon",
+"Corea del Sur"
+],
+"gl": [
+"Incheon",
+"Corea do Sur"
+],
+"ca": [
+"Incheon",
+"Corea del Sud"
+],
+"eu": [
+"Incheon",
+"Hego Korea"
+],
+"lat": 37.4563,
+"lon": 126.7052
+},
+{
+"es": [
+"Andong",
+"Corea del Sur"
+],
+"gl": [
+"Andong",
+"Corea do Sur"
+],
+"ca": [
+"Andong",
+"Corea del Sud"
+],
+"eu": [
+"Andong",
+"Hego Korea"
+],
+"lat": 36.5684,
+"lon": 128.7294
+},
+{
+"es": [
+"Sokcho",
+"Corea del Sur"
+],
+"gl": [
+"Sokcho",
+"Corea do Sur"
+],
+"ca": [
+"Sokcho",
+"Corea del Sud"
+],
+"eu": [
+"Sokcho",
+"Hego Korea"
+],
+"lat": 38.207,
+"lon": 128.5918
+},
+{
+"es": [
+"Kumamoto",
+"Japón"
+],
+"gl": [
+"Kumamoto",
+"Xapón"
+],
+"ca": [
+"Kumamoto",
+"Japó"
+],
+"eu": [
+"Kumamoto",
+"Japonia"
+],
+"lat": 32.8032,
+"lon": 130.7079
+},
+{
+"es": [
+"Matsuyama",
+"Japón"
+],
+"gl": [
+"Matsuyama",
+"Xapón"
+],
+"ca": [
+"Matsuyama",
+"Japó"
+],
+"eu": [
+"Matsuyama",
+"Japonia"
+],
+"lat": 33.8392,
+"lon": 132.7657
+},
+{
+"es": [
+"Aomori",
+"Japón"
+],
+"gl": [
+"Aomori",
+"Xapón"
+],
+"ca": [
+"Aomori",
+"Japó"
+],
+"eu": [
+"Aomori",
+"Japonia"
+],
+"lat": 40.8244,
+"lon": 140.74
+},
+{
+"es": [
+"Shenyang",
+"China"
+],
+"gl": [
+"Shenyang",
+"China"
+],
+"ca": [
+"Shenyang",
+"Xina"
+],
+"eu": [
+"Shenyang",
+"Txina"
+],
+"lat": 41.8057,
+"lon": 123.4315
+},
+{
+"es": [
+"Changchun",
+"China"
+],
+"gl": [
+"Changchun",
+"China"
+],
+"ca": [
+"Changchun",
+"Xina"
+],
+"eu": [
+"Changchun",
+"Txina"
+],
+"lat": 43.8171,
+"lon": 125.3235
+},
+{
+"es": [
+"Jinan",
+"China"
+],
+"gl": [
+"Jinan",
+"China"
+],
+"ca": [
+"Jinan",
+"Xina"
+],
+"eu": [
+"Jinan",
+"Txina"
+],
+"lat": 36.6512,
+"lon": 117.1201
+},
+{
+"es": [
+"Zhengzhou",
+"China"
+],
+"gl": [
+"Zhengzhou",
+"China"
+],
+"ca": [
+"Zhengzhou",
+"Xina"
+],
+"eu": [
+"Zhengzhou",
+"Txina"
+],
+"lat": 34.7466,
+"lon": 113.6253
+},
+{
+"es": [
+"Luoyang",
+"China"
+],
+"gl": [
+"Luoyang",
+"China"
+],
+"ca": [
+"Luoyang",
+"Xina"
+],
+"eu": [
+"Luoyang",
+"Txina"
+],
+"lat": 34.6197,
+"lon": 112.454
+},
+{
+"es": [
+"Xining",
+"China"
+],
+"gl": [
+"Xining",
+"China"
+],
+"ca": [
+"Xining",
+"Xina"
+],
+"eu": [
+"Xining",
+"Txina"
+],
+"lat": 36.6171,
+"lon": 101.7782
+},
+{
+"es": [
+"Golmud",
+"China"
+],
+"gl": [
+"Golmud",
+"China"
+],
+"ca": [
+"Golmud",
+"Xina"
+],
+"eu": [
+"Golmud",
+"Txina"
+],
+"lat": 36.4167,
+"lon": 94.9
+},
+{
+"es": [
+"Turfán",
+"China"
+],
+"gl": [
+"Turfán",
+"China"
+],
+"ca": [
+"Turfan",
+"Xina"
+],
+"eu": [
+"Turpan",
+"Txina"
+],
+"lat": 42.9513,
+"lon": 89.1895
+},
+{
+"es": [
+"Shigatse",
+"China"
+],
+"gl": [
+"Shigatse",
+"China"
+],
+"ca": [
+"Shigatse",
+"Xina"
+],
+"eu": [
+"Shigatse",
+"Txina"
+],
+"lat": 29.267,
+"lon": 88.881
+},
+{
+"es": [
+"Nanning",
+"China"
+],
+"gl": [
+"Nanning",
+"China"
+],
+"ca": [
+"Nanning",
+"Xina"
+],
+"eu": [
+"Nanning",
+"Txina"
+],
+"lat": 22.817,
+"lon": 108.3665
+},
+{
+"es": [
+"Guiyang",
+"China"
+],
+"gl": [
+"Guiyang",
+"China"
+],
+"ca": [
+"Guiyang",
+"Xina"
+],
+"eu": [
+"Guiyang",
+"Txina"
+],
+"lat": 26.647,
+"lon": 106.6302
+},
+{
+"es": [
+"Changsha",
+"China"
+],
+"gl": [
+"Changsha",
+"China"
+],
+"ca": [
+"Changsha",
+"Xina"
+],
+"eu": [
+"Changsha",
+"Txina"
+],
+"lat": 28.2282,
+"lon": 112.9388
+},
+{
+"es": [
+"Fuzhou",
+"China"
+],
+"gl": [
+"Fuzhou",
+"China"
+],
+"ca": [
+"Fuzhou",
+"Xina"
+],
+"eu": [
+"Fuzhou",
+"Txina"
+],
+"lat": 26.0745,
+"lon": 119.2965
+},
+{
+"es": [
+"Ningbo",
+"China"
+],
+"gl": [
+"Ningbo",
+"China"
+],
+"ca": [
+"Ningbo",
+"Xina"
+],
+"eu": [
+"Ningbo",
+"Txina"
+],
+"lat": 29.8683,
+"lon": 121.544
+},
+{
+"es": [
+"Huangshan",
+"China"
+],
+"gl": [
+"Huangshan",
+"China"
+],
+"ca": [
+"Huangshan",
+"Xina"
+],
+"eu": [
+"Huangshan",
+"Txina"
+],
+"lat": 30.133,
+"lon": 118.1667
+},
+{
+"es": [
+"Jiuzhaigou",
+"China"
+],
+"gl": [
+"Jiuzhaigou",
+"China"
+],
+"ca": [
+"Jiuzhaigou",
+"Xina"
+],
+"eu": [
+"Jiuzhaigou",
+"Txina"
+],
+"lat": 33.26,
+"lon": 103.9186
+},
+{
+"es": [
+"Dali",
+"China"
+],
+"gl": [
+"Dali",
+"China"
+],
+"ca": [
+"Dali",
+"Xina"
+],
+"eu": [
+"Dali",
+"Txina"
+],
+"lat": 25.6065,
+"lon": 100.2676
+},
+{
+"es": [
+"Jinghong",
+"China"
+],
+"gl": [
+"Jinghong",
+"China"
+],
+"ca": [
+"Jinghong",
+"Xina"
+],
+"eu": [
+"Jinghong",
+"Txina"
+],
+"lat": 22.0094,
+"lon": 100.797
+},
+{
+"es": [
+"Haikou",
+"China"
+],
+"gl": [
+"Haikou",
+"China"
+],
+"ca": [
+"Haikou",
+"Xina"
+],
+"eu": [
+"Haikou",
+"Txina"
+],
+"lat": 20.044,
+"lon": 110.1999
+},
+{
+"es": [
+"Hailar",
+"China"
+],
+"gl": [
+"Hailar",
+"China"
+],
+"ca": [
+"Hailar",
+"Xina"
+],
+"eu": [
+"Hailar",
+"Txina"
+],
+"lat": 49.2116,
+"lon": 119.7657
+},
+{
+"es": [
+"Mohe",
+"China"
+],
+"gl": [
+"Mohe",
+"China"
+],
+"ca": [
+"Mohe",
+"Xina"
+],
+"eu": [
+"Mohe",
+"Txina"
+],
+"lat": 52.9721,
+"lon": 122.5389
+},
+{
+"es": [
+"Karakórum",
+"Mongolia"
+],
+"gl": [
+"Karakorum",
+"Mongolia"
+],
+"ca": [
+"Karakòrum",
+"Mongòlia"
+],
+"eu": [
+"Karakorum",
+"Mongolia"
+],
+"lat": 47.1975,
+"lon": 102.8238
+},
+{
+"es": [
+"Khovd",
+"Mongolia"
+],
+"gl": [
+"Khovd",
+"Mongolia"
+],
+"ca": [
+"Khovd",
+"Mongòlia"
+],
+"eu": [
+"Khovd",
+"Mongolia"
+],
+"lat": 48.0056,
+"lon": 91.6419
+},
+{
+"es": [
+"Dalanzadgad",
+"Mongolia"
+],
+"gl": [
+"Dalanzadgad",
+"Mongolia"
+],
+"ca": [
+"Dalanzadgad",
+"Mongòlia"
+],
+"eu": [
+"Dalanzadgad",
+"Mongolia"
+],
+"lat": 43.5708,
+"lon": 104.425
+},
+{
+"es": [
+"Hamhung",
+"Corea del Norte"
+],
+"gl": [
+"Hamhung",
+"Corea do Norte"
+],
+"ca": [
+"Hamhung",
+"Corea del Nord"
+],
+"eu": [
+"Hamhung",
+"Ipar Korea"
+],
+"lat": 39.9181,
+"lon": 127.5364
+},
+{
+"es": [
+"Geraldton",
+"Australia"
+],
+"gl": [
+"Geraldton",
+"Australia"
+],
+"ca": [
+"Geraldton",
+"Austràlia"
+],
+"eu": [
+"Geraldton",
+"Australia"
+],
+"lat": -28.7774,
+"lon": 114.615
+},
+{
+"es": [
+"Exmouth",
+"Australia"
+],
+"gl": [
+"Exmouth",
+"Australia"
+],
+"ca": [
+"Exmouth",
+"Austràlia"
+],
+"eu": [
+"Exmouth",
+"Australia"
+],
+"lat": -21.9311,
+"lon": 114.1269
+},
+{
+"es": [
+"Port Hedland",
+"Australia"
+],
+"gl": [
+"Port Hedland",
+"Australia"
+],
+"ca": [
+"Port Hedland",
+"Austràlia"
+],
+"eu": [
+"Port Hedland",
+"Australia"
+],
+"lat": -20.3106,
+"lon": 118.6011
+},
+{
+"es": [
+"Katherine",
+"Australia"
+],
+"gl": [
+"Katherine",
+"Australia"
+],
+"ca": [
+"Katherine",
+"Austràlia"
+],
+"eu": [
+"Katherine",
+"Australia"
+],
+"lat": -14.4652,
+"lon": 132.2635
+},
+{
+"es": [
+"Longreach",
+"Australia"
+],
+"gl": [
+"Longreach",
+"Australia"
+],
+"ca": [
+"Longreach",
+"Austràlia"
+],
+"eu": [
+"Longreach",
+"Australia"
+],
+"lat": -23.44,
+"lon": 144.25
+},
+{
+"es": [
+"Byron Bay",
+"Australia"
+],
+"gl": [
+"Byron Bay",
+"Australia"
+],
+"ca": [
+"Byron Bay",
+"Austràlia"
+],
+"eu": [
+"Byron Bay",
+"Australia"
+],
+"lat": -28.6474,
+"lon": 153.602
+},
+{
+"es": [
+"Ballarat",
+"Australia"
+],
+"gl": [
+"Ballarat",
+"Australia"
+],
+"ca": [
+"Ballarat",
+"Austràlia"
+],
+"eu": [
+"Ballarat",
+"Australia"
+],
+"lat": -37.5622,
+"lon": 143.8503
+},
+{
+"es": [
+"Mildura",
+"Australia"
+],
+"gl": [
+"Mildura",
+"Australia"
+],
+"ca": [
+"Mildura",
+"Austràlia"
+],
+"eu": [
+"Mildura",
+"Australia"
+],
+"lat": -34.208,
+"lon": 142.1246
+},
+{
+"es": [
+"Launceston",
+"Australia"
+],
+"gl": [
+"Launceston",
+"Australia"
+],
+"ca": [
+"Launceston",
+"Austràlia"
+],
+"eu": [
+"Launceston",
+"Australia"
+],
+"lat": -41.4332,
+"lon": 147.1441
+},
+{
+"es": [
+"Isla Norfolk",
+"Australia"
+],
+"gl": [
+"Illa Norfolk",
+"Australia"
+],
+"ca": [
+"Illa Norfolk",
+"Austràlia"
+],
+"eu": [
+"Norfolk uhartea",
+"Australia"
+],
+"lat": -29.0408,
+"lon": 167.9547
+},
+{
+"es": [
+"Islas Chatham",
+"Nueva Zelanda"
+],
+"gl": [
+"Illas Chatham",
+"Nova Zelandia"
+],
+"ca": [
+"Illes Chatham",
+"Nova Zelanda"
+],
+"eu": [
+"Chatham uharteak",
+"Zeelanda Berria"
+],
+"lat": -43.95,
+"lon": -176.55
+},
+{
+"es": [
+"Lautoka",
+"Fiyi"
+],
+"gl": [
+"Lautoka",
+"Fidxi"
+],
+"ca": [
+"Lautoka",
+"Fiji"
+],
+"eu": [
+"Lautoka",
+"Fiji"
+],
+"lat": -17.6242,
+"lon": 177.4528
+},
+{
+"es": [
+"Luganville",
+"Vanuatu"
+],
+"gl": [
+"Luganville",
+"Vanuatu"
+],
+"ca": [
+"Luganville",
+"Vanuatu"
+],
+"eu": [
+"Luganville",
+"Vanuatu"
+],
+"lat": -15.5333,
+"lon": 167.1667
+},
+{
+"es": [
+"Nauru",
+"Nauru"
+],
+"gl": [
+"Nauru",
+"Nauru"
+],
+"ca": [
+"Nauru",
+"Nauru"
+],
+"eu": [
+"Nauru",
+"Nauru"
+],
+"lat": -0.5228,
+"lon": 166.9315
+},
+{
+"es": [
+"Saipán",
+"Estados Unidos"
+],
+"gl": [
+"Saipan",
+"Estados Unidos"
+],
+"ca": [
+"Saipan",
+"Estats Units"
+],
+"eu": [
+"Saipan",
+"Ameriketako Estatu Batuak"
+],
+"lat": 15.185,
+"lon": 145.7467
+},
+{
+"es": [
+"Kiritimati",
+"Kiribati"
+],
+"gl": [
+"Kiritimati",
+"Kiribati"
+],
+"ca": [
+"Kiritimati",
+"Kiribati"
+],
+"eu": [
+"Kiritimati",
+"Kiribati"
+],
+"lat": 1.8721,
+"lon": -157.4278
+},
+{
+"es": [
+"Rangiroa",
+"Polinesia Francesa"
+],
+"gl": [
+"Rangiroa",
+"Polinesia Francesa"
+],
+"ca": [
+"Rangiroa",
+"Polinèsia Francesa"
+],
+"eu": [
+"Rangiroa",
+"Frantziar Polinesia"
+],
+"lat": -15.1167,
+"lon": -147.6333
+},
+{
+"es": [
+"Mangareva",
+"Polinesia Francesa"
+],
+"gl": [
+"Mangareva",
+"Polinesia Francesa"
+],
+"ca": [
+"Mangareva",
+"Polinèsia Francesa"
+],
+"eu": [
+"Mangareva",
+"Frantziar Polinesia"
+],
+"lat": -23.1167,
+"lon": -134.9667
+},
+{
+"es": [
+"Lifou",
+"Nueva Caledonia"
+],
+"gl": [
+"Lifou",
+"Nova Caledonia"
+],
+"ca": [
+"Lifou",
+"Nova Caledònia"
+],
+"eu": [
+"Lifou",
+"Kaledonia Berria"
+],
+"lat": -20.9167,
+"lon": 167.2333
+},
+{
+"es": [
+"Ketchikan",
+"Estados Unidos"
+],
+"gl": [
+"Ketchikan",
+"Estados Unidos"
+],
+"ca": [
+"Ketchikan",
+"Estats Units"
+],
+"eu": [
+"Ketchikan",
+"Ameriketako Estatu Batuak"
+],
+"lat": 55.3422,
+"lon": -131.6461
+},
+{
+"es": [
+"Valdez",
+"Estados Unidos"
+],
+"gl": [
+"Valdez",
+"Estados Unidos"
+],
+"ca": [
+"Valdez",
+"Estats Units"
+],
+"eu": [
+"Valdez",
+"Ameriketako Estatu Batuak"
+],
+"lat": 61.1308,
+"lon": -146.3483
+},
+{
+"es": [
+"Missoula",
+"Estados Unidos"
+],
+"gl": [
+"Missoula",
+"Estados Unidos"
+],
+"ca": [
+"Missoula",
+"Estats Units"
+],
+"eu": [
+"Missoula",
+"Ameriketako Estatu Batuak"
+],
+"lat": 46.8721,
+"lon": -113.994
+},
+{
+"es": [
+"Cheyenne",
+"Estados Unidos"
+],
+"gl": [
+"Cheyenne",
+"Estados Unidos"
+],
+"ca": [
+"Cheyenne",
+"Estats Units"
+],
+"eu": [
+"Cheyenne",
+"Ameriketako Estatu Batuak"
+],
+"lat": 41.14,
+"lon": -104.8202
+},
+{
+"es": [
+"Omaha",
+"Estados Unidos"
+],
+"gl": [
+"Omaha",
+"Estados Unidos"
+],
+"ca": [
+"Omaha",
+"Estats Units"
+],
+"eu": [
+"Omaha",
+"Ameriketako Estatu Batuak"
+],
+"lat": 41.2565,
+"lon": -95.9345
+},
+{
+"es": [
+"Milwaukee",
+"Estados Unidos"
+],
+"gl": [
+"Milwaukee",
+"Estados Unidos"
+],
+"ca": [
+"Milwaukee",
+"Estats Units"
+],
+"eu": [
+"Milwaukee",
+"Ameriketako Estatu Batuak"
+],
+"lat": 43.0389,
+"lon": -87.9065
+},
+{
+"es": [
+"San Luis",
+"Estados Unidos"
+],
+"gl": [
+"San Luís",
+"Estados Unidos"
+],
+"ca": [
+"Saint Louis",
+"Estats Units"
+],
+"eu": [
+"Saint Louis",
+"Ameriketako Estatu Batuak"
+],
+"lat": 38.627,
+"lon": -90.1994
+},
+{
+"es": [
+"Búfalo",
+"Estados Unidos"
+],
+"gl": [
+"Buffalo",
+"Estados Unidos"
+],
+"ca": [
+"Buffalo",
+"Estats Units"
+],
+"eu": [
+"Buffalo",
+"Ameriketako Estatu Batuak"
+],
+"lat": 42.8864,
+"lon": -78.8784
+},
+{
+"es": [
+"Baltimore",
+"Estados Unidos"
+],
+"gl": [
+"Baltimore",
+"Estados Unidos"
+],
+"ca": [
+"Baltimore",
+"Estats Units"
+],
+"eu": [
+"Baltimore",
+"Ameriketako Estatu Batuak"
+],
+"lat": 39.2904,
+"lon": -76.6122
+},
+{
+"es": [
+"Charlotte",
+"Estados Unidos"
+],
+"gl": [
+"Charlotte",
+"Estados Unidos"
+],
+"ca": [
+"Charlotte",
+"Estats Units"
+],
+"eu": [
+"Charlotte",
+"Ameriketako Estatu Batuak"
+],
+"lat": 35.2271,
+"lon": -80.8431
+},
+{
+"es": [
+"Tampa",
+"Estados Unidos"
+],
+"gl": [
+"Tampa",
+"Estados Unidos"
+],
+"ca": [
+"Tampa",
+"Estats Units"
+],
+"eu": [
+"Tampa",
+"Ameriketako Estatu Batuak"
+],
+"lat": 27.9506,
+"lon": -82.4572
+},
+{
+"es": [
+"Tallahassee",
+"Estados Unidos"
+],
+"gl": [
+"Tallahassee",
+"Estados Unidos"
+],
+"ca": [
+"Tallahassee",
+"Estats Units"
+],
+"eu": [
+"Tallahassee",
+"Ameriketako Estatu Batuak"
+],
+"lat": 30.4383,
+"lon": -84.2807
+},
+{
+"es": [
+"Little Rock",
+"Estados Unidos"
+],
+"gl": [
+"Little Rock",
+"Estados Unidos"
+],
+"ca": [
+"Little Rock",
+"Estats Units"
+],
+"eu": [
+"Little Rock",
+"Ameriketako Estatu Batuak"
+],
+"lat": 34.7465,
+"lon": -92.2896
+},
+{
+"es": [
+"Oklahoma City",
+"Estados Unidos"
+],
+"gl": [
+"Oklahoma City",
+"Estados Unidos"
+],
+"ca": [
+"Oklahoma City",
+"Estats Units"
+],
+"eu": [
+"Oklahoma City",
+"Ameriketako Estatu Batuak"
+],
+"lat": 35.4676,
+"lon": -97.5164
+},
+{
+"es": [
+"Tucson",
+"Estados Unidos"
+],
+"gl": [
+"Tucson",
+"Estados Unidos"
+],
+"ca": [
+"Tucson",
+"Estats Units"
+],
+"eu": [
+"Tucson",
+"Ameriketako Estatu Batuak"
+],
+"lat": 32.2226,
+"lon": -110.9747
+},
+{
+"es": [
+"Reno",
+"Estados Unidos"
+],
+"gl": [
+"Reno",
+"Estados Unidos"
+],
+"ca": [
+"Reno",
+"Estats Units"
+],
+"eu": [
+"Reno",
+"Ameriketako Estatu Batuak"
+],
+"lat": 39.5296,
+"lon": -119.8138
+},
+{
+"es": [
+"Cabo Cod",
+"Estados Unidos"
+],
+"gl": [
+"Cabo Cod",
+"Estados Unidos"
+],
+"ca": [
+"Cap Cod",
+"Estats Units"
+],
+"eu": [
+"Cod lurmuturra",
+"Ameriketako Estatu Batuak"
+],
+"lat": 42.0584,
+"lon": -70.1786
+},
+{
+"es": [
+"Saguenay",
+"Canadá"
+],
+"gl": [
+"Saguenay",
+"Canadá"
+],
+"ca": [
+"Saguenay",
+"Canadà"
+],
+"eu": [
+"Saguenay",
+"Kanada"
+],
+"lat": 48.4284,
+"lon": -71.0685
+},
+{
+"es": [
+"Gaspé",
+"Canadá"
+],
+"gl": [
+"Gaspé",
+"Canadá"
+],
+"ca": [
+"Gaspé",
+"Canadà"
+],
+"eu": [
+"Gaspé",
+"Kanada"
+],
+"lat": 48.8316,
+"lon": -64.4869
+},
+{
+"es": [
+"Thunder Bay",
+"Canadá"
+],
+"gl": [
+"Thunder Bay",
+"Canadá"
+],
+"ca": [
+"Thunder Bay",
+"Canadà"
+],
+"eu": [
+"Thunder Bay",
+"Kanada"
+],
+"lat": 48.3809,
+"lon": -89.2477
+},
+{
+"es": [
+"Saskatoon",
+"Canadá"
+],
+"gl": [
+"Saskatoon",
+"Canadá"
+],
+"ca": [
+"Saskatoon",
+"Canadà"
+],
+"eu": [
+"Saskatoon",
+"Kanada"
+],
+"lat": 52.1332,
+"lon": -106.67
+},
+{
+"es": [
+"Jasper",
+"Canadá"
+],
+"gl": [
+"Jasper",
+"Canadá"
+],
+"ca": [
+"Jasper",
+"Canadà"
+],
+"eu": [
+"Jasper",
+"Kanada"
+],
+"lat": 52.8737,
+"lon": -118.0814
+},
+{
+"es": [
+"Prince Rupert",
+"Canadá"
+],
+"gl": [
+"Prince Rupert",
+"Canadá"
+],
+"ca": [
+"Prince Rupert",
+"Canadà"
+],
+"eu": [
+"Prince Rupert",
+"Kanada"
+],
+"lat": 54.315,
+"lon": -130.3208
+},
+{
+"es": [
+"Tofino",
+"Canadá"
+],
+"gl": [
+"Tofino",
+"Canadá"
+],
+"ca": [
+"Tofino",
+"Canadà"
+],
+"eu": [
+"Tofino",
+"Kanada"
+],
+"lat": 49.153,
+"lon": -125.9066
+},
+{
+"es": [
+"Rankin Inlet",
+"Canadá"
+],
+"gl": [
+"Rankin Inlet",
+"Canadá"
+],
+"ca": [
+"Rankin Inlet",
+"Canadà"
+],
+"eu": [
+"Rankin Inlet",
+"Kanada"
+],
+"lat": 62.8084,
+"lon": -92.0853
+},
+{
+"es": [
+"Alert",
+"Canadá"
+],
+"gl": [
+"Alert",
+"Canadá"
+],
+"ca": [
+"Alert",
+"Canadà"
+],
+"eu": [
+"Alert",
+"Kanada"
+],
+"lat": 82.5018,
+"lon": -62.3481
+},
+{
+"es": [
+"Kangerlussuaq",
+"Groenlandia"
+],
+"gl": [
+"Kangerlussuaq",
+"Groenlandia"
+],
+"ca": [
+"Kangerlussuaq",
+"Groenlàndia"
+],
+"eu": [
+"Kangerlussuaq",
+"Groenlandia"
+],
+"lat": 67.0086,
+"lon": -50.6892
+},
+{
+"es": [
+"Mazatlán",
+"México"
+],
+"gl": [
+"Mazatlán",
+"México"
+],
+"ca": [
+"Mazatlán",
+"Mèxic"
+],
+"eu": [
+"Mazatlán",
+"Mexiko"
+],
+"lat": 23.2494,
+"lon": -106.4111
+},
+{
+"es": [
+"Querétaro",
+"México"
+],
+"gl": [
+"Querétaro",
+"México"
+],
+"ca": [
+"Querétaro",
+"Mèxic"
+],
+"eu": [
+"Querétaro",
+"Mexiko"
+],
+"lat": 20.5888,
+"lon": -100.3899
+},
+{
+"es": [
+"Puebla",
+"México"
+],
+"gl": [
+"Puebla",
+"México"
+],
+"ca": [
+"Puebla",
+"Mèxic"
+],
+"eu": [
+"Puebla",
+"Mexiko"
+],
+"lat": 19.0414,
+"lon": -98.2063
+},
+{
+"es": [
+"Campeche",
+"México"
+],
+"gl": [
+"Campeche",
+"México"
+],
+"ca": [
+"Campeche",
+"Mèxic"
+],
+"eu": [
+"Campeche",
+"Mexiko"
+],
+"lat": 19.8301,
+"lon": -90.5349
+},
+{
+"es": [
+"Bacalar",
+"México"
+],
+"gl": [
+"Bacalar",
+"México"
+],
+"ca": [
+"Bacalar",
+"Mèxic"
+],
+"eu": [
+"Bacalar",
+"Mexiko"
+],
+"lat": 18.6776,
+"lon": -88.395
+},
+{
+"es": [
+"Ensenada",
+"México"
+],
+"gl": [
+"Ensenada",
+"México"
+],
+"ca": [
+"Ensenada",
+"Mèxic"
+],
+"eu": [
+"Ensenada",
+"Mexiko"
+],
+"lat": 31.8667,
+"lon": -116.5967
+},
+{
+"es": [
+"Lago Atitlán",
+"Guatemala"
+],
+"gl": [
+"Lago Atitlán",
+"Guatemala"
+],
+"ca": [
+"Llac Atitlán",
+"Guatemala"
+],
+"eu": [
+"Atitlan lakua",
+"Guatemala"
+],
+"lat": 14.6907,
+"lon": -91.2025
+},
+{
+"es": [
+"San Pedro Sula",
+"Honduras"
+],
+"gl": [
+"San Pedro Sula",
+"Honduras"
+],
+"ca": [
+"San Pedro Sula",
+"Hondures"
+],
+"eu": [
+"San Pedro Sula",
+"Honduras"
+],
+"lat": 15.5042,
+"lon": -88.025
+},
+{
+"es": [
+"León (Nicaragua)",
+"Nicaragua"
+],
+"gl": [
+"León (Nicaragua)",
+"Nicaragua"
+],
+"ca": [
+"Lleó (Nicaragua)",
+"Nicaragua"
+],
+"eu": [
+"León (Nikaragua)",
+"Nikaragua"
+],
+"lat": 12.4379,
+"lon": -86.878
+},
+{
+"es": [
+"Bluefields",
+"Nicaragua"
+],
+"gl": [
+"Bluefields",
+"Nicaragua"
+],
+"ca": [
+"Bluefields",
+"Nicaragua"
+],
+"eu": [
+"Bluefields",
+"Nikaragua"
+],
+"lat": 12.0137,
+"lon": -83.7635
+},
+{
+"es": [
+"David",
+"Panamá"
+],
+"gl": [
+"David",
+"Panamá"
+],
+"ca": [
+"David",
+"Panamà"
+],
+"eu": [
+"David",
+"Panama"
+],
+"lat": 8.4273,
+"lon": -82.4308
+},
+{
+"es": [
+"Holguín",
+"Cuba"
+],
+"gl": [
+"Holguín",
+"Cuba"
+],
+"ca": [
+"Holguín",
+"Cuba"
+],
+"eu": [
+"Holguín",
+"Kuba"
+],
+"lat": 20.8872,
+"lon": -76.2631
+},
+{
+"es": [
+"Cienfuegos",
+"Cuba"
+],
+"gl": [
+"Cienfuegos",
+"Cuba"
+],
+"ca": [
+"Cienfuegos",
+"Cuba"
+],
+"eu": [
+"Cienfuegos",
+"Kuba"
+],
+"lat": 22.1461,
+"lon": -80.4406
+},
+{
+"es": [
+"Baracoa",
+"Cuba"
+],
+"gl": [
+"Baracoa",
+"Cuba"
+],
+"ca": [
+"Baracoa",
+"Cuba"
+],
+"eu": [
+"Baracoa",
+"Kuba"
+],
+"lat": 20.3465,
+"lon": -74.496
+},
+{
+"es": [
+"Isla de la Juventud",
+"Cuba"
+],
+"gl": [
+"Illa da Mocidade",
+"Cuba"
+],
+"ca": [
+"Illa de la Joventut",
+"Cuba"
+],
+"eu": [
+"Gaztediaren uhartea",
+"Kuba"
+],
+"lat": 21.75,
+"lon": -82.8333
+},
+{
+"es": [
+"Jacmel",
+"Haití"
+],
+"gl": [
+"Jacmel",
+"Haití"
+],
+"ca": [
+"Jacmel",
+"Haití"
+],
+"eu": [
+"Jacmel",
+"Haiti"
+],
+"lat": 18.2342,
+"lon": -72.5347
+},
+{
+"es": [
+"Puerto Plata",
+"República Dominicana"
+],
+"gl": [
+"Porto Plata",
+"República Dominicana"
+],
+"ca": [
+"Puerto Plata",
+"República Dominicana"
+],
+"eu": [
+"Puerto Plata",
+"Dominikar Errepublika"
+],
+"lat": 19.7934,
+"lon": -70.6884
+},
+{
+"es": [
+"Guadalupe",
+"Francia"
+],
+"gl": [
+"Guadalupe",
+"Francia"
+],
+"ca": [
+"Guadeloupe",
+"França"
+],
+"eu": [
+"Guadalupe",
+"Frantzia"
+],
+"lat": 16.2411,
+"lon": -61.5331
+},
+{
+"es": [
+"Roseau",
+"Dominica"
+],
+"gl": [
+"Roseau",
+"Dominica"
+],
+"ca": [
+"Roseau",
+"Dominica"
+],
+"eu": [
+"Roseau",
+"Dominika"
+],
+"lat": 15.3017,
+"lon": -61.3881
+},
+{
+"es": [
+"Castries",
+"Santa Lucía"
+],
+"gl": [
+"Castries",
+"Santa Lucía"
+],
+"ca": [
+"Castries",
+"Saint Lucia"
+],
+"eu": [
+"Castries",
+"Santa Luzia"
+],
+"lat": 14.0101,
+"lon": -60.9875
+},
+{
+"es": [
+"Kingstown",
+"San Vicente y las Granadinas"
+],
+"gl": [
+"Kingstown",
+"San Vicente e as Granadinas"
+],
+"ca": [
+"Kingstown",
+"Saint Vincent i les Grenadines"
+],
+"eu": [
+"Kingstown",
+"Saint Vincent eta Grenadinak"
+],
+"lat": 13.16,
+"lon": -61.2248
+},
+{
+"es": [
+"Saint John's",
+"Antigua y Barbuda"
+],
+"gl": [
+"Saint John's",
+"Antigua e Barbuda"
+],
+"ca": [
+"Saint John's",
+"Antigua i Barbuda"
+],
+"eu": [
+"Saint John's",
+"Antigua eta Barbuda"
+],
+"lat": 17.1274,
+"lon": -61.8468
+},
+{
+"es": [
+"Aruba",
+"Países Bajos"
+],
+"gl": [
+"Aruba",
+"Países Baixos"
+],
+"ca": [
+"Aruba",
+"Països Baixos"
+],
+"eu": [
+"Aruba",
+"Herbehereak"
+],
+"lat": 12.5092,
+"lon": -70.0086
+},
+{
+"es": [
+"Gran Caimán",
+"Reino Unido"
+],
+"gl": [
+"Gran Caimán",
+"Reino Unido"
+],
+"ca": [
+"Gran Caiman",
+"Regne Unit"
+],
+"eu": [
+"Kaiman Handia",
+"Erresuma Batua"
+],
+"lat": 19.3133,
+"lon": -81.2546
+},
+{
+"es": [
+"Barranquilla",
+"Colombia"
+],
+"gl": [
+"Barranquilla",
+"Colombia"
+],
+"ca": [
+"Barranquilla",
+"Colòmbia"
+],
+"eu": [
+"Barranquilla",
+"Kolonbia"
+],
+"lat": 10.9685,
+"lon": -74.7813
+},
+{
+"es": [
+"Popayán",
+"Colombia"
+],
+"gl": [
+"Popayán",
+"Colombia"
+],
+"ca": [
+"Popayán",
+"Colòmbia"
+],
+"eu": [
+"Popayán",
+"Kolonbia"
+],
+"lat": 2.4448,
+"lon": -76.6147
+},
+{
+"es": [
+"Puerto Ayacucho",
+"Venezuela"
+],
+"gl": [
+"Porto Ayacucho",
+"Venezuela"
+],
+"ca": [
+"Puerto Ayacucho",
+"Veneçuela"
+],
+"eu": [
+"Puerto Ayacucho",
+"Venezuela"
+],
+"lat": 5.6639,
+"lon": -67.6236
+},
+{
+"es": [
+"Esmeraldas",
+"Ecuador"
+],
+"gl": [
+"Esmeraldas",
+"Ecuador"
+],
+"ca": [
+"Esmeraldas",
+"Equador"
+],
+"eu": [
+"Esmeraldas",
+"Ekuador"
+],
+"lat": 0.9682,
+"lon": -79.6517
+},
+{
+"es": [
+"Loja",
+"Ecuador"
+],
+"gl": [
+"Loja",
+"Ecuador"
+],
+"ca": [
+"Loja",
+"Equador"
+],
+"eu": [
+"Loja",
+"Ekuador"
+],
+"lat": -3.9931,
+"lon": -79.2042
+},
+{
+"es": [
+"Chiclayo",
+"Perú"
+],
+"gl": [
+"Chiclayo",
+"Perú"
+],
+"ca": [
+"Chiclayo",
+"Perú"
+],
+"eu": [
+"Chiclayo",
+"Peru"
+],
+"lat": -6.7714,
+"lon": -79.8409
+},
+{
+"es": [
+"Pucallpa",
+"Perú"
+],
+"gl": [
+"Pucallpa",
+"Perú"
+],
+"ca": [
+"Pucallpa",
+"Perú"
+],
+"eu": [
+"Pucallpa",
+"Peru"
+],
+"lat": -8.3791,
+"lon": -74.5539
+},
+{
+"es": [
+"Chachapoyas",
+"Perú"
+],
+"gl": [
+"Chachapoyas",
+"Perú"
+],
+"ca": [
+"Chachapoyas",
+"Perú"
+],
+"eu": [
+"Chachapoyas",
+"Peru"
+],
+"lat": -6.2317,
+"lon": -77.869
+},
+{
+"es": [
+"Riberalta",
+"Bolivia"
+],
+"gl": [
+"Riberalta",
+"Bolivia"
+],
+"ca": [
+"Riberalta",
+"Bolívia"
+],
+"eu": [
+"Riberalta",
+"Bolivia"
+],
+"lat": -11.0,
+"lon": -66.0667
+},
+{
+"es": [
+"Copiapó",
+"Chile"
+],
+"gl": [
+"Copiapó",
+"Chile"
+],
+"ca": [
+"Copiapó",
+"Xile"
+],
+"eu": [
+"Copiapó",
+"Txile"
+],
+"lat": -27.3668,
+"lon": -70.3314
+},
+{
+"es": [
+"Concepción (Chile)",
+"Chile"
+],
+"gl": [
+"Concepción (Chile)",
+"Chile"
+],
+"ca": [
+"Concepción (Xile)",
+"Xile"
+],
+"eu": [
+"Concepción (Txile)",
+"Txile"
+],
+"lat": -36.8201,
+"lon": -73.0444
+},
+{
+"es": [
+"Valdivia",
+"Chile"
+],
+"gl": [
+"Valdivia",
+"Chile"
+],
+"ca": [
+"Valdivia",
+"Xile"
+],
+"eu": [
+"Valdivia",
+"Txile"
+],
+"lat": -39.8142,
+"lon": -73.2459
+},
+{
+"es": [
+"Coyhaique",
+"Chile"
+],
+"gl": [
+"Coyhaique",
+"Chile"
+],
+"ca": [
+"Coyhaique",
+"Xile"
+],
+"eu": [
+"Coyhaique",
+"Txile"
+],
+"lat": -45.5712,
+"lon": -72.0685
+},
+{
+"es": [
+"Neuquén",
+"Argentina"
+],
+"gl": [
+"Neuquén",
+"Arxentina"
+],
+"ca": [
+"Neuquén",
+"Argentina"
+],
+"eu": [
+"Neuquén",
+"Argentina"
+],
+"lat": -38.9516,
+"lon": -68.0591
+},
+{
+"es": [
+"San Salvador de Jujuy",
+"Argentina"
+],
+"gl": [
+"San Salvador de Jujuy",
+"Arxentina"
+],
+"ca": [
+"San Salvador de Jujuy",
+"Argentina"
+],
+"eu": [
+"San Salvador de Jujuy",
+"Argentina"
+],
+"lat": -24.1858,
+"lon": -65.2995
+},
+{
+"es": [
+"Filadelfia (Paraguay)",
+"Paraguay"
+],
+"gl": [
+"Filadelfia (Paraguai)",
+"Paraguai"
+],
+"ca": [
+"Filadèlfia (Paraguai)",
+"Paraguai"
+],
+"eu": [
+"Filadelfia (Paraguai)",
+"Paraguai"
+],
+"lat": -22.35,
+"lon": -60.0333
+},
+{
+"es": [
+"Campo Grande",
+"Brasil"
+],
+"gl": [
+"Campo Grande",
+"Brasil"
+],
+"ca": [
+"Campo Grande",
+"Brasil"
+],
+"eu": [
+"Campo Grande",
+"Brasil"
+],
+"lat": -20.4697,
+"lon": -54.6201
+},
+{
+"es": [
+"Goiânia",
+"Brasil"
+],
+"gl": [
+"Goiânia",
+"Brasil"
+],
+"ca": [
+"Goiânia",
+"Brasil"
+],
+"eu": [
+"Goiânia",
+"Brasil"
+],
+"lat": -16.6869,
+"lon": -49.2648
+},
+{
+"es": [
+"Belo Horizonte",
+"Brasil"
+],
+"gl": [
+"Belo Horizonte",
+"Brasil"
+],
+"ca": [
+"Belo Horizonte",
+"Brasil"
+],
+"eu": [
+"Belo Horizonte",
+"Brasil"
+],
+"lat": -19.9167,
+"lon": -43.9345
+},
+{
+"es": [
+"Vitória",
+"Brasil"
+],
+"gl": [
+"Vitória",
+"Brasil"
+],
+"ca": [
+"Vitória",
+"Brasil"
+],
+"eu": [
+"Vitória",
+"Brasil"
+],
+"lat": -20.3155,
+"lon": -40.3128
+},
+{
+"es": [
+"Maceió",
+"Brasil"
+],
+"gl": [
+"Maceió",
+"Brasil"
+],
+"ca": [
+"Maceió",
+"Brasil"
+],
+"eu": [
+"Maceió",
+"Brasil"
+],
+"lat": -9.6658,
+"lon": -35.7353
+},
+{
+"es": [
+"Macapá",
+"Brasil"
+],
+"gl": [
+"Macapá",
+"Brasil"
+],
+"ca": [
+"Macapá",
+"Brasil"
+],
+"eu": [
+"Macapá",
+"Brasil"
+],
+"lat": 0.0349,
+"lon": -51.0694
+},
+{
+"es": [
+"Rio Branco",
+"Brasil"
+],
+"gl": [
+"Rio Branco",
+"Brasil"
+],
+"ca": [
+"Rio Branco",
+"Brasil"
+],
+"eu": [
+"Rio Branco",
+"Brasil"
+],
+"lat": -9.9754,
+"lon": -67.8249
+},
+{
+"es": [
+"Lençóis (Bahía)",
+"Brasil"
+],
+"gl": [
+"Lençóis (Bahía)",
+"Brasil"
+],
+"ca": [
+"Lençóis (Bahia)",
+"Brasil"
+],
+"eu": [
+"Lençóis (Bahia)",
+"Brasil"
+],
+"lat": -12.5631,
+"lon": -41.3903
+},
+{
+"es": [
+"Blumenau",
+"Brasil"
+],
+"gl": [
+"Blumenau",
+"Brasil"
+],
+"ca": [
+"Blumenau",
+"Brasil"
+],
+"eu": [
+"Blumenau",
+"Brasil"
+],
+"lat": -26.9194,
+"lon": -49.0661
+},
+{
+"es": [
+"Chuí",
+"Brasil"
+],
+"gl": [
+"Chuí",
+"Brasil"
+],
+"ca": [
+"Chuí",
+"Brasil"
+],
+"eu": [
+"Chuí",
+"Brasil"
+],
+"lat": -33.6897,
+"lon": -53.4567
+},
+{
+"es": [
+"Cataratas Kaieteur",
+"Guyana"
+],
+"gl": [
+"Fervenzas Kaieteur",
+"Güiana"
+],
+"ca": [
+"Cascades Kaieteur",
+"Guyana"
+],
+"eu": [
+"Kaieteur ur-jauziak",
+"Guyana"
+],
+"lat": 5.175,
+"lon": -59.48
+},
+{
+"es": [
+"Nieuw Nickerie",
+"Surinam"
+],
+"gl": [
+"Nieuw Nickerie",
+"Surinam"
+],
+"ca": [
+"Nieuw Nickerie",
+"Surinam"
+],
+"eu": [
+"Nieuw Nickerie",
+"Surinam"
+],
+"lat": 5.9261,
+"lon": -56.9731
+},
+{
+"es": [
+"Saint-Laurent-du-Maroni",
+"Francia"
+],
+"gl": [
+"Saint-Laurent-du-Maroni",
+"Francia"
+],
+"ca": [
+"Saint-Laurent-du-Maroni",
+"França"
+],
+"eu": [
+"Saint-Laurent-du-Maroni",
+"Frantzia"
+],
+"lat": 5.4983,
+"lon": -54.0327
+}
+]

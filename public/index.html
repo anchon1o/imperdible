@@ -316,7 +316,7 @@ window.echarts = { registerMap: function (name, geo) { window.__WORLD__ = geo; }
     <p class="small" style="margin:0 0 8px" data-i18n="testTitle"></p>
     <div class="testrow">
       <label for="testNum" class="small" data-i18n="retoLabel"></label>
-      <input id="testNum" type="number" min="1" inputmode="numeric">
+      <input id="testNum" type="number" min="0" inputmode="numeric">
       <button class="btn" id="testGo" data-i18n="play"></button>
       <button class="btn" id="testRand" data-i18n="random"></button>
     </div>
@@ -381,7 +381,7 @@ const CONFIG = {
   MAX_TRIES: 10,
   WIN_KM: 150,
   SUSPENSE_MS: 650,
-  EPOCH: new Date(2026, 8, 29) // reto nº 1 = 29/09/2026 (hora local)
+  EPOCH: new Date(2026, 9, 1) // reto nº 1 = 01/10/2026 (hora local); o 30/09/2026 é o reto nº 0
 };
 const LEVELS = [
   { color: "#A9D9F2", min: 6000, share: "⬜" },
@@ -608,7 +608,8 @@ const REGIONS = ["all", "eu", "am", "af", "as"];
 function regionOf(lat, lon){ if (lat > 35 && lat < 72 && lon > -25 && lon < 45) return "eu"; if (lon < -30) return "am"; if (lat > -35 && lat < 37 && lon > -20 && lon < 52) return "af"; return "as"; }
 function setMode(train){ store.set("imperdible:v1:mode", train ? "train" : "daily"); location.href = location.pathname; }
 function newTrainGame(){ store.del("imperdible:v1:train"); location.href = location.pathname; }
-const RETO = Math.max(1, TEST_RETO || TODAY);
+const RETO = Math.max(0, TEST_RETO || TODAY);
+function placeIdx(n, len){ return (((n - 1) % len) + len) % len; }
 function normPlace(p){ const o = { lat: +p.lat, lon: +p.lon }; LANGS.forEach(l => { const v = p[l] || p.es || ["?","?"]; o[l] = [String(v[0] || ""), String(v[1] || "")]; }); return o; }
 const KEY = TRAIN ? "imperdible:v1:train" : `imperdible:v1:reto:${RETO}`;
 const STATS_KEY = "imperdible:v1:stats";
@@ -1103,7 +1104,7 @@ $("#camToggle").checked = prefs.cam !== false;
 $("#camToggle").onchange = e => { prefs.cam = e.target.checked; store.set("imperdible:v1:prefs", prefs); };
 $("#resetBtn").onclick = () => { store.del(KEY); location.reload(); };
 $("#testNum").value = RETO;
-$("#testGo").onclick = () => { const n = parseInt($("#testNum").value, 10); if (n > 0){ store.set(TEST_KEY, n); store.del(`imperdible:v1:reto:${n}`); location.reload(); } };
+$("#testGo").onclick = () => { const n = parseInt($("#testNum").value, 10); if (n >= 0){ store.set(TEST_KEY, n); store.del(`imperdible:v1:reto:${n}`); location.reload(); } };
 $("#testRand").onclick = () => { const n = 1 + Math.floor(Math.random()*(PLACE_COUNT || 800)); store.set(TEST_KEY, n); store.del(`imperdible:v1:reto:${n}`); location.reload(); };
 $("#testToday").onclick = () => { store.del(TEST_KEY); location.reload(); };
 $("#brandPin").src = PIN_IMG; $("#beadPin").src = STICKER_IMG;

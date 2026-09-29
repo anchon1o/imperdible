@@ -116,12 +116,13 @@ button:disabled{opacity:.45;cursor:default}
 "use strict";
 const $ = s => document.querySelector(s);
 const LANGS = ["es","gl","ca","eu"];
-const EPOCH = new Date(2026, 8, 29);
+const EPOCH = new Date(2026, 9, 1); // reto nº 1 = 01/10/2026; o 30/09/2026 é o nº 0
 let KEY = localStorage.getItem("imperdible:adminKey") ? JSON.parse(localStorage.getItem("imperdible:adminKey")) : "";
 let list = [], dirty = false, sel = -1, today = 1, bundledCount = 0;
 
 function todayNum(){ const n = new Date(); const a = new Date(n.getFullYear(), n.getMonth(), n.getDate()); return Math.round((a - EPOCH)/86400000) + 1; }
-function nextReto(i){ const len = list.length; return today + ((i - (today-1) % len) + len) % len; }
+function pIdx(n, len){ return (((n - 1) % len) + len) % len; }
+function nextReto(i){ const len = list.length; return today + ((i - pIdx(today, len)) % len + len) % len; }
 function dateOf(n){ const d = new Date(EPOCH); d.setDate(d.getDate() + n - 1); return d.toLocaleDateString("es", { day:"numeric", month:"short", year:"2-digit" }); }
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
 function norm(p){ const o = { lat: +p.lat, lon: +p.lon }; LANGS.forEach(l => { const v = p[l] || p.es; o[l] = [String((v && v[0]) || ""), String((v && v[1]) || "")]; }); return o; }
@@ -149,7 +150,7 @@ function render(){
   const q = $("#q").value.trim().toLowerCase();
   const len = list.length;
   $("#info").textContent = `${len} lugares · hoy es el reto nº ${today} · la lista da para ${len} días antes de repetirse.`;
-  const todayIdx = (today-1) % len;
+  const todayIdx = pIdx(today, len);
   $("#list").innerHTML = list.map((p,i) => {
     if (q && !LANGS.some(l => (p[l][0] + " " + p[l][1]).toLowerCase().includes(q))) return "";
     const n = nextReto(i);
